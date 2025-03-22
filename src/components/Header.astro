@@ -1,19 +1,20 @@
 ---
-import Logo from '../components/Logo.astro';
+// import Logo from '../components/Logo.astro';
 
 const navItems = [
-    { linkText: 'Home', href: '/' },
-    { linkText: 'Revalidation', href: '/revalidation' },
-    { linkText: 'Image CDN', href: '/image-cdn' },
-    { linkText: 'Edge Function', href: '/edge' },
-    { linkText: 'Blobs', href: '/blobs' }
+    // { linkText: 'Home', href: '/' },
+    // { linkText: 'Projects', href: '/revalidation' },
+    // { linkText: 'Resume', href: '/image-cdn' },
+    // { linkText: 'Resume', href: '#resume' },
+    // { linkText: 'Archives', href: '/edge' },
+    // { linkText: 'Blobs', href: '/blobs' }
 ];
 ---
 
 <nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
+    <!-- <a href="/">
         <Logo />
-    </a>
+    </a> -->
     {
         !!navItems?.length && (
             <ul class="flex flex-wrap gap-x-4 gap-y-1">

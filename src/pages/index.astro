@@ -1,21 +1,88 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
 import Markdown from '../components/Markdown.astro';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
+const aboutMe = `
+Currently a Computer Science and Engineering student at Santa Clara University, set to graduate in June 2027.\n
+Also working as a Sales Development Representative at ProofJump.`;
 
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
+const experience = `
+- **Sales Development Representative**: ProofJump · Part-time · Remote · Jul 2024 - Present
+- **Engineering Technician**: Honeywell · Part-time · Hybrid · Jul 2024 - Nov 2024
+- **Video Editor**: Freelance · Remote · Feb 2021 - Jul 2023
+- **Content Creator**: Self-employed · Remote · Dec 2015 - Feb 2021`;
+
+const education = `
+- **Santa Clara University**: Bachelor of Science in Computer Science and Engineering · Sep 2023 - Jun 2027
+- **The King's Academy, Sunnyvale, CA**: Aug 2020 - May 2023
 `;
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+
+    a {
+        color: #1e90ff; /* Dodger blue for links */
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #1e90ff;
+        color: white;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .btn:hover {
+        background-color: #0077cc;
+    }
+
+    /* Smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
+
+<Layout title="Derek's Personal Website">
+    <!-- About Me Section -->
+    <section class="mb-10">
+        <h1 class="text-4xl font-bold mb-6">Hi, I'm Derek</h1>
+        <Markdown content={aboutMe} class="text-lg" />
+    </section>
+
+    <!-- Projects Section -->
+    <section class="mb-10">
+        <h2 class="text-3xl font-bold mb-6">Projects</h2>
+        <ul class="list-disc list-inside">
+            <li><a>Personal Website [In Progress]</a></li>
+            <li><a href="https://github.com/derek-chui/Benchmark" class="text-blue-500 hover:underline">Benchmark</a></li>
+            <li><a href="https://github.com/derek-chui/FPL" class="text-blue-500 hover:underline">Fantasy Premier League</a></li>
+            <li><a href="https://github.com/derek-chui/Phonebook" class="text-blue-500 hover:underline">Phonebook</a></li>
+            <li><a href="https://github.com/derek-chui/Word-Gravity" class="text-blue-500 hover:underline">Word Gravity</a></li>
+        </ul>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="mb-10">
+        <h2 class="text-3xl font-bold mb-6">Experience</h2>
+        <Markdown content={experience} class="text-lg" />
+    </section>
+
+    <!-- Education Section -->
+    <section class="mb-10">
+        <h2 class="text-3xl font-bold mb-6">Education</h2>
+        <Markdown content={education} class="text-lg" />
+    </section>
+
 </Layout>
