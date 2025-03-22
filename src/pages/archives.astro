@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Markdown from '../components/Markdown.astro';
+
+const archivesContent = `
+
+Before starting to writing code, I spent all of my time editing videos and making content. Below are all my previous work.
+
+### Freelance
+
+- **Project 1**: A personal blog built with Astro and Markdown.
+- **Project 2**: A task management app using React and Node.js.
+- **Project 3**: A portfolio website showcasing my design and development skills.
+
+### Old Experiments
+
+- **Experiment 1**: A simple game built with JavaScript and Canvas.
+- **Experiment 2**: A weather app using a public API.
+- **Experiment 3**: A chatbot powered by natural language processing.
+
+### Reflections
+
+Looking back at these projects, I can see how much I've grown as a developer. Each one taught me something new, whether it was a technical skill or a lesson in problem-solving.
+`;
+---
+
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+    }
+
+    h1, h2, h3 {
+        color: white;
+    }
+
+    a {
+        color: #1e90ff; /* Dodger blue for links */
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #1e90ff;
+        color: white;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        margin: 0.5rem;
+    }
+
+    .btn:hover {
+        background-color: #0077cc;
+    }
+</style>
+
+<Layout title="Archives">
+    <h1 class="text-4xl font-bold mb-6">Archives</h1>
+
+    <div class="mt-10">
+        <h2 class="text-3xl font-bold mb-6">Freelance</h2>
+        <div class="flex flex-wrap gap-4">
+            <a href="https://drive.google.com/drive/folders/1Dbq81PbuWpvcdAOGbwpfIGN0uBo1Uaqc" class="btn">My Favorite Pieces</a>
+            <a href="https://drive.google.com/drive/folders/14gG3ILCjsT7INghoY-wmethqwbDdUF9H" class="btn">All Freelance Work</a>
+        </div>
+    </div>
+
+    <div class="mt-10">
+        <h2 class="text-3xl font-bold mb-6">Other Content</h2>
+        <div class="flex flex-wrap gap-4">
+            <a href="https://www.youtube.com/channel/UChR2eOEKcV-7upxgD0ziafw" class="btn">YouTube</a>
+            <a href="https://www.youtube.com/channel/UCclJISmJl23Nu0Io9N1Lb1g" class="btn">Podcast</a>
+            <a href="https://derek-chui.medium.com/" class="btn">Blog</a>
+            <a href="https://docs.google.com/document/d/1zPMiBcjW1FCWZBzB-wgzjyoc331g1o2ZgcLoP6zmf20/edit?tab=t.0" class="btn">Book</a>
+
+        </div>
+    </div>
+    <!-- <Markdown content={archivesContent} class="text-lg" /> -->
+</Layout>
