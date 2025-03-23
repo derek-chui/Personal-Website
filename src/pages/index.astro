@@ -1,96 +1,139 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Markdown from '../components/Markdown.astro';
-
-// const aboutMe = `
-// Currently a Computer Science and Engineering student at Santa Clara University, set to graduate in June 2027.\n
-// Also working as a Sales Development Representative at ProofJump.`;
-
-// const experience = `
-// - **Sales Development Representative**: ProofJump · Part-time · Remote · Jul 2024 - Present
-// - **Engineering Technician**: Honeywell · Part-time · Hybrid · Jul 2024 - Nov 2024
-// - <a href="/archives" class="text-blue-500">**Video Editor**</a>: Freelance · Remote · Feb 2021 - Jul 2023
-// - <a href="/archives" class="text-blue-500">**Content Creator**</a>: Self-employed · Remote · Dec 2015 - Feb 2021`;
-
-// const education = `
-// - **Santa Clara University**: Bachelor of Science in Computer Science and Engineering · Sep 2023 - Jun 2027`;
 ---
 
 <style>
     body {
-        background-color: black;
-        color: white;
-        font-family: Arial, sans-serif;
+        background-color: #000; /* Pure black background */
+        color: #fff; /* White text */
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Apple-style font stack */
+        line-height: 1.6; /* Improved readability */
+        margin: 0;
+        padding: 0;
     }
 
     a {
-        color: #1e90ff;
+        color: #2997ff; /* Apple's blue accent color */
         text-decoration: none;
+        transition: color 0.3s ease;
     }
 
-    /* a:hover {
-        text-decoration: underline;
-    } */
+    a:hover {
+        color: #1e90ff; /* Slightly lighter blue on hover */
+    }
 
     .btn {
         display: inline-block;
         padding: 10px 20px;
-        background-color: #1e90ff;
+        background-color: #2997ff; /* Apple's blue */
         color: white;
-        border-radius: 5px;
+        border-radius: 8px; /* Slightly rounded corners */
         text-align: center;
         text-decoration: none;
+        transition: background-color 0.3s ease;
     }
 
     .btn:hover {
-        background-color: #0077cc;
+        background-color: #1e90ff; /* Slightly lighter blue on hover */
     }
 
     html {
         scroll-behavior: smooth;
+    }
+
+    /* Card styling */
+    .card {
+        background-color: #1a1a1a; /* Dark gray background */
+        border-radius: 12px; /* Rounded corners */
+        padding: 24px;
+        margin-bottom: 24px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    }
+
+    .card:hover {
+        transform: translateY(-5px); /* Subtle float effect */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    }
+
+    /* List styling inside cards */
+    .card ul {
+        list-style-type: disc;
+        padding-left: 24px;
+    }
+
+    .card ul li {
+        margin-bottom: 12px;
+    }
+
+    /* Headings */
+    h1, h2, h3 {
+        font-weight: 600; /* Semi-bold for headings */
+        margin-bottom: 16px;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Large heading */
+    }
+
+    h2 {
+        font-size: 2rem; /* Medium heading */
+    }
+
+    h3 {
+        font-size: 1.5rem; /* Small heading */
+    }
+
+    /* Section spacing */
+    section {
+        margin-bottom: 40px;
     }
 </style>
 
 <Layout title="Derek Chui">
     <!-- About Me Section -->
     <section class="mb-10">
-        <h1 class="text-4xl font-bold mb-6">Hi, I'm Derek</h1>
-        <!-- <Markdown content={aboutMe} class="text-lg" /> -->
-        <ul class="list-disc list-inside">
-            <p>Currently a Computer Science and Engineering student at Santa Clara University, set to graduate in June 2027.</p>
-            <p>Also working as a Sales Development Representative at <a href="http://proofjump.com/">ProofJump</a>.</p>
-        </ul>
+        <div class="card">
+            <h1>Hi, I'm Derek</h1>
+            <ul>
+                <p>Currently a Computer Science and Engineering student at Santa Clara University, set to graduate in June 2027.</p>
+                <p>Also working as a Sales Development Representative at <a href="http://proofjump.com/">ProofJump</a>.</p>
+            </ul>
+        </div>
     </section>
 
     <!-- Projects Section -->
     <section class="mb-10">
-        <h2 class="text-3xl font-bold mb-6">Projects</h2>
-        <ul class="list-disc list-inside">
-            <li><a href="https://github.com/derek-chui/astro-platform-starter">Personal Website [IN PROGRESS]</a></li>
-            <li><a href="https://github.com/derek-chui/Benchmark">Benchmark [IN PROGRESS]</a></li>
-            <li><a href="https://github.com/derek-chui/FPL">Fantasy Premier League</a></li>
-            <li><a href="https://github.com/derek-chui/Phonebook">Phonebook</a></li>
-            <li><a href="https://github.com/derek-chui/Word-Gravity">Word Gravity</a></li>
-        </ul>
+        <div class="card">
+            <h2>Projects</h2>
+            <ul>
+                <li><a href="https://github.com/derek-chui/astro-platform-starter">Personal Website [IN PROGRESS]</a></li>
+                <li><a href="https://github.com/derek-chui/Benchmark">Benchmark [IN PROGRESS]</a></li>
+                <li><a href="https://github.com/derek-chui/FPL">Fantasy Premier League</a></li>
+                <li><a href="https://github.com/derek-chui/Phonebook">Phonebook</a></li>
+                <li><a href="https://github.com/derek-chui/Word-Gravity">Word Gravity</a></li>
+            </ul>
+        </div>
     </section>
 
     <!-- Experience Section -->
     <section class="mb-10">
-        <h2 class="text-3xl font-bold mb-6">Experience</h2>
-        <!-- <Markdown content={experience} class="text-lg" /> -->
-        <ul class="list-disc list-inside">
-            <li>Sales Development Representative: <a href="http://proofjump.com/">ProofJump</a> · Part-time · Remote · Jul 2024 - Present</li>
-            <li>Engineering Technician: Honeywell · Part-time · Hybrid · Jul 2024 - Nov 2024</li>
-            <li><a href="/archives">Video Editor</a>: Freelance · Remote · Feb 2021 - Jul 2023</li>
-            <li><a href="/archives">Content Creator</a>: Self-employed · Remote · Dec 2015 - Feb 2021</li>
-        </ul>
+        <div class="card">
+            <h2>Experience</h2>
+            <ul>
+                <li>Sales Development Representative: <a href="http://proofjump.com/">ProofJump</a> · Part-time · Remote · Jul 2024 - Present</li>
+                <li>Engineering Technician: Honeywell · Part-time · Hybrid · Jul 2024 - Nov 2024</li>
+                <li><a href="/archives">Video Editor</a>: Freelance · Remote · Feb 2021 - Jul 2023</li>
+                <li><a href="/archives">Content Creator</a>: Self-employed · Remote · Dec 2015 - Feb 2021</li>
+            </ul>
+        </div>
     </section>
 
     <!-- Education Section -->
     <section class="mb-10">
-        <h2 class="text-3xl font-bold mb-6">Education</h2>
-        <!-- <Markdown content={education} class="text-lg" /> -->
-        <p>Santa Clara University: Bachelor of Science in Computer Science and Engineering · Sep 2023 - Jun 2027</p>
+        <div class="card">
+            <h2>Education</h2>
+            <p>Santa Clara University: Bachelor of Science in Computer Science and Engineering · Sep 2023 - Jun 2027</p>
+        </div>
     </section>
-
 </Layout>

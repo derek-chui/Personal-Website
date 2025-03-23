@@ -1,85 +1,113 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Markdown from '../components/Markdown.astro';
-
-const archivesContent = `
-
-Before starting to writing code, I spent all of my time editing videos and making content. Below are all my previous work.
-
-### Freelance
-
-- **Project 1**: A personal blog built with Astro and Markdown.
-- **Project 2**: A task management app using React and Node.js.
-- **Project 3**: A portfolio website showcasing my design and development skills.
-
-### Old Experiments
-
-- **Experiment 1**: A simple game built with JavaScript and Canvas.
-- **Experiment 2**: A weather app using a public API.
-- **Experiment 3**: A chatbot powered by natural language processing.
-
-### Reflections
-
-Looking back at these projects, I can see how much I've grown as a developer. Each one taught me something new, whether it was a technical skill or a lesson in problem-solving.
-`;
 ---
 
 <style>
     body {
-        background-color: black;
-        color: white;
-        font-family: Arial, sans-serif;
+        background-color: #000; /* Pure black background */
+        color: #fff; /* White text */
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Apple-style font stack */
+        line-height: 1.6; /* Improved readability */
+        margin: 0;
+        padding: 0;
     }
 
     h1, h2, h3 {
-        color: white;
+        font-weight: 600; /* Semi-bold for headings */
+        margin-bottom: 16px;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Large heading */
+    }
+
+    h2 {
+        font-size: 2rem; /* Medium heading */
+    }
+
+    h3 {
+        font-size: 1.5rem; /* Small heading */
     }
 
     a {
-        color: #1e90ff;
+        color: #2997ff; /* Apple's blue accent color */
         text-decoration: none;
+        transition: color 0.3s ease;
     }
 
-    /* a:hover {
-        text-decoration: underline;
-    } */
+    a:hover {
+        color: #fff; /* Slightly lighter blue on hover */
+    }
 
     .btn {
         display: inline-block;
-        padding: 10px 20px;
-        background-color: #ffffff;
-        color: rgb(0, 0, 0);
-        border-radius: 5px;
+        padding: 12px 24px; /* Slightly larger padding */
+        background-color: #1a1a1a; /* Dark gray background */
+        color: #fff; /* White text */
+        border-radius: 8px; /* Slightly rounded corners */
         text-align: center;
         text-decoration: none;
-        margin: 0.5rem;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
     }
 
     .btn:hover {
-        background-color: #0077cc;
+        background-color: #2997ff; /* Apple's blue on hover */
+        transform: translateY(-3px); /* Subtle float effect */
+    }
+
+    /* Card styling */
+    .card {
+        background-color: #1a1a1a; /* Dark gray background */
+        border-radius: 12px; /* Rounded corners */
+        padding: 24px;
+        margin-bottom: 24px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    }
+
+    .card:hover {
+        transform: translateY(-5px); /* Subtle float effect */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    }
+
+    /* Section spacing */
+    section {
+        margin-bottom: 40px;
+    }
+
+    /* Flex container for buttons */
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px; /* Spacing between buttons */
     }
 </style>
 
 <Layout title="Archives">
-    <h1 class="text-4xl font-bold mb-6">Archives</h1>
+    <h1 class="mb-6">Archives</h1>
 
-    <div class="mt-10">
-        <h2 class="text-3xl font-bold mb-6">Freelance</h2>
-        <div class="flex flex-wrap gap-4">
-            <a href="https://drive.google.com/drive/folders/1Dbq81PbuWpvcdAOGbwpfIGN0uBo1Uaqc" class="btn">My Favorite Pieces</a>
-            <a href="https://drive.google.com/drive/folders/14gG3ILCjsT7INghoY-wmethqwbDdUF9H" class="btn">All Freelance Work</a>
+    <!-- Freelance Section -->
+    <section>
+        <div class="card">
+            <h2 class="mb-6">Freelance</h2>
+            <div class="flex-container">
+                <a href="https://drive.google.com/drive/folders/1Dbq81PbuWpvcdAOGbwpfIGN0uBo1Uaqc" class="btn">My Favorite Pieces</a>
+                <a href="https://drive.google.com/drive/folders/14gG3ILCjsT7INghoY-wmethqwbDdUF9H" class="btn">All Freelance Work</a>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="mt-10">
-        <h2 class="text-3xl font-bold mb-6">Other Archived Content</h2>
-        <div class="flex flex-wrap gap-4">
-            <a href="https://www.youtube.com/channel/UChR2eOEKcV-7upxgD0ziafw" class="btn">YouTube</a>
-            <a href="https://www.youtube.com/channel/UCclJISmJl23Nu0Io9N1Lb1g" class="btn">Podcast</a>
-            <a href="https://derek-chui.medium.com/" class="btn">Blog</a>
-            <a href="https://docs.google.com/document/d/1zPMiBcjW1FCWZBzB-wgzjyoc331g1o2ZgcLoP6zmf20/edit?tab=t.0" class="btn">Book</a>
-
+    <!-- Other Archived Content Section -->
+    <section>
+        <div class="card">
+            <h2 class="mb-6">Other Archived Content</h2>
+            <div class="flex-container">
+                <a href="https://www.youtube.com/channel/UChR2eOEKcV-7upxgD0ziafw" class="btn">YouTube</a>
+                <a href="https://www.youtube.com/channel/UCclJISmJl23Nu0Io9N1Lb1g" class="btn">Podcast</a>
+                <a href="https://derek-chui.medium.com/" class="btn">Blog</a>
+                <a href="https://docs.google.com/document/d/1zPMiBcjW1FCWZBzB-wgzjyoc331g1o2ZgcLoP6zmf20/edit?tab=t.0" class="btn">Book</a>
+            </div>
         </div>
-    </div>
-    <!-- <Markdown content={archivesContent} class="text-lg" /> -->
+    </section>
 </Layout>
