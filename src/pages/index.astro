@@ -2,20 +2,18 @@
 import Layout from '../layouts/Layout.astro';
 import Markdown from '../components/Markdown.astro';
 
-const aboutMe = `
-Currently a Computer Science and Engineering student at Santa Clara University, set to graduate in June 2027.\n
-Also working as a Sales Development Representative at ProofJump.`;
+// const aboutMe = `
+// Currently a Computer Science and Engineering student at Santa Clara University, set to graduate in June 2027.\n
+// Also working as a Sales Development Representative at ProofJump.`;
 
-const experience = `
-- **Sales Development Representative**: ProofJump · Part-time · Remote · Jul 2024 - Present
-- **Engineering Technician**: Honeywell · Part-time · Hybrid · Jul 2024 - Nov 2024
-- **Video Editor**: Freelance · Remote · Feb 2021 - Jul 2023
-- **Content Creator**: Self-employed · Remote · Dec 2015 - Feb 2021`;
+// const experience = `
+// - **Sales Development Representative**: ProofJump · Part-time · Remote · Jul 2024 - Present
+// - **Engineering Technician**: Honeywell · Part-time · Hybrid · Jul 2024 - Nov 2024
+// - <a href="/archives" class="text-blue-500">**Video Editor**</a>: Freelance · Remote · Feb 2021 - Jul 2023
+// - <a href="/archives" class="text-blue-500">**Content Creator**</a>: Self-employed · Remote · Dec 2015 - Feb 2021`;
 
-const education = `
-- **Santa Clara University**: Bachelor of Science in Computer Science and Engineering · Sep 2023 - Jun 2027
-- **The King's Academy, Sunnyvale, CA**: Aug 2020 - May 2023
-`;
+// const education = `
+// - **Santa Clara University**: Bachelor of Science in Computer Science and Engineering · Sep 2023 - Jun 2027`;
 ---
 
 <style>
@@ -26,13 +24,13 @@ const education = `
     }
 
     a {
-        color: #1e90ff; /* Dodger blue for links */
+        color: #1e90ff;
         text-decoration: none;
     }
 
-    a:hover {
+    /* a:hover {
         text-decoration: underline;
-    }
+    } */
 
     .btn {
         display: inline-block;
@@ -48,7 +46,6 @@ const education = `
         background-color: #0077cc;
     }
 
-    /* Smooth scrolling */
     html {
         scroll-behavior: smooth;
     }
@@ -58,31 +55,42 @@ const education = `
     <!-- About Me Section -->
     <section class="mb-10">
         <h1 class="text-4xl font-bold mb-6">Hi, I'm Derek</h1>
-        <Markdown content={aboutMe} class="text-lg" />
+        <!-- <Markdown content={aboutMe} class="text-lg" /> -->
+        <ul class="list-disc list-inside">
+            <p>Currently a Computer Science and Engineering student at Santa Clara University, set to graduate in June 2027.</p>
+            <p>Also working as a Sales Development Representative at <a href="http://proofjump.com/">ProofJump</a>.</p>
+        </ul>
     </section>
 
     <!-- Projects Section -->
     <section class="mb-10">
         <h2 class="text-3xl font-bold mb-6">Projects</h2>
         <ul class="list-disc list-inside">
-            <li><a href="https://github.com/derek-chui/astro-platform-starter" class="text-blue-500 hover:underline">Personal Website [IN PROGRESS]</a></li>
-            <li><a href="https://github.com/derek-chui/Benchmark" class="text-blue-500 hover:underline">Benchmark [IN PROGRESS]</a></li>
-            <li><a href="https://github.com/derek-chui/FPL" class="text-blue-500 hover:underline">Fantasy Premier League</a></li>
-            <li><a href="https://github.com/derek-chui/Phonebook" class="text-blue-500 hover:underline">Phonebook</a></li>
-            <li><a href="https://github.com/derek-chui/Word-Gravity" class="text-blue-500 hover:underline">Word Gravity</a></li>
+            <li><a href="https://github.com/derek-chui/astro-platform-starter">Personal Website [IN PROGRESS]</a></li>
+            <li><a href="https://github.com/derek-chui/Benchmark">Benchmark [IN PROGRESS]</a></li>
+            <li><a href="https://github.com/derek-chui/FPL">Fantasy Premier League</a></li>
+            <li><a href="https://github.com/derek-chui/Phonebook">Phonebook</a></li>
+            <li><a href="https://github.com/derek-chui/Word-Gravity">Word Gravity</a></li>
         </ul>
     </section>
 
     <!-- Experience Section -->
     <section class="mb-10">
         <h2 class="text-3xl font-bold mb-6">Experience</h2>
-        <Markdown content={experience} class="text-lg" />
+        <!-- <Markdown content={experience} class="text-lg" /> -->
+        <ul class="list-disc list-inside">
+            <li>Sales Development Representative: <a href="http://proofjump.com/">ProofJump</a> · Part-time · Remote · Jul 2024 - Present</li>
+            <li>Engineering Technician: Honeywell · Part-time · Hybrid · Jul 2024 - Nov 2024</li>
+            <li><a href="/archives">Video Editor</a>: Freelance · Remote · Feb 2021 - Jul 2023</li>
+            <li><a href="/archives">Content Creator</a>: Self-employed · Remote · Dec 2015 - Feb 2021</li>
+        </ul>
     </section>
 
     <!-- Education Section -->
     <section class="mb-10">
         <h2 class="text-3xl font-bold mb-6">Education</h2>
-        <Markdown content={education} class="text-lg" />
+        <!-- <Markdown content={education} class="text-lg" /> -->
+        <p>Santa Clara University: Bachelor of Science in Computer Science and Engineering · Sep 2023 - Jun 2027</p>
     </section>
 
 </Layout>

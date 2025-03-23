@@ -4,22 +4,33 @@
 const navItems = [
     { linkText: 'Home', href: '/' },
     // { linkText: 'Projects', href: '/revalidation' },
-    { linkText: 'Resume', href: 'https://docs.google.com/document/d/1SqrhUDSF9C6EaKg9LuVlPoM_GqUKX6dB/edit?usp=sharing&ouid=112570999586883418159&rtpof=true&sd=true' },
+    { linkText: 'Resume', href: '/Resume.pdf' },
     { linkText: 'Archives', href: '/archives' },
     // { linkText: 'Blobs', href: '/blobs' }
+    
 ];
 ---
 
+<style>
+    .nav-link {
+        text-decoration: none; /* Remove underline */
+        color: white; /* Default text color */
+        transition: color 0.2s ease; /* Smooth color transition */
+    }
+
+    .nav-link:hover {
+        text-decoration: none; /* Ensure underline doesn't appear on hover */
+        color: #1e90ff; /* Change text color on hover */
+    }
+</style>
+
 <nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <!-- <a href="/">
-        <Logo />
-    </a> -->
     {
         !!navItems?.length && (
             <ul class="flex flex-wrap gap-x-4 gap-y-1">
                 {navItems.map((item) => (
                     <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
+                        <a href={item.href} class="nav-link inline-block px-1.5 py-1 sm:px-3 sm:py-2">
                             {item.linkText}
                         </a>
                     </li>
