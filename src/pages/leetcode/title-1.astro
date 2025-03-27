@@ -3,7 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <style>
-    /* Variables */
+    /* General CSS*/
+
+    /* Root */
     :root {
         --bg-dark: #000;
         --text-light: #fff;
@@ -13,7 +15,6 @@ import Layout from '../../layouts/Layout.astro';
         --border-light: rgba(255, 255, 255, 0.1);
         --transition: all 0.3s ease;
         
-        /* Badge Colors */
         --easy-bg: rgba(0, 184, 163, 0.1);
         --easy-text: #00b8a3;
         --medium-bg: rgba(255, 192, 30, 0.1);
@@ -21,7 +22,6 @@ import Layout from '../../layouts/Layout.astro';
         --hard-bg: rgba(255, 55, 95, 0.1);
         --hard-text: #ff375f;
         
-        /* Spacing */
         --space-xs: 0.5rem;
         --space-sm: 0.75rem;
         --space-md: 1rem;
@@ -40,7 +40,7 @@ import Layout from '../../layouts/Layout.astro';
         padding: 0;
     }
 
-    /* ===== TYPOGRAPHY ===== */
+    /* Typography */
     h1, h2, h3, h4 {
         font-weight: 600;
         margin-bottom: var(--space-md);
@@ -71,12 +71,14 @@ import Layout from '../../layouts/Layout.astro';
         margin-bottom: var(--space-md);
     }
 
-    /* Layout */
+    /* Layout & Spacing */
     .article {
         max-width: 800px;
         margin: 0 auto;
         padding: 0 1.25rem;
     }
+
+    /*Secion Based CSS
 
     /* Components */
     .meta {
@@ -185,7 +187,6 @@ import Layout from '../../layouts/Layout.astro';
         border-bottom: 1px solid var(--border-light);
     }
 
-    /* Lists */
     ul, ol {
         margin-bottom: var(--space-md);
         padding-left: var(--space-md);

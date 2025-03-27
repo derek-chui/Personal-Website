@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <style>
-    /* Variables */
+    /* General CSS */
+    
+    /* Root */
     :root {
         --bg-dark: #000;
         --text-light: #fff;
@@ -15,7 +17,6 @@ import Layout from '../layouts/Layout.astro';
         --shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         --transition: all 0.3s ease;
         
-        /* Badge Colors */
         --easy-bg: rgba(0, 184, 163, 0.1);
         --easy-text: #00b8a3;
         --medium-bg: rgba(255, 192, 30, 0.1);
@@ -86,7 +87,7 @@ import Layout from '../layouts/Layout.astro';
         margin-bottom: 1.5rem;
     }
 
-    /* Card Components */
+    /* Cards */
     .card {
         background-color: var(--card-bg);
         border-radius: 0.75rem;
@@ -101,7 +102,9 @@ import Layout from '../layouts/Layout.astro';
         box-shadow: var(--shadow);
     }
 
-    /* Flex & Grid Layouts */
+    /* Section Based CSS */
+
+    /* Current Stats */
     .flex-container {
         display: flex;
         flex-wrap: wrap;
@@ -115,7 +118,6 @@ import Layout from '../layouts/Layout.astro';
         margin: 1.5rem 0;
     }
 
-    /* Stat Items */
     .stat-item {
         background-color: var(--card-bg-light);
         border-radius: 0.5rem;
@@ -135,7 +137,7 @@ import Layout from '../layouts/Layout.astro';
         color: var(--text-muted);
     }
 
-    /* Blog Posts */
+    /* Recent Thoughts */
     .blog-post {
         margin-bottom: 1.5rem;
         padding-bottom: 1rem;
@@ -150,7 +152,6 @@ import Layout from '../layouts/Layout.astro';
         margin-bottom: 0.75rem;
     }
 
-    /* ===== BADGES ===== */
     .badge {
         display: inline-block;
         padding: 0.25rem 0.5rem;

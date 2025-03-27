@@ -3,14 +3,16 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <style>
+    /* General CSS */
+
+    /* Root */
     :root {
         --apple-blue: #2997ff;
         --bg-dark: #000;
         --card-bg: #1a1a1a;
-        --text-light: #fff;
-        --accent: #ffffff;
     }
 
+    /* Key Frames */
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
@@ -22,9 +24,10 @@ import Layout from '../layouts/Layout.astro';
         100% { transform: translateY(0px); }
     }
 
+    /* Base Styles */
     body {
         background-color: var(--bg-dark);
-        color: var(--text-light);
+        color: white;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         line-height: 1.6;
         margin: 0;
@@ -32,6 +35,43 @@ import Layout from '../layouts/Layout.astro';
         overflow-x: hidden;
     }
 
+    /* Typography */
+    h1, h2, h3 {
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 2.8rem;
+        background: #ffffff;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: inline-block;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+        position: relative;
+        display: inline-block;
+    }
+
+    h2:after {
+        content: '';
+        position: absolute;
+        width: 50%;
+        height: 4px;
+        bottom: -8px;
+        left: 0;
+        background: linear-gradient(90deg, var(--apple-blue), transparent);
+        border-radius: 2px;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+
+    /* Links & Buttons */
     a {
         color: var(--apple-blue);
         text-decoration: none;
@@ -95,7 +135,7 @@ import Layout from '../layouts/Layout.astro';
         transform: translateY(-3px);
     }
 
-
+    /* Cards */
     html {
         scroll-behavior: smooth;
     }
@@ -133,47 +173,9 @@ import Layout from '../layouts/Layout.astro';
         content: '→';
         position: absolute;
         left: 0;
-        color: var(--accent);
+        color: white;
     }
 
-    h1, h2, h3 {
-        font-weight: 600;
-        margin-bottom: 20px;
-    }
-
-    h1 {
-        font-size: 2.8rem;
-        /* background: linear-gradient(90deg, var(--apple-blue), #ffffff); */
-        background: #ffffff;
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        display: inline-block;
-    }
-
-    h2 {
-        font-size: 2.2rem;
-        position: relative;
-        display: inline-block;
-    }
-
-    h2:after {
-        content: '';
-        position: absolute;
-        width: 50%;
-        height: 4px;
-        bottom: -8px;
-        left: 0;
-        background: linear-gradient(90deg, var(--apple-blue), transparent);
-        /* background: linear-gradient(90deg, white, transparent); */
-        border-radius: 2px;
-    }
-
-    h3 {
-        font-size: 1.6rem;
-    }
-
-    /* Section Spacing */
     section {
         margin-bottom: 60px;
         opacity: 0;
@@ -186,6 +188,9 @@ import Layout from '../layouts/Layout.astro';
         transform: translateY(0);
     }
 
+    /* Section Based CSS*/
+
+    /* Hero */
     .hero {
         text-align: center;
         padding: 80px 20px;
@@ -223,7 +228,7 @@ import Layout from '../layouts/Layout.astro';
         margin-top: 32px;
     }
 
-    /* Project Cards */
+    /* Project */
     .project-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -246,7 +251,6 @@ import Layout from '../layouts/Layout.astro';
 
     .project-card h3 {
         margin-top: 0;
-        /* color: var(--apple-blue); */
     }
 
     .project-card .tags {
@@ -264,6 +268,7 @@ import Layout from '../layouts/Layout.astro';
         font-size: 0.8rem;
     }
 
+    /* Experience */
     .timeline {
         position: relative;
         padding-left: 30px;
@@ -277,7 +282,6 @@ import Layout from '../layouts/Layout.astro';
         top: 0;
         bottom: 0;
         width: 2px;
-        /* background: linear-gradient(to bottom, var(--apple-blue), var(--accent)); */
         background: linear-gradient(to bottom, var(--apple-blue), transparent);
 
     }
@@ -300,13 +304,12 @@ import Layout from '../layouts/Layout.astro';
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        /* background: var(--apple-blue); */
         background: white;
         border: 3px solid var(--card-bg);
     }
 
     .timeline-date {
-        color: var(--accent);
+        color: white;
         font-weight: 500;
         margin-bottom: 8px;
     }
@@ -315,57 +318,7 @@ import Layout from '../layouts/Layout.astro';
         margin-top: 0;
     }
 
-    /* Floating Shapes */
-    .floating-shape {
-        position: absolute;
-        opacity: 0.1;
-        z-index: -1;
-    }
-
-    .shape-1 {
-        top: 10%;
-        left: 5%;
-        width: 100px;
-        height: 100px;
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-        background: var(--apple-blue);
-        animation: float 6s ease-in-out infinite;
-    }
-
-    .shape-2 {
-        bottom: 15%;
-        right: 5%;
-        width: 150px;
-        height: 150px;
-        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-        background: var(--accent);
-        animation: float 8s ease-in-out infinite reverse;
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-        h1 {
-            font-size: 2.2rem;
-        }
-        
-        h2 {
-            font-size: 1.8rem;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-        }
-        
-        .project-grid {
-            grid-template-columns: 1fr;
-        }
-        
-        .hero-buttons {
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-
+    /* Education */
     #education .card {
         background-color: #1a1a1a;
         border-left: 6px solid #b30738;
@@ -391,6 +344,30 @@ import Layout from '../layouts/Layout.astro';
         box-shadow: 0 12px 28px rgba(179, 7, 56, 0.2);
         border-color: rgba(179, 7, 56, 0.3);
     }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2.2rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        
+        .project-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .hero-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
 </style>
 
 <script>
@@ -413,9 +390,6 @@ import Layout from '../layouts/Layout.astro';
 </script>
 
 <Layout title="Derek Chui">
-    <!-- BACKGROUND SHAPES -->
-    <!-- <div class="floating-shape shape-1"></div> -->
-    <!-- <div class="floating-shape shape-2"></div> -->
     
     <!-- HERO -->
     <section class="hero">

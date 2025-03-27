@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <style>
-    /* Variables */
+    /* General CSS */
+
+    /* Root */
     :root {
         --bg-dark: #000;
         --text-light: #fff;
@@ -26,7 +28,7 @@ import Layout from '../layouts/Layout.astro';
         padding: 0;
     }
 
-    /* TYPOGRAPHY */
+    /* Typography */
     h1, h2, h3 {
         font-weight: 600;
         margin-bottom: 1rem;
@@ -76,7 +78,7 @@ import Layout from '../layouts/Layout.astro';
         margin-bottom: 1.5rem;
     }
 
-    /* Card Components */
+    /* Cards */
     .card {
         background-color: var(--card-bg);
         border-radius: 0.75rem;
@@ -91,7 +93,9 @@ import Layout from '../layouts/Layout.astro';
         box-shadow: var(--shadow);
     }
 
-    /* Records Grid */
+    /* Section Based CSS*/
+
+    /* Personal Records */
     .pr-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -99,7 +103,6 @@ import Layout from '../layouts/Layout.astro';
         margin-top: 2rem;
     }
 
-    /* Record Items */
     .pr-item {
         margin-bottom: 0.75rem;
         display: flex;
