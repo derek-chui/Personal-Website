@@ -2,8 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<!-- Everything css below is a mess I'll organize it one day-->
-
 <style>
     :root {
         --apple-blue: #2997ff;
@@ -175,7 +173,7 @@ import Layout from '../layouts/Layout.astro';
         font-size: 1.6rem;
     }
 
-    /* Section spacing */
+    /* Section Spacing */
     section {
         margin-bottom: 60px;
         opacity: 0;
@@ -225,7 +223,7 @@ import Layout from '../layouts/Layout.astro';
         margin-top: 32px;
     }
 
-    /* Project cards */
+    /* Project Cards */
     .project-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -317,7 +315,7 @@ import Layout from '../layouts/Layout.astro';
         margin-top: 0;
     }
 
-    /* Floating shapes */
+    /* Floating Shapes */
     .floating-shape {
         position: absolute;
         opacity: 0.1;
@@ -344,35 +342,7 @@ import Layout from '../layouts/Layout.astro';
         animation: float 8s ease-in-out infinite reverse;
     }
 
-    /* Dark mode toggle */
-    .theme-toggle {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: var(--card-bg);
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        border: none;
-        z-index: 100;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
-    }
-
-    .theme-toggle:hover {
-        transform: scale(1.1);
-    }
-
-    .theme-toggle i {
-        font-size: 1.5rem;
-        color: var(--apple-blue);
-    }
-
-    /* Responsive adjustments */
+    /* Responsive Adjustments */
     @media (max-width: 768px) {
         h1 {
             font-size: 2.2rem;
@@ -422,8 +392,6 @@ import Layout from '../layouts/Layout.astro';
         border-color: rgba(179, 7, 56, 0.3);
     }
 </style>
-
-<!-- Everything css above is a mess I'll organize it one day-->
 
 <script>
     //SCROLL ANIMATIONS
@@ -591,7 +559,7 @@ import Layout from '../layouts/Layout.astro';
                 <a href="mailto:thatderekchui@gmail.com" class="btn">
                     ✉️ Email Me
                 </a>
-                <a href="https://linkedin.com/in/yourprofile" class="btn btn-minor">
+                <a href="https://www.linkedin.com/in/derek-chui/" class="btn btn-minor">
                     <span style="margin-right: 8px;">🔗</span> LinkedIn
                 </a>
                 <a href="https://github.com/derek-chui" class="btn btn-minor">

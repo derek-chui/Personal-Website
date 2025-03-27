@@ -3,110 +3,133 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <style>
+    /* Variables */
+    :root {
+        --bg-dark: #000;
+        --text-light: #fff;
+        --text-muted: #999;
+        --card-bg: #1a1a1a;
+        --accent-blue: #2997ff;
+        --border-light: rgba(255, 255, 255, 0.1);
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        --transition: all 0.3s ease;
+    }
+
+    /* Base Styles */
     body {
-        background-color: #000; /* Pure black background */
-        color: #fff; /* White text */
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Apple-style font stack */
-        line-height: 1.6; /* Improved readability */
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                    'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
         margin: 0;
         padding: 0;
     }
 
+    /* TYPOGRAPHY */
     h1, h2, h3 {
-        font-weight: 600; /* Semi-bold for headings */
-        margin-bottom: 16px;
+        font-weight: 600;
+        margin-bottom: 1rem;
     }
 
-    h1 {
-        font-size: 2.5rem; /* Large heading */
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+
+    .text-muted {
+        color: var(--text-muted);
     }
 
-    h2 {
-        font-size: 2rem; /* Medium heading */
-    }
-
-    h3 {
-        font-size: 1.5rem; /* Small heading */
-    }
-
+    /* Links & Buttons */
     a {
-        color: #2997ff; /* Apple's blue accent color */
+        color: var(--accent-blue);
         text-decoration: none;
-        transition: color 0.3s ease;
+        transition: var(--transition);
     }
 
     a:hover {
-        color: #fff; /* Slightly lighter blue on hover */
+        color: var(--text-light);
     }
 
     .btn {
         display: inline-block;
-        padding: 12px 24px; /* Slightly larger padding */
-        background-color: #1a1a1a; /* Dark gray background */
-        color: #fff; /* White text */
-        border-radius: 8px; /* Slightly rounded corners */
+        padding: 0.75rem 1.5rem;
+        background-color: var(--card-bg);
+        color: var(--text-light);
+        border-radius: 0.5rem;
         text-align: center;
-        text-decoration: none;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+        transition: var(--transition);
+        border: 1px solid var(--border-light);
     }
 
     .btn:hover {
-        background-color: #2997ff; /* Apple's blue on hover */
-        transform: translateY(-3px); /* Subtle float effect */
+        background-color: var(--accent-blue);
+        transform: translateY(-0.1875rem);
     }
 
-    /* Card styling - matches your archives theme */
+    /* Layout & Spacing */
+    section {
+        margin-bottom: 2.5rem;
+    }
+
+    .mb-6 {
+        margin-bottom: 1.5rem;
+    }
+
+    /* Card Components */
     .card {
-        background-color: #1a1a1a; /* Dark gray background */
-        border-radius: 12px; /* Rounded corners */
-        padding: 24px;
-        margin-bottom: 24px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+        background-color: var(--card-bg);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        transition: var(--transition);
+        border: 1px solid var(--border-light);
     }
 
     .card:hover {
-        transform: translateY(-5px); /* Subtle float effect */
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Soft shadow */
+        transform: translateY(-0.3125rem);
+        box-shadow: var(--shadow);
     }
 
-    /* Grid layout for personal records */
+    /* Records Grid */
     .pr-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 24px;
-        margin-top: 32px;
+        gap: 1.5rem;
+        margin-top: 2rem;
     }
 
-    /* Personal records items */
+    /* Record Items */
     .pr-item {
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: baseline;
     }
 
     .pr-label {
         font-weight: 500;
-        margin-right: 8px;
+        margin-right: 0.5rem;
     }
 
     .pr-value {
-        color: #fff;
+        color: var(--text-light);
+        font-weight: 500;
     }
 
     .pr-date {
         font-size: 0.875rem;
-        color: #999;
-        margin-left: 8px;
+        color: var(--text-muted);
+        margin-left: 0.5rem;
     }
 
-    /* Section spacing */
-    section {
-        margin-bottom: 40px;
-    }
-
-    /* Utility classes */
-    .mb-6 {
-        margin-bottom: 24px;
+    /* Responsive Adjustments */
+    @media (max-width: 640px) {
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.75rem; }
+        
+        .pr-grid {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
 
@@ -114,7 +137,7 @@ import Layout from '../layouts/Layout.astro';
     <h1 class="mb-6">Personal Records</h1>
 
     <div class="pr-grid">
-        <!-- Strength -->
+        <!-- TRAINING -->
         <div class="card">
             <h2 class="mb-6">Training</h2>
 
@@ -161,7 +184,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
         </div>
 
-        <!-- Misc. -->
+        <!-- MISC. -->
         <div class="card">
             <h2 class="mb-6">Misc.</h2>
             

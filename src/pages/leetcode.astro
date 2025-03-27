@@ -3,164 +3,198 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <style>
+    /* Variables */
+    :root {
+        --bg-dark: #000;
+        --text-light: #fff;
+        --text-muted: #999;
+        --card-bg: #1a1a1a;
+        --card-bg-light: #252525;
+        --accent-blue: #2997ff;
+        --border-light: rgba(255, 255, 255, 0.1);
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        --transition: all 0.3s ease;
+        
+        /* Badge Colors */
+        --easy-bg: rgba(0, 184, 163, 0.1);
+        --easy-text: #00b8a3;
+        --medium-bg: rgba(255, 192, 30, 0.1);
+        --medium-text: #ffc01e;
+        --hard-bg: rgba(255, 55, 95, 0.1);
+        --hard-text: #ff375f;
+    }
+
+    /* Base Styles */
     body {
-        background-color: #000; /* Pure black background */
-        color: #fff; /* White text */
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Apple-style font stack */
-        line-height: 1.6; /* Improved readability */
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                    'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
         margin: 0;
         padding: 0;
     }
 
+    /* Typography */
     h1, h2, h3 {
-        font-weight: 600; /* Semi-bold for headings */
-        margin-bottom: 16px;
+        font-weight: 600;
+        margin-bottom: 1rem;
     }
 
-    h1 {
-        font-size: 2.5rem; /* Large heading */
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+
+    .text-muted {
+        color: var(--text-muted);
+        font-size: 0.875rem;
     }
 
-    h2 {
-        font-size: 2rem; /* Medium heading */
-    }
-
-    h3 {
-        font-size: 1.5rem; /* Small heading */
-    }
-
+    /* Links & Buttons */
     a {
-        color: #2997ff; /* Apple's blue accent color */
+        color: var(--accent-blue);
         text-decoration: none;
-        transition: color 0.3s ease;
+        transition: var(--transition);
     }
 
     a:hover {
-        color: #fff; /* Slightly lighter blue on hover */
+        color: var(--text-light);
     }
 
     .btn {
         display: inline-block;
-        padding: 12px 24px; /* Slightly larger padding */
-        background-color: #1a1a1a; /* Dark gray background */
-        color: #fff; /* White text */
-        border-radius: 8px; /* Slightly rounded corners */
+        padding: 0.75rem 1.5rem;
+        background-color: var(--card-bg);
+        color: var(--text-light);
+        border-radius: 0.5rem;
         text-align: center;
-        text-decoration: none;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+        transition: var(--transition);
+        border: 1px solid var(--border-light);
     }
 
     .btn:hover {
-        background-color: #2997ff; /* Apple's blue on hover */
-        transform: translateY(-3px); /* Subtle float effect */
+        background-color: var(--accent-blue);
+        transform: translateY(-0.1875rem);
     }
 
-    /* Card styling */
+    /* Layout & Spacing */
+    section {
+        margin-bottom: 2.5rem;
+    }
+
+    .mb-6 {
+        margin-bottom: 1.5rem;
+    }
+
+    /* Card Components */
     .card {
-        background-color: #1a1a1a; /* Dark gray background */
-        border-radius: 12px; /* Rounded corners */
-        padding: 24px;
-        margin-bottom: 24px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+        background-color: var(--card-bg);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        transition: var(--transition);
+        border: 1px solid var(--border-light);
     }
 
     .card:hover {
-        transform: translateY(-5px); /* Subtle float effect */
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Soft shadow */
+        transform: translateY(-0.3125rem);
+        box-shadow: var(--shadow);
     }
 
-    /* Section spacing */
-    section {
-        margin-bottom: 40px;
-    }
-
-    /* Flex container */
+    /* Flex & Grid Layouts */
     .flex-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 16px; /* Spacing between items */
+        gap: 1rem;
     }
 
-    /* Stats grid */
     .stats-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 16px;
-        margin: 24px 0;
+        gap: 1rem;
+        margin: 1.5rem 0;
     }
 
+    /* Stat Items */
     .stat-item {
-        background-color: #252525;
-        border-radius: 8px;
-        padding: 16px;
+        background-color: var(--card-bg-light);
+        border-radius: 0.5rem;
+        padding: 1rem;
         text-align: center;
     }
 
     .stat-value {
         font-size: 2rem;
         font-weight: 600;
-        color: #2997ff;
-        margin-bottom: 4px;
+        color: var(--accent-blue);
+        margin-bottom: 0.25rem;
     }
 
     .stat-label {
         font-size: 0.875rem;
-        color: #999;
+        color: var(--text-muted);
     }
 
-    /* Blog post styling */
+    /* Blog Posts */
     .blog-post {
-        margin-bottom: 24px;
-        padding-bottom: 16px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border-light);
     }
 
     .blog-post h3 {
-        margin-bottom: 8px;
-    }
-
-    .blog-post .date {
-        font-size: 0.875rem;
-        color: #999;
-        margin-bottom: 12px;
+        margin-bottom: 0.5rem;
     }
 
     .blog-post .excerpt {
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem;
     }
 
-    /* Difficulty badges */
+    /* ===== BADGES ===== */
     .badge {
         display: inline-block;
-        padding: 4px 8px;
-        border-radius: 4px;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
         font-size: 0.75rem;
         font-weight: 600;
-        margin-right: 8px;
+        margin-right: 0.5rem;
     }
 
     .badge-easy {
-        background-color: rgba(0, 184, 163, 0.1);
-        color: #00b8a3;
+        background-color: var(--easy-bg);
+        color: var(--easy-text);
     }
 
     .badge-medium {
-        background-color: rgba(255, 192, 30, 0.1);
-        color: #ffc01e;
+        background-color: var(--medium-bg);
+        color: var(--medium-text);
     }
 
     .badge-hard {
-        background-color: rgba(255, 55, 95, 0.1);
-        color: #ff375f;
+        background-color: var(--hard-bg);
+        color: var(--hard-text);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 640px) {
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.75rem; }
+        
+        .stats-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .flex-container {
+            flex-direction: column;
+            align-items: flex-start;
+        }
     }
 </style>
 
 <Layout title="LeetCode">
     <h1 class="mb-6">LeetCode</h1>
 
-    <!-- Stats Section -->
+    <!-- CURRENT STATS -->
     <section>
         <div class="card">
             <h2 class="mb-6">Current Stats</h2>
@@ -188,7 +222,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 
-    <!-- Recent Solutions Section -->
+    <!-- RECENT THOUGHTS -->
     <section>
         <div class="card">
             <h2 class="mb-6">Recent Thoughts</h2>
@@ -198,15 +232,12 @@ import Layout from '../layouts/Layout.astro';
                 <div class="date">Mar 26, 2025</div>
                 <span class="badge badge-easy">Easy</span>
                 <span class="badge badge-medium">Topic</span>
-                <!-- <div class="excerpt">
-                    Comments
-                </div> -->
                 <a href="/leetcode/title-1" class="btn">Read Post</a>
             </div>
         </div>
     </section>
 
-    <!-- Resources Section -->
+    <!-- RESOURCES -->
     <section>
         <div class="card">
             <h2 class="mb-6">Resources Used</h2>

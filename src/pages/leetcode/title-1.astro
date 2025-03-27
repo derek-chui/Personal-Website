@@ -3,117 +3,141 @@ import Layout from '../../layouts/Layout.astro';
 ---
 
 <style>
+    /* Variables */
+    :root {
+        --bg-dark: #000;
+        --text-light: #fff;
+        --text-muted: #999;
+        --card-bg: #1a1a1a;
+        --accent-blue: #2997ff;
+        --border-light: rgba(255, 255, 255, 0.1);
+        --transition: all 0.3s ease;
+        
+        /* Badge Colors */
+        --easy-bg: rgba(0, 184, 163, 0.1);
+        --easy-text: #00b8a3;
+        --medium-bg: rgba(255, 192, 30, 0.1);
+        --medium-text: #ffc01e;
+        --hard-bg: rgba(255, 55, 95, 0.1);
+        --hard-text: #ff375f;
+        
+        /* Spacing */
+        --space-xs: 0.5rem;
+        --space-sm: 0.75rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2rem;
+    }
+
+    /* Base Styles */
     body {
-        background-color: #000; /* Pure black background */
-        color: #fff; /* White text */
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                    'Helvetica Neue', Arial, sans-serif;
         line-height: 1.6;
         margin: 0;
         padding: 0;
     }
 
+    /* ===== TYPOGRAPHY ===== */
     h1, h2, h3, h4 {
         font-weight: 600;
-        margin-bottom: 16px;
+        margin-bottom: var(--space-md);
     }
 
     h1 {
         font-size: 2.5rem;
-        margin-bottom: 8px;
+        margin-bottom: var(--space-xs);
     }
 
     h2 {
         font-size: 2rem;
-        margin-top: 32px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 8px;
+        margin-top: var(--space-xl);
+        border-bottom: 1px solid var(--border-light);
+        padding-bottom: var(--space-xs);
     }
 
     h3 {
         font-size: 1.5rem;
-        margin-top: 24px;
+        margin-top: var(--space-lg);
     }
 
     h4 {
         font-size: 1.25rem;
     }
 
-    a {
-        color: #2997ff;
-        text-decoration: none;
-        transition: color 0.3s ease;
+    p {
+        margin-bottom: var(--space-md);
     }
 
-    a:hover {
-        color: #fff;
-    }
-
-    /* Article container */
+    /* Layout */
     .article {
         max-width: 800px;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 0 1.25rem;
     }
 
-    /* Meta info */
+    /* Components */
     .meta {
         display: flex;
-        gap: 24px;
-        margin-bottom: 32px;
-        color: #999;
+        gap: var(--space-lg);
+        margin-bottom: var(--space-xl);
+        color: var(--text-muted);
         font-size: 0.875rem;
+        flex-wrap: wrap;
     }
 
-    /* Difficulty badge */
+    /* Badges */
     .badge {
         display: inline-block;
-        padding: 4px 12px;
-        border-radius: 20px;
+        padding: var(--space-xs) var(--space-sm);
+        border-radius: 1.25rem;
         font-weight: 600;
         font-size: 0.875rem;
-        margin-right: 12px;
+        margin-right: var(--space-sm);
     }
 
     .badge-easy {
-        background-color: rgba(0, 184, 163, 0.1);
-        color: #00b8a3;
+        background-color: var(--easy-bg);
+        color: var(--easy-text);
     }
 
     .badge-medium {
-        background-color: rgba(255, 192, 30, 0.1);
-        color: #ffc01e;
+        background-color: var(--medium-bg);
+        color: var(--medium-text);
     }
 
     .badge-hard {
-        background-color: rgba(255, 55, 95, 0.1);
-        color: #ff375f;
+        background-color: var(--hard-bg);
+        color: var(--hard-text);
     }
 
     /* Tags */
     .tags {
         display: flex;
-        gap: 8px;
-        margin: 24px 0;
+        gap: var(--space-xs);
+        margin: var(--space-lg) 0;
         flex-wrap: wrap;
     }
 
     .tag {
         background-color: rgba(41, 151, 255, 0.1);
-        color: #2997ff;
-        padding: 4px 12px;
-        border-radius: 20px;
+        color: var(--accent-blue);
+        padding: var(--space-xs) var(--space-sm);
+        border-radius: 1.25rem;
         font-size: 0.75rem;
         font-weight: 500;
     }
 
-    /* Code block */
+    /* Code Blocks */
     pre {
-        background-color: #1a1a1a;
-        border-radius: 8px;
-        padding: 16px;
+        background-color: var(--card-bg);
+        border-radius: 0.5rem;
+        padding: var(--space-md);
         overflow-x: auto;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        margin: 24px 0;
+        border: 1px solid var(--border-light);
+        margin: var(--space-lg) 0;
     }
 
     code {
@@ -121,38 +145,83 @@ import Layout from '../../layouts/Layout.astro';
         font-size: 0.875rem;
     }
 
-    /* Button */
+    /* Buttons */
     .btn {
         display: inline-block;
-        padding: 12px 24px;
-        background-color: #1a1a1a;
-        color: #fff;
-        border-radius: 8px;
+        padding: var(--space-sm) var(--space-lg);
+        background-color: var(--card-bg);
+        color: var(--text-light);
+        border-radius: 0.5rem;
         text-align: center;
-        text-decoration: none;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        margin-top: 32px;
+        transition: var(--transition);
+        border: 1px solid var(--border-light);
+        margin-top: var(--space-xl);
     }
 
     .btn:hover {
-        background-color: #2997ff;
-        transform: translateY(-3px);
+        background-color: var(--accent-blue);
+        transform: translateY(-0.1875rem);
     }
 
     /* Navigation */
     .nav-links {
         display: flex;
         justify-content: space-between;
-        margin-top: 64px;
-        padding-top: 32px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: var(--space-xl);
+        padding-top: var(--space-lg);
+        border-top: 1px solid var(--border-light);
+    }
+
+    /* Tables */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: var(--space-lg) 0;
+    }
+
+    th, td {
+        text-align: left;
+        padding: var(--space-xs) 0;
+        border-bottom: 1px solid var(--border-light);
+    }
+
+    /* Lists */
+    ul, ol {
+        margin-bottom: var(--space-md);
+        padding-left: var(--space-md);
+    }
+
+    li {
+        margin-bottom: var(--space-xs);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.75rem; }
+        h3 { font-size: 1.25rem; }
+        
+        .meta {
+            gap: var(--space-md);
+        }
+        
+        .article {
+            padding: 0 var(--space-md);
+        }
     }
 </style>
 
 <Layout title="Two Sum - Optimal Solution">
     <div class="article">
-        <!-- Article Header -->
+        <div style="margin-bottom: var(--space-lg);">
+            <a href="/leetcode" style="color: var(--accent-blue); text-decoration: none; display: inline-flex; align-items: center; gap: var(--space-xs);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back to LeetCode
+            </a>
+        </div>
+        <!-- HEADER-->
         <div>
             <span class="badge badge-easy">Easy</span>
             <span class="badge badge-medium">Arrays</span>
@@ -171,7 +240,7 @@ import Layout from '../../layouts/Layout.astro';
             </div> -->
         </div>
 
-        <!-- Article Content -->
+        <!-- CONTENT -->
         <div>
             <p>The "Two Sum" problem is the perfect starting point for your LeetCode journey. It's often the first problem developers encounter, and understanding its optimal solution teaches fundamental concepts that apply to many other problems.</p>
 
@@ -238,7 +307,7 @@ import Layout from '../../layouts/Layout.astro';
             <!-- <a href="https://leetcode.com/problems/two-sum/" class="btn">Try on LeetCode</a> -->
         </div>
 
-        <!-- Navigation -->
+        <!-- NAVIGATION -->
         <div class="nav-links">
             <!-- <a href="#">← Previous: LeetCode Introduction</a> -->
             <!-- <a href="#">Next: Coming Soon →</a> -->
