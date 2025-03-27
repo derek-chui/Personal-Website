@@ -1,0 +1,247 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<style>
+    body {
+        background-color: #000; /* Pure black background */
+        color: #fff; /* White text */
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1, h2, h3, h4 {
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 8px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-top: 32px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 8px;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+        margin-top: 24px;
+    }
+
+    h4 {
+        font-size: 1.25rem;
+    }
+
+    a {
+        color: #2997ff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #fff;
+    }
+
+    /* Article container */
+    .article {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Meta info */
+    .meta {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 32px;
+        color: #999;
+        font-size: 0.875rem;
+    }
+
+    /* Difficulty badge */
+    .badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        margin-right: 12px;
+    }
+
+    .badge-easy {
+        background-color: rgba(0, 184, 163, 0.1);
+        color: #00b8a3;
+    }
+
+    .badge-medium {
+        background-color: rgba(255, 192, 30, 0.1);
+        color: #ffc01e;
+    }
+
+    .badge-hard {
+        background-color: rgba(255, 55, 95, 0.1);
+        color: #ff375f;
+    }
+
+    /* Tags */
+    .tags {
+        display: flex;
+        gap: 8px;
+        margin: 24px 0;
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        background-color: rgba(41, 151, 255, 0.1);
+        color: #2997ff;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    /* Code block */
+    pre {
+        background-color: #1a1a1a;
+        border-radius: 8px;
+        padding: 16px;
+        overflow-x: auto;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 24px 0;
+    }
+
+    code {
+        font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+        font-size: 0.875rem;
+    }
+
+    /* Button */
+    .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #1a1a1a;
+        color: #fff;
+        border-radius: 8px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: 32px;
+    }
+
+    .btn:hover {
+        background-color: #2997ff;
+        transform: translateY(-3px);
+    }
+
+    /* Navigation */
+    .nav-links {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 64px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+</style>
+
+<Layout title="Two Sum - Optimal Solution">
+    <div class="article">
+        <!-- Article Header -->
+        <div>
+            <span class="badge badge-easy">Easy</span>
+            <span class="badge badge-medium">Arrays</span>
+            <span class="badge badge-medium">Hash Map</span>
+            <h1>Two Sum Thought Process</h1>
+            <div class="meta">
+                <span>Published: Mar 26, 2025</span>
+                <span>Updated: Mar 27, 2025</span>
+                <span>Time to read: 5 minutes</span>
+            </div>
+            <!-- <div class="tags">
+                <span class="tag">#leetcode</span>
+                <span class="tag">#algorithms</span>
+                <span class="tag">#interview</span>
+                <span class="tag">#python</span>
+            </div> -->
+        </div>
+
+        <!-- Article Content -->
+        <div>
+            <p>The "Two Sum" problem is the perfect starting point for your LeetCode journey. It's often the first problem developers encounter, and understanding its optimal solution teaches fundamental concepts that apply to many other problems.</p>
+
+            <h2>Problem Statement</h2>
+            <p>Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices of the two numbers such that they add up to <code>target</code>. You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+
+            <h2>Initial Approach (Brute Force)</h2>
+            <p>The straightforward solution involves checking every possible pair:</p>
+            
+            <pre><code>def twoSum(nums, target):
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return [i, j]</code></pre>
+
+            <p>This brute force approach has a time complexity of O(n²) because in the worst case, we're checking every combination of elements. The space complexity is O(1) since we're not using any additional data structures.</p>
+
+            <h2>Optimal Solution (Hash Map)</h2>
+            <p>We can optimize this to O(n) time complexity using a hash map (dictionary in Python):</p>
+
+            <pre><code>def twoSum(nums, target):
+    num_map = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in num_map:
+            return [num_map[complement], i]
+        num_map[num] = i</code></pre>
+
+            <h3>How It Works</h3>
+            <ol>
+                <li>We create a dictionary to store numbers and their indices as we iterate</li>
+                <li>For each number, we calculate its complement (target - current number)</li>
+                <li>If the complement exists in our dictionary, we've found our solution</li>
+                <li>If not, we store the current number and its index in the dictionary</li>
+            </ol>
+
+            <h2>Complexity Analysis</h2>
+            <table style="width:100%; border-collapse: collapse; margin: 24px 0;">
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <th style="text-align:left; padding: 8px 0;">Approach</th>
+                    <th style="text-align:left; padding: 8px 0;">Time Complexity</th>
+                    <th style="text-align:left; padding: 8px 0;">Space Complexity</th>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <td style="padding: 8px 0;">Brute Force</td>
+                    <td style="padding: 8px 0;">O(n²)</td>
+                    <td style="padding: 8px 0;">O(1)</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px 0;">Hash Map</td>
+                    <td style="padding: 8px 0;">O(n)</td>
+                    <td style="padding: 8px 0;">O(n)</td>
+                </tr>
+            </table>
+
+            <h2>Key Takeaways</h2>
+            <ul>
+                <li>Hash maps can dramatically reduce time complexity for lookup operations</li>
+                <li>The tradeoff is increased space complexity (O(n) vs O(1))</li>
+                <li>This pattern appears in many other problems (e.g., Three Sum, Subarray Sum Equals K)</li>
+                <li>Always consider time-space tradeoffs when optimizing solutions</li>
+            </ul>
+
+            <!-- <a href="https://leetcode.com/problems/two-sum/" class="btn">Try on LeetCode</a> -->
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-links">
+            <!-- <a href="#">← Previous: LeetCode Introduction</a> -->
+            <!-- <a href="#">Next: Coming Soon →</a> -->
+        </div>
+    </div>
+</Layout>

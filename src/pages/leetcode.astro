@@ -1,0 +1,218 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<style>
+    body {
+        background-color: #000; /* Pure black background */
+        color: #fff; /* White text */
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Apple-style font stack */
+        line-height: 1.6; /* Improved readability */
+        margin: 0;
+        padding: 0;
+    }
+
+    h1, h2, h3 {
+        font-weight: 600; /* Semi-bold for headings */
+        margin-bottom: 16px;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Large heading */
+    }
+
+    h2 {
+        font-size: 2rem; /* Medium heading */
+    }
+
+    h3 {
+        font-size: 1.5rem; /* Small heading */
+    }
+
+    a {
+        color: #2997ff; /* Apple's blue accent color */
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #fff; /* Slightly lighter blue on hover */
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 24px; /* Slightly larger padding */
+        background-color: #1a1a1a; /* Dark gray background */
+        color: #fff; /* White text */
+        border-radius: 8px; /* Slightly rounded corners */
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    }
+
+    .btn:hover {
+        background-color: #2997ff; /* Apple's blue on hover */
+        transform: translateY(-3px); /* Subtle float effect */
+    }
+
+    /* Card styling */
+    .card {
+        background-color: #1a1a1a; /* Dark gray background */
+        border-radius: 12px; /* Rounded corners */
+        padding: 24px;
+        margin-bottom: 24px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    }
+
+    .card:hover {
+        transform: translateY(-5px); /* Subtle float effect */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    }
+
+    /* Section spacing */
+    section {
+        margin-bottom: 40px;
+    }
+
+    /* Flex container */
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px; /* Spacing between items */
+    }
+
+    /* Stats grid */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+        margin: 24px 0;
+    }
+
+    .stat-item {
+        background-color: #252525;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #2997ff;
+        margin-bottom: 4px;
+    }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: #999;
+    }
+
+    /* Blog post styling */
+    .blog-post {
+        margin-bottom: 24px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .blog-post h3 {
+        margin-bottom: 8px;
+    }
+
+    .blog-post .date {
+        font-size: 0.875rem;
+        color: #999;
+        margin-bottom: 12px;
+    }
+
+    .blog-post .excerpt {
+        margin-bottom: 12px;
+    }
+
+    /* Difficulty badges */
+    .badge {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-right: 8px;
+    }
+
+    .badge-easy {
+        background-color: rgba(0, 184, 163, 0.1);
+        color: #00b8a3;
+    }
+
+    .badge-medium {
+        background-color: rgba(255, 192, 30, 0.1);
+        color: #ffc01e;
+    }
+
+    .badge-hard {
+        background-color: rgba(255, 55, 95, 0.1);
+        color: #ff375f;
+    }
+</style>
+
+<Layout title="LeetCode">
+    <h1 class="mb-6">LeetCode</h1>
+
+    <!-- Stats Section -->
+    <section>
+        <div class="card">
+            <h2 class="mb-6">Current Stats</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Total Solved</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Easy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Medium</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Hard</div>
+                </div>
+            </div>
+            <div class="flex-container" style="margin-top: 24px;">
+                <!-- <a href="https://leetcode.com/u/derek_chui/" class="btn">View LeetCode Profile</a> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Solutions Section -->
+    <section>
+        <div class="card">
+            <h2 class="mb-6">Recent Thoughts</h2>
+            
+            <div class="blog-post">
+                <h3>Title 1</h3>
+                <div class="date">Mar 26, 2025</div>
+                <span class="badge badge-easy">Easy</span>
+                <span class="badge badge-medium">Topic</span>
+                <!-- <div class="excerpt">
+                    Comments
+                </div> -->
+                <a href="/leetcode/title-1" class="btn">Read Post</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section>
+        <div class="card">
+            <h2 class="mb-6">Resources Used</h2>
+            <div class="flex-container">
+                <a href="https://neetcode.io/roadmap" class="btn">Neetcode Roadmap</a>
+            </div>
+        </div>
+    </section>
+</Layout>

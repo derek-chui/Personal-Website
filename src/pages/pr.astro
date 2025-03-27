@@ -1,0 +1,211 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<style>
+    body {
+        background-color: #000; /* Pure black background */
+        color: #fff; /* White text */
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Apple-style font stack */
+        line-height: 1.6; /* Improved readability */
+        margin: 0;
+        padding: 0;
+    }
+
+    h1, h2, h3 {
+        font-weight: 600; /* Semi-bold for headings */
+        margin-bottom: 16px;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Large heading */
+    }
+
+    h2 {
+        font-size: 2rem; /* Medium heading */
+    }
+
+    h3 {
+        font-size: 1.5rem; /* Small heading */
+    }
+
+    a {
+        color: #2997ff; /* Apple's blue accent color */
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #fff; /* Slightly lighter blue on hover */
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 24px; /* Slightly larger padding */
+        background-color: #1a1a1a; /* Dark gray background */
+        color: #fff; /* White text */
+        border-radius: 8px; /* Slightly rounded corners */
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    }
+
+    .btn:hover {
+        background-color: #2997ff; /* Apple's blue on hover */
+        transform: translateY(-3px); /* Subtle float effect */
+    }
+
+    /* Card styling - matches your archives theme */
+    .card {
+        background-color: #1a1a1a; /* Dark gray background */
+        border-radius: 12px; /* Rounded corners */
+        padding: 24px;
+        margin-bottom: 24px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    }
+
+    .card:hover {
+        transform: translateY(-5px); /* Subtle float effect */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    }
+
+    /* Grid layout for personal records */
+    .pr-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        margin-top: 32px;
+    }
+
+    /* Personal records items */
+    .pr-item {
+        margin-bottom: 12px;
+    }
+
+    .pr-label {
+        font-weight: 500;
+        margin-right: 8px;
+    }
+
+    .pr-value {
+        color: #fff;
+    }
+
+    .pr-date {
+        font-size: 0.875rem;
+        color: #999;
+        margin-left: 8px;
+    }
+
+    /* Section spacing */
+    section {
+        margin-bottom: 40px;
+    }
+
+    /* Utility classes */
+    .mb-6 {
+        margin-bottom: 24px;
+    }
+</style>
+
+<Layout title="Personal Records">
+    <h1 class="mb-6">Personal Records</h1>
+
+    <div class="pr-grid">
+        <!-- Strength -->
+        <div class="card">
+            <h2 class="mb-6">Training</h2>
+
+            <div class="pr-item">
+                <span class="pr-label">Max Weight:</span>
+                <span class="pr-value">220 lbs</span>
+                <span class="pr-date">(2025)</span>
+            </div>
+            
+            <div class="pr-item">
+                <span class="pr-label">Squat (RAW):</span>
+                <span class="pr-value">460 lbs</span>
+                <span class="pr-date">(2025)</span>
+            </div>
+            
+            <div class="pr-item">
+                <span class="pr-label">Bench (RAW):</span>
+                <span class="pr-value">255 lbs</span>
+                <span class="pr-date">(2025)</span>
+            </div>
+
+            <div class="pr-item">
+                <span class="pr-label">Pull Ups:</span>
+                <span class="pr-value">7</span>
+                <span class="pr-date">(2024)</span>
+            </div>
+            
+            <div class="pr-item">
+                <span class="pr-label">Push Ups:</span>
+                <span class="pr-value">41</span>
+                <span class="pr-date">(2023)</span>
+            </div>
+
+            <div class="pr-item">
+                <span class="pr-label">5K:</span>
+                <span class="pr-value">25:07</span>
+                <span class="pr-date">(2019)</span>
+            </div>
+            
+            <div class="pr-item">
+                <span class="pr-label">10K:</span>
+                <span class="pr-value">59:52</span>
+                <span class="pr-date">(2019)</span>
+            </div>
+        </div>
+
+        <!-- Misc. -->
+        <div class="card">
+            <h2 class="mb-6">Misc.</h2>
+            
+            <div class="pr-item">
+                <span class="pr-label">Time Awake:</span>
+                <span class="pr-value">71 hrs</span>
+                <span class="pr-date">(2020)</span>
+            </div>
+            
+            <div class="pr-item">
+                <span class="pr-label">Global FPL Rank:</span>
+                <span class="pr-value">~50K</span>
+                <span class="pr-date">(2023)</span>
+            </div>
+
+            <div class="pr-item">
+                <span class="pr-label">Brawl Stars:</span>
+                <span class="pr-value">Dynamike 29</span>
+                <span class="pr-date">(2024)</span>
+            </div>
+
+            <div class="pr-item">
+                <span class="pr-label">Hypixel Bedwars:</span>
+                <span class="pr-value">181</span>
+                <span class="pr-date">(2021)</span>
+            </div>
+
+            <div class="pr-item">
+                <span class="pr-label">House S1:</span>
+                <span class="pr-value">10 Days</span>
+                <span class="pr-date">(2025)</span>
+            </div>
+
+            <div class="pr-item">
+                <span class="pr-label">Ted Lasso S1-3:</span>
+                <span class="pr-value">5 Days</span>
+                <span class="pr-date">(2025)</span>
+            </div>
+
+            <div class="pr-item">
+                <span class="pr-label">Movies (Week):</span>
+                <span class="pr-value">29</span>
+                <span class="pr-date">(2025)</span>
+            </div>
+        </div>
+    </div>
+</Layout>

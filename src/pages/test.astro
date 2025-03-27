@@ -2,15 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<!-- Everything css below is a mess I'll organize it one day-->
-
 <style>
     :root {
         --apple-blue: #2997ff;
+        --apple-blue-light: #1e90ff;
         --bg-dark: #000;
         --card-bg: #1a1a1a;
         --text-light: #fff;
-        --accent: #ffffff;
+        --accent: #34c759;
     }
 
     @keyframes fadeIn {
@@ -42,7 +41,7 @@ import Layout from '../layouts/Layout.astro';
     }
 
     a:hover {
-        color: var(--apple-blue);
+        color: var(--apple-blue-light);
     }
 
     a::after {
@@ -52,56 +51,51 @@ import Layout from '../layouts/Layout.astro';
         height: 2px;
         bottom: -2px;
         left: 0;
-        background-color: var(--apple-blue);
+        background-color: var(--apple-blue-light);
         transition: width 0.3s ease;
     }
 
     a:hover::after {
         width: 100%;
-        display: none;
     }
 
     .btn {
         display: inline-block;
         padding: 12px 24px;
         background-color: var(--apple-blue);
-        color: #fff;
+        color: white;
         border-radius: 8px;
         text-align: center;
         text-decoration: none;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
         font-weight: 500;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .btn:hover {
-        background-color: #2997ff;
-        transform: translateY(-3px);
+        background-color: var(--apple-blue-light);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-outline {
+        background: transparent;
+        border: 2px solid var(--apple-blue);
+        color: var(--apple-blue);
+    }
+
+    .btn-outline:hover {
+        background: var(--apple-blue);
         color: white;
     }
-
-    .btn-minor {
-        display: inline-block;
-        padding: 12px 24px;
-        background-color: #1a1a1a;
-        color: #fff;
-        border-radius: 8px;
-        text-align: center;
-        text-decoration: none;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .btn-minor:hover {
-        background-color: #2997ff;
-        transform: translateY(-3px);
-    }
-
 
     html {
         scroll-behavior: smooth;
     }
 
+    /* Card styling */
     .card {
         background-color: var(--card-bg);
         border-radius: 16px;
@@ -120,6 +114,7 @@ import Layout from '../layouts/Layout.astro';
         border-color: rgba(255, 255, 255, 0.2);
     }
 
+    /* List styling inside cards */
     .card ul {
         list-style-type: none;
         padding-left: 0;
@@ -138,6 +133,7 @@ import Layout from '../layouts/Layout.astro';
         color: var(--accent);
     }
 
+    /* Headings */
     h1, h2, h3 {
         font-weight: 600;
         margin-bottom: 20px;
@@ -145,8 +141,7 @@ import Layout from '../layouts/Layout.astro';
 
     h1 {
         font-size: 2.8rem;
-        /* background: linear-gradient(90deg, var(--apple-blue), #ffffff); */
-        background: #ffffff;
+        background: linear-gradient(90deg, var(--apple-blue), #34c759);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -167,7 +162,6 @@ import Layout from '../layouts/Layout.astro';
         bottom: -8px;
         left: 0;
         background: linear-gradient(90deg, var(--apple-blue), transparent);
-        /* background: linear-gradient(90deg, white, transparent); */
         border-radius: 2px;
     }
 
@@ -188,6 +182,7 @@ import Layout from '../layouts/Layout.astro';
         transform: translateY(0);
     }
 
+    /* Hero section */
     .hero {
         text-align: center;
         padding: 80px 20px;
@@ -248,7 +243,7 @@ import Layout from '../layouts/Layout.astro';
 
     .project-card h3 {
         margin-top: 0;
-        /* color: var(--apple-blue); */
+        color: var(--apple-blue);
     }
 
     .project-card .tags {
@@ -266,6 +261,7 @@ import Layout from '../layouts/Layout.astro';
         font-size: 0.8rem;
     }
 
+    /* Timeline for experience */
     .timeline {
         position: relative;
         padding-left: 30px;
@@ -279,9 +275,7 @@ import Layout from '../layouts/Layout.astro';
         top: 0;
         bottom: 0;
         width: 2px;
-        /* background: linear-gradient(to bottom, var(--apple-blue), var(--accent)); */
-        background: linear-gradient(to bottom, var(--apple-blue), transparent);
-
+        background: linear-gradient(to bottom, var(--apple-blue), var(--accent));
     }
 
     .timeline-item {
@@ -302,8 +296,7 @@ import Layout from '../layouts/Layout.astro';
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        /* background: var(--apple-blue); */
-        background: white;
+        background: var(--apple-blue);
         border: 3px solid var(--card-bg);
     }
 
@@ -395,38 +388,10 @@ import Layout from '../layouts/Layout.astro';
             align-items: center;
         }
     }
-
-    #education .card {
-        background-color: #1a1a1a;
-        border-left: 6px solid #b30738;
-    }
-
-    #education h2:after {
-        background: linear-gradient(90deg, #b30738, transparent);
-    }
-
-    #education h3 {
-        color: #b30738;
-    }
-
-    #education .btn {
-        background-color: #b30738;
-    }
-
-    #education .btn:hover {
-        background-color: #9d0631;
-    }
-
-    #education .card:hover {
-        box-shadow: 0 12px 28px rgba(179, 7, 56, 0.2);
-        border-color: rgba(179, 7, 56, 0.3);
-    }
 </style>
 
-<!-- Everything css above is a mess I'll organize it one day-->
-
 <script>
-    //SCROLL ANIMATIONS
+    // Intersection Observer for scroll animations
     document.addEventListener('DOMContentLoaded', () => {
         const sections = document.querySelectorAll('section');
         
@@ -441,91 +406,156 @@ import Layout from '../layouts/Layout.astro';
         sections.forEach(section => {
             observer.observe(section);
         });
+        
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                // Save preference to localStorage
+                const isLight = document.body.classList.contains('light-mode');
+                // localStorage.setItem('lightMode', isLight);
+            });
+            
+            // Check for saved preference
+            if (localStorage.getItem('lightMode') === 'true') {
+                document.body.classList.add('light-mode');
+            }
+        }
+        
+        // Typewriter effect
+        const typewriter = document.getElementById('typewriter');
+        if (typewriter) {
+            const texts = ["Computer Scientist", "Developer", "Problem Solver", "SCU Student"];
+            let count = 0;
+            let index = 0;
+            let currentText = '';
+            let isDeleting = false;
+            
+            function type() {
+                const fullText = texts[count];
+                
+                if (isDeleting) {
+                    currentText = fullText.substring(0, currentText.length - 1);
+                } else {
+                    currentText = fullText.substring(0, currentText.length + 1);
+                }
+                
+                typewriter.textContent = currentText;
+                
+                let typeSpeed = 100;
+                
+                if (isDeleting) {
+                    typeSpeed /= 2;
+                }
+                
+                if (!isDeleting && currentText === fullText) {
+                    typeSpeed = 2000;
+                    isDeleting = true;
+                } else if (isDeleting && currentText === '') {
+                    isDeleting = false;
+                    count = (count + 1) % texts.length;
+                    typeSpeed = 500;
+                }
+                
+                setTimeout(type, typeSpeed);
+            }
+            
+            setTimeout(type, 1000);
+        }
     });
 </script>
 
 <Layout title="Derek Chui">
-    <!-- BACKGROUND SHAPES -->
-    <!-- <div class="floating-shape shape-1"></div> -->
-    <!-- <div class="floating-shape shape-2"></div> -->
+    <!-- Floating background shapes -->
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
     
-    <!-- HERO -->
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i>☀️</i>
+    </button>
+    
+    <!-- Hero Section -->
     <section class="hero">
-        <h1>Hi, I'm Derek</h1>
-        <p>Computer Science and Engineering at Santa Clara University<br>Sales Development Representative at ProofJump</p>
-
+        <h1>Derek Chui</h1>
+        <div id="typewriter" style="font-size: 1.5rem; color: var(--accent); min-height: 2rem; margin-bottom: 1rem;"></div>
+        <p>Computer Science student at Santa Clara University with a passion for building innovative solutions and optimizing systems.</p>
         <div class="hero-buttons">
             <a href="#projects" class="btn">View My Work</a>
-            <a href="#contact" class="btn">Get In Touch</a>
+            <a href="#contact" class="btn btn-outline">Get In Touch</a>
         </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" style="--order: 2;">
+    <!-- About Me Section -->
+    <section id="about" style="--order: 1;">
         <div class="card">
-            <h2>Projects</h2>
-            <p>Here are some of the projects I've worked on:</p>
+            <h2>About Me</h2>
+            <p>I'm a Computer Science and Engineering student at Santa Clara University (Class of 2027) with a passion for solving complex problems through technology. When I'm not coding, you can find me working as a Sales Development Representative at <a href="http://proofjump.com/">ProofJump</a> or exploring new tech trends.</p>
             
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Network Optimization</h3>
-                    <div class="tags">
-                        <span class="tag">IN PROGRESS</span>
-                        <span class="tag">MATLAB</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Network-Optimization" class="btn btn-minor" style="display: inline-block; margin-top: 12px;">GitHub</a>
-                </div>
-                
-                <div class="project-card">
-                    <h3>Personal Website</h3>
-                    <div class="tags">
-                        <span class="tag">IN PROGRESS</span>
-                        <span class="tag">Netlify</span>
-                        <span class="tag">Astro</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Personal-Website" class="btn btn-minor" style="display: inline-block; margin-top: 12px;">GitHub</a>
-                </div>
-                
-                <div class="project-card">
-                    <h3>Benchmark</h3>
-                    <div class="tags">
-                        <span class="tag">Java</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Benchmark" class="btn btn-minor" style="display: inline-block; margin-top: 12px;">GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>FPL</h3>
-                    <div class="tags">
-                        <span class="tag">C++</span>
-                        <span class="tag">OOP</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/FPL" class="btn btn-minor" style="display: inline-block; margin-top: 12px;">GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Phonebook</h3>
-                    <div class="tags">
-                        <span class="tag">C</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Phonebook" class="btn btn-minor" style="display: inline-block; margin-top: 12px;">GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Word Gravity</h3>
-                    <div class="tags">
-                        <span class="tag">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Word-Gravity" class="btn btn-minor" style="display: inline-block; margin-top: 12px;">GitHub</a>
+            <div style="margin-top: 24px;">
+                <h3>Skills</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px;">
+                    <span class="tag">Python</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">HTML/CSS</span>
+                    <span class="tag">Git</span>
+                    <span class="tag">Linux</span>
+                    <span class="tag">Networking</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EXPERIENCE -->
+    <!-- Projects Section -->
+    <section id="projects" style="--order: 2;">
+        <div class="card">
+            <h2>My Projects</h2>
+            <p>Here are some of the projects I've worked on:</p>
+            
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Network Optimization</h3>
+                    <p>Developing algorithms to optimize network performance and reduce latency.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Algorithms</span>
+                        <span class="tag">Networking</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Network-Optimization" class="btn" style="display: inline-block; margin-top: 12px;">View Project</a>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Personal Website</h3>
+                    <p>This interactive portfolio website built with modern web technologies.</p>
+                    <div class="tags">
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Astro</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Personal-Website" class="btn" style="display: inline-block; margin-top: 12px;">View Code</a>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Fantasy Premier League</h3>
+                    <p>Data analysis tool for Fantasy Premier League football/soccer.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Data Analysis</span>
+                        <span class="tag">Sports</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/FPL" class="btn" style="display: inline-block; margin-top: 12px;">Check it out</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
     <section id="experience" style="--order: 3;">
         <div class="card">
-            <h2>Experience</h2>
+            <h2>Professional Journey</h2>
             <p>My work experience and professional development:</p>
             
             <div class="timeline">
@@ -548,23 +578,15 @@ import Layout from '../layouts/Layout.astro';
                 <div class="timeline-item">
                     <div class="timeline-date">Feb 2021 - Jul 2023</div>
                     <div class="timeline-content">
-                        <h3><a href="/archives">Video Editor</a></h3>
+                        <h3>Video Editor</h3>
                         <p>Freelance · Remote</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">Dec 2015 - Feb 2021</div>
-                    <div class="timeline-content">
-                        <h3><a href="/archives">Content Creator</a></h3>
-                        <p>Self-employed · Remote</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EDUCATION -->
+    <!-- Education Section -->
     <section id="education" style="--order: 4;">
         <div class="card">
             <h2>Education</h2>
@@ -572,30 +594,31 @@ import Layout from '../layouts/Layout.astro';
                 <div style="flex: 1;">
                     <h3>Santa Clara University</h3>
                     <p>Bachelor of Science in Computer Science and Engineering</p>
-                    <p>Sep 2023 - June 2027</p>
+                    <p>Expected Graduation: June 2027</p>
+                    <p>Relevant Coursework: Data Structures, Algorithms, Computer Systems, Discrete Mathematics</p>
                 </div>
                 <div style="flex: 0 0 100px;">
-                    <img src="/SCU.png" alt="SCU Logo" style="width: 100%; opacity: 0.8;">
+                    <img src="https://www.scu.edu/media/offices/marketing-communications/brand-guidelines/Visual-Identity-Photos/SCU-108-ForWeb-72ppi-RGB-1.png" alt="SCU Logo" style="width: 100%; opacity: 0.8;">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- Contact Section -->
     <section id="contact" style="--order: 5;">
         <div class="card">
             <h2>Get In Touch</h2>
-            <p>I'm always open to discussing new projects and opportunities</p>
+            <p>I'm always open to discussing new opportunities, collaborations, or just chatting about tech!</p>
             
             <div style="display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap;">
-                <a href="mailto:thatderekchui@gmail.com" class="btn">
+                <a href="mailto:your-email@example.com" class="btn">
                     ✉️ Email Me
                 </a>
-                <a href="https://linkedin.com/in/yourprofile" class="btn btn-minor">
-                    <span style="margin-right: 8px;">🔗</span> LinkedIn
-                </a>
-                <a href="https://github.com/derek-chui" class="btn btn-minor">
+                <a href="https://github.com/derek-chui" class="btn btn-outline">
                     <span style="margin-right: 8px;">🐙</span> GitHub
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" class="btn btn-outline">
+                    <span style="margin-right: 8px;">🔗</span> LinkedIn
                 </a>
             </div>
         </div>
