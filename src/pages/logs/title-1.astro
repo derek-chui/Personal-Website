@@ -90,31 +90,6 @@ import Layout from '../../layouts/Layout.astro';
         flex-wrap: wrap;
     }
 
-    /* Badges */
-    .badge {
-        display: inline-block;
-        padding: var(--space-xs) var(--space-sm);
-        border-radius: 1.25rem;
-        font-weight: 600;
-        font-size: 0.875rem;
-        margin-right: var(--space-sm);
-    }
-
-    .badge-easy {
-        background-color: var(--easy-bg);
-        color: var(--easy-text);
-    }
-
-    .badge-medium {
-        background-color: var(--medium-bg);
-        color: var(--medium-text);
-    }
-
-    .badge-hard {
-        background-color: var(--hard-bg);
-        color: var(--hard-text);
-    }
-
     /* Tags */
     .tags {
         display: flex;
@@ -215,30 +190,25 @@ import Layout from '../../layouts/Layout.astro';
 <Layout title="Two Sum - Optimal Solution">
     <div class="article">
         <div style="margin-bottom: var(--space-lg);">
-            <a href="/leetcode" style="color: var(--accent-blue); text-decoration: none; display: inline-flex; align-items: center; gap: var(--space-xs);">
+            <a href="/logs" style="color: var(--accent-blue); text-decoration: none; display: inline-flex; align-items: center; gap: var(--space-xs);">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
-                Back to LeetCode
+                Back to Logs
             </a>
         </div>
         <!-- HEADER-->
         <div>
-            <span class="badge badge-easy">Easy</span>
-            <span class="badge badge-medium">Arrays</span>
-            <span class="badge badge-medium">Hash Map</span>
             <h1>Two Sum Thought Process</h1>
             <div class="meta">
                 <span>Published: Mar 26, 2025</span>
                 <span>Updated: Mar 27, 2025</span>
                 <span>Time to read: 5 minutes</span>
             </div>
-            <!-- <div class="tags">
+            <div class="tags">
                 <span class="tag">#leetcode</span>
-                <span class="tag">#algorithms</span>
-                <span class="tag">#interview</span>
                 <span class="tag">#python</span>
-            </div> -->
+            </div>
         </div>
 
         <!-- CONTENT -->
@@ -310,7 +280,7 @@ import Layout from '../../layouts/Layout.astro';
 
         <!-- NAVIGATION -->
         <div class="nav-links">
-            <!-- <a href="#">← Previous: LeetCode Introduction</a> -->
+            <!-- <a href="#">← Previous: Logs</a> -->
             <!-- <a href="#">Next: Coming Soon →</a> -->
         </div>
     </div>

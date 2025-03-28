@@ -56,6 +56,7 @@ import Layout from '../layouts/Layout.astro';
         color: var(--accent-blue);
         text-decoration: none;
         transition: var(--transition);
+        margin-top: 0.75rem;
     }
 
     a:hover {
@@ -104,76 +105,27 @@ import Layout from '../layouts/Layout.astro';
 
     /* Section Based CSS */
 
-    /* Current Stats */
-    .flex-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
-        margin: 1.5rem 0;
-    }
-
-    .stat-item {
-        background-color: var(--card-bg-light);
-        border-radius: 0.5rem;
-        padding: 1rem;
-        text-align: center;
-    }
-
-    .stat-value {
-        font-size: 2rem;
-        font-weight: 600;
-        color: var(--accent-blue);
-        margin-bottom: 0.25rem;
-    }
-
-    .stat-label {
-        font-size: 0.875rem;
-        color: var(--text-muted);
-    }
-
     /* Recent Thoughts */
     .blog-post {
         margin-bottom: 1.5rem;
         padding-bottom: 1rem;
         border-bottom: 1px solid var(--border-light);
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
     }
 
     .blog-post h3 {
-        margin-bottom: 0.5rem;
+        margin: 0;
     }
 
     .blog-post .excerpt {
         margin-bottom: 0.75rem;
     }
 
-    .badge {
-        display: inline-block;
-        padding: 0.25rem 0.5rem;
-        border-radius: 0.25rem;
-        font-size: 0.75rem;
-        font-weight: 600;
-        margin-right: 0.5rem;
-    }
-
-    .badge-easy {
-        background-color: var(--easy-bg);
-        color: var(--easy-text);
-    }
-
-    .badge-medium {
-        background-color: var(--medium-bg);
-        color: var(--medium-text);
-    }
-
-    .badge-hard {
-        background-color: var(--hard-bg);
-        color: var(--hard-text);
+    .date {
+        color: var(--text-muted);
+        font-size: 0.875rem;
     }
 
     /* Responsive Adjustments */
@@ -192,58 +144,18 @@ import Layout from '../layouts/Layout.astro';
     }
 </style>
 
-<Layout title="LeetCode">
-    <h1 class="mb-6">LeetCode</h1>
-
-    <!-- CURRENT STATS -->
-    <section>
-        <div class="card">
-            <h2 class="mb-6">Current Stats</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-value">0</div>
-                    <div class="stat-label">Total Solved</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">0</div>
-                    <div class="stat-label">Easy</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">0</div>
-                    <div class="stat-label">Medium</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">0</div>
-                    <div class="stat-label">Hard</div>
-                </div>
-            </div>
-            <div class="flex-container" style="margin-top: 24px;">
-                <!-- <a href="https://leetcode.com/u/derek_chui/" class="btn">View LeetCode Profile</a> -->
-            </div>
-        </div>
-    </section>
+<Layout title="Logs">
+    <h1 class="mb-6">Logs</h1>
 
     <!-- RECENT THOUGHTS -->
     <section>
         <div class="card">
-            <h2 class="mb-6">Recent Thoughts</h2>
+            <!-- <h2 class="mb-6">Recent Thoughts</h2> -->
             
             <div class="blog-post">
-                <h3>Title 1</h3>
+                <h3>Two Sum Thought Process</h3>
                 <div class="date">Mar 26, 2025</div>
-                <span class="badge badge-easy">Easy</span>
-                <span class="badge badge-medium">Topic</span>
-                <a href="/leetcode/title-1" class="btn">Read Post</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- RESOURCES -->
-    <section>
-        <div class="card">
-            <h2 class="mb-6">Resources Used</h2>
-            <div class="flex-container">
-                <a href="https://neetcode.io/roadmap" class="btn">Neetcode Roadmap</a>
+                <a href="/logs/title-1" class="btn">Read Log</a>
             </div>
         </div>
     </section>
