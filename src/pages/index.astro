@@ -370,6 +370,15 @@ import Layout from '../layouts/Layout.astro';
         border-color: rgba(179, 7, 56, 0.3);
     }
 
+    #education img {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    #education img:hover {
+        transform: scale(1.05);
+        opacity: 1;
+    }  
+
     /* Responsive Adjustments */
     @media (max-width: 768px) {
         h1 {
@@ -412,6 +421,20 @@ import Layout from '../layouts/Layout.astro';
             observer.observe(section);
         });
     });
+
+    // const heroText = document.querySelector('.hero h1');
+    // const originalText = heroText.textContent;
+    // heroText.textContent = '';
+
+    // let i = 0;
+    // const typeWriter = setInterval(() => {
+    //     if (i < originalText.length) {
+    //         heroText.textContent += originalText.charAt(i);
+    //         i++;
+    //     } else {
+    //         clearInterval(typeWriter);
+    //     }
+    // }, 80);
 </script>
 
 <Layout title="Derek Chui">
@@ -539,6 +562,14 @@ import Layout from '../layouts/Layout.astro';
                     <a href="https://github.com/derek-chui/Word-Gravity" class="btn btn-minor" style="display: inline-block; margin-top: 12px;" target="_blank">GitHub</a>
                 </div>
             </div>
+
+            <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); text-align: center; line-height: 1.5;">
+                <!-- Note: Based on public repositories. Private work and certain languages may not be reflected.
+                <br> -->
+                <a href="https://github.com/derek-chui?tab=repositories" target="_blank" style="color: var(--apple-blue); text-decoration: none;">
+                    View all projects →
+                </a>
+            </p>
         </div>
     </section>
 
