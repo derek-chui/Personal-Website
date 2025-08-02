@@ -402,6 +402,46 @@ import Layout from '../layouts/Layout.astro';
             align-items: center;
         }
     }
+
+    .horizontal-scroll-container {
+        display: flex;
+        overflow-x: auto;
+        padding: 16px 0 8px 4px;
+        gap: 32px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,255,255,0.2) transparent;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+
+    .project-card {
+        min-width: 340px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
 </style>
 
 <script>
@@ -447,6 +487,117 @@ import Layout from '../layouts/Layout.astro';
         <div class="hero-buttons">
             <a href="#projects" class="btn">View My Work</a>
             <a href="#contact" class="btn">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" style="--order: 2;">
+        <div class="card">
+            <h2>Projects</h2>
+            <p>Here are some of the projects that I've worked on:</p>
+
+            <div class="horizontal-scroll-container">
+                <!-- Each project -->
+                <div class="project-card">
+                    <h3>Football Analytics</h3>
+                    <div class="tags">
+                        <span class="tag">IN PROG.</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Jupyter</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Football-Analytics" class="btn btn-minor" target="_blank">GitHub</a>
+                    <a href="https://x.com/thatderekchui" class="btn btn-minor" style="margin-left: 12px;" target="_blank">Twitter</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Network Optimization</h3>
+                    <div class="tags">
+                        <span class="tag">IN PROG.</span>
+                        <span class="tag">MATLAB</span>
+                        <span class="tag">ML</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Network-Optimization" class="btn btn-minor" target="_blank">GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Personal Website</h3>
+                    <div class="tags">
+                        <span class="tag">Astro</span>
+                        <span class="tag">Netlify</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Personal-Website" class="btn btn-minor" target="_blank">GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Benchmark</h3>
+                    <div class="tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Benchmark" class="btn btn-minor" target="_blank">GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>FPL</h3>
+                    <div class="tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">OOP</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/FPL" class="btn btn-minor" target="_blank">GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Phonebook</h3>
+                    <div class="tags">
+                        <span class="tag">C</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Phonebook" class="btn btn-minor" target="_blank">GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Word Gravity</h3>
+                    <div class="tags">
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Word-Gravity" class="btn btn-minor" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <p style="margin-top: 24px; font-size: 1rem; text-align: center;">
+                <a href="https://github.com/derek-chui?tab=repositories" target="_blank" style="color: var(--apple-blue); font-weight: 600; text-decoration: none;">
+                    View all projects →
+                </a>
+            </p>
+        </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications" style="--order: 6;">
+        <style>
+        #publications .timeline-item:before {
+            display: none;
+        }
+        </style>
+        <div class="card">
+            <h2>Publications</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Aug 2025</div>
+                    <div class="timeline-content">
+                        <h3>Semantic Utility Driven User Pairing and Triplet Grouping for NOMA Networks</h3>
+                        <p><em>IEEE CCNC 2026</em></p>
+
+                        <details style="margin-top: 10px;">
+                            <summary style="cursor: pointer; color: var(--apple-blue); font-weight: 500;">
+                                Submitted to be reviewed for IEEE Consumer Communications & Networking Conference 2026.
+                            </summary>
+                            <p style="margin-top: 10px;">
+                                This paper looks into optimal algorithms for user pairing and triplet grouping in Non-Orthogonal Multiple Access (NOMA) wireless systems, aiming to maximize total utility by unifying channel characteristics with semantic relevance. As 6G wireless systems move toward task-oriented communication, it becomes increasingly important to consider the meaning and importance of user data in resource allocation. We evaluate several existing algorithms including brute force, Hungarian, and greedy approaches under a utility model that incorporates semantic value. Our study show that many traditional algorithms, designed without semantics in mind, perform suboptimally in this setting. Therefore, we propose a greedy algorithm called Semantic Greedy NOMA (SG-NOMA) that considers both channel diversity and semantic value, and demonstrate through simulations that it closely approximates brute force performance with significantly lower complexity. These findings highlight the importance of integrating semantic considerations into user grouping strategies for 6G wireless NOMA deployments.
+                            </p>
+                        </details>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -504,88 +655,6 @@ import Layout from '../layouts/Layout.astro';
                 </a>
             </p>
 
-        </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" style="--order: 2;">
-        <div class="card">
-            <h2>Projects</h2>
-            <p>Here are some of the projects I've worked on:</p>
-            
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Football Analytics</h3>
-                    <div class="tags">
-                        <span class="tag">IN PROG.</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Jupyter</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Football-Analytics" class="btn btn-minor" style="display: inline-block; margin-top: 12px;" target="_blank">GitHub</a>
-                    <a href="https://x.com/thatderekchui" class="btn btn-minor" style="display: inline-block; margin-top: 12px; margin-left: 12px;" target="_blank">Twitter</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Network Optimization</h3>
-                    <div class="tags">
-                        <span class="tag">IN PROG.</span>
-                        <span class="tag">MATLAB</span>
-                        <span class="tag">LaTeX</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Network-Optimization" class="btn btn-minor" style="display: inline-block; margin-top: 12px;" target="_blank">GitHub</a>
-                </div>
-                
-                <div class="project-card">
-                    <h3>Personal Website</h3>
-                    <div class="tags">
-                        <span class="tag">Astro</span>
-                        <span class="tag">Netlify</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Personal-Website" class="btn btn-minor" style="display: inline-block; margin-top: 12px;" target="_blank">GitHub</a>
-                </div>
-                
-                <div class="project-card">
-                    <h3>Benchmark</h3>
-                    <div class="tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Benchmark" class="btn btn-minor" style="display: inline-block; margin-top: 12px;" target="_blank">GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>FPL</h3>
-                    <div class="tags">
-                        <span class="tag">C++</span>
-                        <span class="tag">OOP</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/FPL" class="btn btn-minor" style="display: inline-block; margin-top: 12px;" target="_blank">GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Phonebook</h3>
-                    <div class="tags">
-                        <span class="tag">C</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Phonebook" class="btn btn-minor" style="display: inline-block; margin-top: 12px;" target="_blank">GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Word Gravity</h3>
-                    <div class="tags">
-                        <span class="tag">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Word-Gravity" class="btn btn-minor" style="display: inline-block; margin-top: 12px;" target="_blank">GitHub</a>
-                </div>
-            </div>
-
-            <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); text-align: center; line-height: 1.5;">
-                <!-- Note: Based on public repositories. Private work and certain languages may not be reflected.
-                <br> -->
-                <a href="https://github.com/derek-chui?tab=repositories" target="_blank" style="color: var(--apple-blue); text-decoration: none;">
-                    View all projects →
-                </a>
-            </p>
         </div>
     </section>
 
