@@ -670,7 +670,8 @@ import Layout from '../layouts/Layout.astro';
 
         e.preventDefault();
         e.stopPropagation();
-        window.location.href = activeHref;
+        const w = window.open(activeHref, '_blank', 'noopener,noreferrer');
+        if (w) w.opener = null;
         });
 
         lightbox?.addEventListener('click', (e) => {
