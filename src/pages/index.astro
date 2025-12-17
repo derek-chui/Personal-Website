@@ -589,6 +589,23 @@ import Layout from '../layouts/Layout.astro';
     line-height: 1;
     }
 
+    .lightbox-close {
+    z-index: 10;
+    }
+
+    /* Mobile: reserve space for the close button + notch */
+    @media (max-width: 768px) {
+    .lightbox-content {
+        padding-top: calc(56px + env(safe-area-inset-top));
+    }
+
+    .lightbox-close {
+        top: calc(10px + env(safe-area-inset-top));
+        right: 12px;
+    }
+    }
+
+
 </style>
 
 <script>
@@ -608,11 +625,14 @@ import Layout from '../layouts/Layout.astro';
             observer.observe(section);
         });
 
-        // LIGHTBOX (Gallery click-to-expand)
+        // LIGHTBOX (Gallery click-to-expand) — mobile safe
         const lightbox = document.getElementById('lightbox') as HTMLDivElement | null;
         const lbImg = lightbox?.querySelector('.lightbox-img') as HTMLImageElement | null;
         const lbCaption = lightbox?.querySelector('.lightbox-caption') as HTMLElement | null;
-        const lbLink = lightbox?.querySelector('.lightbox-link') as HTMLAnchorElement | null;
+
+        let activeHref: string | null = null;
+        // prevents the “same tap that opened it” from also triggering navigation on iOS
+        let armNavigateAt = 0;
 
         const openLightbox = (imgEl: HTMLImageElement) => {
         if (!lightbox || !lbImg || !lbCaption) return;
@@ -624,23 +644,12 @@ import Layout from '../layouts/Layout.astro';
             (imgEl.closest('.gallery-item')?.querySelector('.gallery-caption') as HTMLElement | null)?.textContent ||
             '';
 
+        activeHref = imgEl.dataset.link || null;
+        armNavigateAt = Date.now() + 400;
+
         lightbox.classList.add('open');
         lightbox.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        const href = imgEl.dataset.link;
-
-        if (lbLink) {
-        if (href) {
-            lbLink.href = href;
-            lbLink.style.pointerEvents = 'auto';
-            lbImg!.style.cursor = 'pointer';
-        } else {
-            lbLink.href = '#';
-            lbLink.style.pointerEvents = 'none';
-            lbImg!.style.cursor = 'default';
-        }
-        }
-
         };
 
         const closeLightbox = () => {
@@ -650,29 +659,44 @@ import Layout from '../layouts/Layout.astro';
         lightbox.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
 
-        setTimeout(() => {
-            lbImg.src = '';
-        }, 150);
+        activeHref = null;
+
+        setTimeout(() => { lbImg.src = ''; }, 150);
         };
 
         // Click any gallery image to open
         document
         .querySelectorAll<HTMLImageElement>('.gallery-item img, .gallery-media img')
-        .forEach((img) => {
-            img.addEventListener('click', () => openLightbox(img));
+        .forEach((img) => img.addEventListener('click', () => openLightbox(img)));
+
+        // Second tap (while expanded) navigates
+        lbImg?.addEventListener('click', (e) => {
+        if (!lightbox?.classList.contains('open')) return;
+        if (!activeHref) return;
+        if (Date.now() < armNavigateAt) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = activeHref; // use same-tab (best on mobile)
         });
 
-        // Close on backdrop / close button
-        lightbox?.addEventListener('click', (e: MouseEvent) => {
+        // Close on backdrop / close button (and stop the tap from “falling through”)
+        lightbox?.addEventListener('click', (e) => {
         const target = e.target;
-        if (!(target instanceof Element)) return; // now TS knows matches() exists
-        if (target.matches('[data-lightbox-close]')) closeLightbox();
+        if (!(target instanceof Element)) return;
+
+        if (target.matches('[data-lightbox-close]')) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeLightbox();
+        }
         });
 
         // Close on ESC
         document.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'Escape' && lightbox?.classList.contains('open')) closeLightbox();
         });
+
 
 
     });
@@ -1018,9 +1042,7 @@ import Layout from '../layouts/Layout.astro';
 
     <figure class="lightbox-content" role="dialog" aria-modal="true" aria-label="Expanded image">
         <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close">×</button>
-        <a class="lightbox-link" href="#" target="_blank" rel="noopener noreferrer">
-        <img class="lightbox-img" alt="" />
-        </a>
+            <img class="lightbox-img" alt="" />
         <figcaption class="lightbox-caption"></figcaption>
     </figure>
     </div>
