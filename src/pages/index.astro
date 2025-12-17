@@ -442,6 +442,153 @@ import Layout from '../layouts/Layout.astro';
         transform: translateY(-5px);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
+
+    /* ===== GALLERY ===== */
+    .gallery-wrapper {
+    position: relative;
+    margin-top: 24px;
+    }
+
+    .gallery-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 16px 0 8px 4px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.2) transparent;
+    -webkit-overflow-scrolling: touch;
+    }
+
+    .gallery-scroll::-webkit-scrollbar { height: 6px; }
+    .gallery-scroll::-webkit-scrollbar-track { background: transparent; }
+    .gallery-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    }
+
+    .gallery-item {
+    min-width: 360px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    }
+
+    .gallery-caption {
+    padding: 14px 16px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+    .gallery-item { min-width: 280px; }
+    .gallery-item img { height: 180px; }
+    }
+
+    .gallery-item img {
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+    object-fit: contain;
+    }
+
+    /* ===== LIGHTBOX (click-to-expand gallery images) ===== */
+    .gallery-item img,
+    .gallery-media img {
+    cursor: zoom-in;
+    }
+
+    .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    }
+
+    .lightbox.open {
+    opacity: 1;
+    pointer-events: auto;
+    }
+
+    .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    }
+
+    .lightbox-content {
+    position: relative;
+    z-index: 1;
+
+    width: min(1000px, 92vw);
+    max-height: 86vh;
+    padding: 14px;
+    border-radius: 16px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.12);
+
+    /* “hovering” feel */
+    box-shadow: 0 18px 60px rgba(0,0,0,0.6);
+    transform: translateY(10px) scale(0.98);
+    transition: transform 0.2s ease;
+    }
+
+    .lightbox.open .lightbox-content {
+    transform: translateY(0) scale(1);
+    }
+
+    .lightbox-img {
+    width: 100%;
+    max-height: 72vh;
+    object-fit: contain; /* never crop */
+    display: block;
+    border-radius: 12px;
+    }
+
+    .lightbox-caption {
+    margin-top: 10px;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+    }
+
+    .lightbox-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(0,0,0,0.35);
+    color: white;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    }
+
 </style>
 
 <script>
@@ -460,6 +607,74 @@ import Layout from '../layouts/Layout.astro';
         sections.forEach(section => {
             observer.observe(section);
         });
+
+        // LIGHTBOX (Gallery click-to-expand)
+        const lightbox = document.getElementById('lightbox') as HTMLDivElement | null;
+        const lbImg = lightbox?.querySelector('.lightbox-img') as HTMLImageElement | null;
+        const lbCaption = lightbox?.querySelector('.lightbox-caption') as HTMLElement | null;
+        const lbLink = lightbox?.querySelector('.lightbox-link') as HTMLAnchorElement | null;
+
+        const openLightbox = (imgEl: HTMLImageElement) => {
+        if (!lightbox || !lbImg || !lbCaption) return;
+
+        lbImg.src = imgEl.src;
+        lbImg.alt = imgEl.alt || '';
+        lbCaption.textContent =
+            imgEl.dataset.caption ||
+            (imgEl.closest('.gallery-item')?.querySelector('.gallery-caption') as HTMLElement | null)?.textContent ||
+            '';
+
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        const href = imgEl.dataset.link;
+
+        if (lbLink) {
+        if (href) {
+            lbLink.href = href;
+            lbLink.style.pointerEvents = 'auto';
+            lbImg!.style.cursor = 'pointer';
+        } else {
+            lbLink.href = '#';
+            lbLink.style.pointerEvents = 'none';
+            lbImg!.style.cursor = 'default';
+        }
+        }
+
+        };
+
+        const closeLightbox = () => {
+        if (!lightbox || !lbImg) return;
+
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+
+        setTimeout(() => {
+            lbImg.src = '';
+        }, 150);
+        };
+
+        // Click any gallery image to open
+        document
+        .querySelectorAll<HTMLImageElement>('.gallery-item img, .gallery-media img')
+        .forEach((img) => {
+            img.addEventListener('click', () => openLightbox(img));
+        });
+
+        // Close on backdrop / close button
+        lightbox?.addEventListener('click', (e: MouseEvent) => {
+        const target = e.target;
+        if (!(target instanceof Element)) return; // now TS knows matches() exists
+        if (target.matches('[data-lightbox-close]')) closeLightbox();
+        });
+
+        // Close on ESC
+        document.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Escape' && lightbox?.classList.contains('open')) closeLightbox();
+        });
+
+
     });
 
     // const heroText = document.querySelector('.hero h1');
@@ -485,9 +700,52 @@ import Layout from '../layouts/Layout.astro';
         <p>Computer Science and Engineering at Santa Clara University<br>Football Analytics & Network Optimization</p>
 
         <div class="hero-buttons">
-            <a href="#projects" class="btn">View My Work</a>
+            <a href="#gallery" class="btn">View My Work</a>
             <a href="#contact" class="btn">Get In Touch</a>
         </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" style="--order: 2;">
+    <div class="card">
+        <h2>Gallery</h2>
+        <p>Football Analytics & Network Optimization:</p>
+
+        <div class="gallery-wrapper">
+        <div class="gallery-scroll">
+
+            <div class="gallery-item">
+            <img src="fa1.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics#Santa-Clara-University-Soccer" />
+            <div class="gallery-caption">Football Analytics: Catapult & VALD Outliers</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="fa2.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics#2---2025-summer-squad-assessment" />
+            <div class="gallery-caption">Football Analytics: Transfer List Comparison</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="fa3.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics#match-reviews" />
+            <div class="gallery-caption">Football Analytics: Shot Preceding Actions</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="win1.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Network-Optimization/blob/main/q-learning/CSEN193-Report.pdf" />
+            <div class="gallery-caption">Network Optimization: NOMA Poster</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="win2.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Network-Optimization/blob/main/SG-NOMA/NOMA3S/IEEE%20CCNC%202026%20SG-NOMA%20(Short).pdf" />
+            <div class="gallery-caption">Network Optimization: Semantic NOMA Greedy Grouping</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="win3.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Network-Optimization/blob/main/SG-NOMA/IEEE%20CCNC%202026%20SG-NOMA.pdf" />
+            <div class="gallery-caption">Network Optimization: NOMA Algorithm Comparison</div>
+            </div>
+        </div>
+        </div>
+    </div>
     </section>
 
     <!-- PROJECTS -->
@@ -571,7 +829,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 
-    <!-- PUBLICATIONS -->
+    <!-- RESEARCH -->
     <section id="publications" style="--order: 6;">
         <style>
         #publications .timeline-item:before {
@@ -598,63 +856,6 @@ import Layout from '../layouts/Layout.astro';
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- TECHNOLOGIES -->
-    <section id="technologies" style="--order: 2;">
-        <div class="card">
-            <h2>Most Used</h2>
-            <p>Languages I work with regularly:</p>
-            
-            <div class="tech-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
-                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="font-size: 2rem;">🟦</div>
-                        <h3 style="margin: 0;">C/C++</h3>
-                    </div>
-                    <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Used with most of my projects and classes</p>
-                </div>
-                
-                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
-                    <a href="https://github.com/derek-chui/Network-Optimization/tree/main" target="_blank" style="text-decoration: none; color: inherit;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="font-size: 2rem;">📈</div>
-                            <h3 style="margin: 0;">MATLAB</h3>
-                        </div>
-                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">For current network optimization project</p>
-                    </a>
-                </div>
-                
-                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
-                    <a href="https://x.com/thatderekchui" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="font-size: 2rem;">🐍</div>
-                            <h3 style="margin: 0;">Python</h3>
-                        </div>
-                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Football (soccer) data analytics & visualization</p>
-                    </a>
-                </div>
-                
-                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
-                    <a href="https://github.com/derek-chui/Personal-Website" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="font-size: 2rem;">🚀</div>
-                            <h3 style="margin: 0;">Astro</h3>
-                        </div>
-                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Framework used to build and update this website</p>
-                    </a>
-                </div>
-            </div>
-                
-            <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); text-align: center; line-height: 1.5;">
-                <!-- Note: Based on public repositories. Private work and certain languages may not be reflected.
-                <br> -->
-                <a href="https://github.com/derek-chui?tab=repositories" target="_blank" style="color: var(--apple-blue); text-decoration: none;">
-                    View all repositories →
-                </a>
-            </p>
-
         </div>
     </section>
 
@@ -734,6 +935,63 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 
+    <!-- TECHNOLOGIES -->
+    <section id="technologies" style="--order: 2;">
+        <div class="card">
+            <h2>Most Used</h2>
+            <p>Languages I work with regularly:</p>
+            
+            <div class="tech-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 2rem;">🟦</div>
+                        <h3 style="margin: 0;">C/C++</h3>
+                    </div>
+                    <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Used with most of my projects and classes</p>
+                </div>
+                
+                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
+                    <a href="https://github.com/derek-chui/Network-Optimization/tree/main" target="_blank" style="text-decoration: none; color: inherit;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 2rem;">📈</div>
+                            <h3 style="margin: 0;">MATLAB</h3>
+                        </div>
+                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">For current network optimization project</p>
+                    </a>
+                </div>
+                
+                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
+                    <a href="https://x.com/thatderekchui" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 2rem;">🐍</div>
+                            <h3 style="margin: 0;">Python</h3>
+                        </div>
+                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Football (soccer) data analytics & visualization</p>
+                    </a>
+                </div>
+                
+                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
+                    <a href="https://github.com/derek-chui/Personal-Website" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 2rem;">🚀</div>
+                            <h3 style="margin: 0;">Astro</h3>
+                        </div>
+                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Framework used to build and update this website</p>
+                    </a>
+                </div>
+            </div>
+                
+            <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); text-align: center; line-height: 1.5;">
+                <!-- Note: Based on public repositories. Private work and certain languages may not be reflected.
+                <br> -->
+                <a href="https://github.com/derek-chui?tab=repositories" target="_blank" style="color: var(--apple-blue); text-decoration: none;">
+                    View all repositories →
+                </a>
+            </p>
+
+        </div>
+    </section>
+
     <!-- CONTACT -->
     <section id="contact" style="--order: 5;">
         <div class="card">
@@ -753,4 +1011,18 @@ import Layout from '../layouts/Layout.astro';
             </div>
         </div>
     </section>
+
+    <!-- LIGHTBOX (one-time) -->
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop" data-lightbox-close></div>
+
+    <figure class="lightbox-content" role="dialog" aria-modal="true" aria-label="Expanded image">
+        <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close">×</button>
+        <a class="lightbox-link" href="#" target="_blank" rel="noopener noreferrer">
+        <img class="lightbox-img" alt="" />
+        </a>
+        <figcaption class="lightbox-caption"></figcaption>
+    </figure>
+    </div>
+
 </Layout>
