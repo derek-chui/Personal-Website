@@ -443,7 +443,7 @@ import Layout from '../layouts/Layout.astro';
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
 
-    /* ===== GALLERY ===== */
+     /* Gallery */
     .gallery-wrapper {
     position: relative;
     margin-top: 24px;
@@ -508,7 +508,7 @@ import Layout from '../layouts/Layout.astro';
     object-fit: contain;
     }
 
-    /* ===== LIGHTBOX (click-to-expand gallery images) ===== */
+    /* Lightbox */
     .gallery-item img,
     .gallery-media img {
     cursor: zoom-in;
@@ -550,7 +550,6 @@ import Layout from '../layouts/Layout.astro';
     background: var(--card-bg);
     border: 1px solid rgba(255,255,255,0.12);
 
-    /* “hovering” feel */
     box-shadow: 0 18px 60px rgba(0,0,0,0.6);
     transform: translateY(10px) scale(0.98);
     transition: transform 0.2s ease;
@@ -563,7 +562,7 @@ import Layout from '../layouts/Layout.astro';
     .lightbox-img {
     width: 100%;
     max-height: 72vh;
-    object-fit: contain; /* never crop */
+    object-fit: contain;
     display: block;
     border-radius: 12px;
     }
@@ -593,7 +592,6 @@ import Layout from '../layouts/Layout.astro';
     z-index: 10;
     }
 
-    /* Mobile: reserve space for the close button + notch */
     @media (max-width: 768px) {
     .lightbox-content {
         padding-top: calc(56px + env(safe-area-inset-top));
@@ -609,7 +607,6 @@ import Layout from '../layouts/Layout.astro';
 </style>
 
 <script>
-    //SCROLL ANIMATIONS
     document.addEventListener('DOMContentLoaded', () => {
         const sections = document.querySelectorAll('section');
         
@@ -625,13 +622,11 @@ import Layout from '../layouts/Layout.astro';
             observer.observe(section);
         });
 
-        // LIGHTBOX (Gallery click-to-expand) — mobile safe
         const lightbox = document.getElementById('lightbox') as HTMLDivElement | null;
         const lbImg = lightbox?.querySelector('.lightbox-img') as HTMLImageElement | null;
         const lbCaption = lightbox?.querySelector('.lightbox-caption') as HTMLElement | null;
 
         let activeHref: string | null = null;
-        // prevents the “same tap that opened it” from also triggering navigation on iOS
         let armNavigateAt = 0;
 
         const openLightbox = (imgEl: HTMLImageElement) => {
@@ -664,12 +659,10 @@ import Layout from '../layouts/Layout.astro';
         setTimeout(() => { lbImg.src = ''; }, 150);
         };
 
-        // Click any gallery image to open
         document
         .querySelectorAll<HTMLImageElement>('.gallery-item img, .gallery-media img')
         .forEach((img) => img.addEventListener('click', () => openLightbox(img)));
 
-        // Second tap (while expanded) navigates
         lbImg?.addEventListener('click', (e) => {
         if (!lightbox?.classList.contains('open')) return;
         if (!activeHref) return;
@@ -677,10 +670,9 @@ import Layout from '../layouts/Layout.astro';
 
         e.preventDefault();
         e.stopPropagation();
-        window.location.href = activeHref; // use same-tab (best on mobile)
+        window.location.href = activeHref;
         });
 
-        // Close on backdrop / close button (and stop the tap from “falling through”)
         lightbox?.addEventListener('click', (e) => {
         const target = e.target;
         if (!(target instanceof Element)) return;
@@ -692,7 +684,6 @@ import Layout from '../layouts/Layout.astro';
         }
         });
 
-        // Close on ESC
         document.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'Escape' && lightbox?.classList.contains('open')) closeLightbox();
         });
@@ -1006,8 +997,6 @@ import Layout from '../layouts/Layout.astro';
             </div>
                 
             <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); text-align: center; line-height: 1.5;">
-                <!-- Note: Based on public repositories. Private work and certain languages may not be reflected.
-                <br> -->
                 <a href="https://github.com/derek-chui?tab=repositories" target="_blank" style="color: var(--apple-blue); text-decoration: none;">
                     View all repositories →
                 </a>
@@ -1036,7 +1025,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 
-    <!-- LIGHTBOX (one-time) -->
+    <!-- LIGHTBOX -->
     <div id="lightbox" class="lightbox" aria-hidden="true">
     <div class="lightbox-backdrop" data-lightbox-close></div>
 
