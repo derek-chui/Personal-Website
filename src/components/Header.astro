@@ -3,7 +3,8 @@
 
 const navItems = [
     { linkText: 'Home', href: '/' },
-    { linkText: 'Resume', href: '/Resume.pdf' },
+    { linkText: 'CV', href: '/DerekChuiCV.pdf', newTab: true },
+    { linkText: 'Resume', href: '/DerekChuiResume.pdf', newTab: true},
     // { linkText: 'Logs', href: '/logs' },
     { linkText: 'Archives', href: '/archives' },
     // { linkText: 'Personal Records', href: '/pr' },
@@ -33,8 +34,13 @@ const navItems = [
             <ul class="flex flex-wrap gap-x-4 gap-y-1">
                 {navItems.map((item) => (
                     <li>
-                        <a href={item.href} class="nav-link inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
+                        <a
+                        href={item.href}
+                        class="nav-link inline-block px-1.5 py-1 sm:px-3 sm:py-2"
+                        target={item.newTab ? "_blank" : undefined}
+                        rel={item.newTab ? "noopener noreferrer" : undefined}
+                        >
+                        {item.linkText}
                         </a>
                     </li>
                 ))}
