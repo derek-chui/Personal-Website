@@ -468,7 +468,8 @@ import Layout from '../layouts/Layout.astro';
     }
 
     .gallery-item {
-    min-width: 360px;
+    flex: 0 0 360px;   /* <-- key: locks the flex item width */
+    width: 360px;
     flex-shrink: 0;
     scroll-snap-align: start;
     background: var(--card-bg);
