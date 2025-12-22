@@ -605,6 +605,206 @@ import Layout from '../layouts/Layout.astro';
     }
     }
 
+    /* Experience (compact expandable timeline) */
+    .xp-list {
+    position: relative;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 18px; /* space for the rail/dots */
+    }
+
+    .xp-list:before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(41,151,255,0.9), transparent);
+    opacity: 0.9;
+    }
+
+    .xp-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .xp-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(41,151,255,0.35);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+    }
+
+    .xp-summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 18px 1fr auto;
+    gap: 14px;
+    align-items: center;
+    padding: 14px 16px;
+    }
+
+    .xp-summary::-webkit-details-marker {
+    display: none;
+    }
+
+    .xp-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: #fff;
+    border: 3px solid var(--card-bg);
+    box-shadow: 0 0 0 2px rgba(41,151,255,0.35);
+    margin-left: -2px;
+    }
+
+    .xp-main {
+    min-width: 0;
+    }
+
+    .xp-title {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+    }
+
+    .xp-role {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.95);
+    }
+
+    .xp-at {
+    opacity: 0.6;
+    }
+
+    .xp-org {
+    font-weight: 650;
+    color: rgba(255,255,255,0.85);
+    }
+
+    .xp-chips {
+    margin-top: 6px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    }
+
+    .xp-chip {
+    font-size: 0.78rem;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(0,0,0,0.25);
+    color: rgba(255,255,255,0.78);
+    }
+
+    .xp-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    }
+
+    .xp-date {
+    color: rgba(255,255,255,0.72);
+    font-weight: 600;
+    font-size: 0.92rem;
+    }
+
+    .xp-caret {
+    display: inline-block;
+    transform: rotate(90deg);
+    opacity: 0.65;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .xp-item[open] {
+    background: linear-gradient(135deg, rgba(41,151,255,0.10) 0%, rgba(0,0,0,0) 60%);
+    border-color: rgba(41,151,255,0.35);
+    }
+
+    .xp-item[open] .xp-caret {
+    transform: rotate(-90deg);
+    opacity: 1;
+    }
+
+    .xp-body {
+    padding: 0 16px 14px 48px; /* aligns body under title area */
+    color: rgba(255,255,255,0.80);
+    }
+
+    .xp-body ul {
+    margin: 10px 0 0 0;
+    padding-left: 0;
+    list-style: none;
+    }
+
+    .xp-body li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 8px;
+    }
+
+    .xp-body li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: rgba(41,151,255,0.95);
+    }
+
+    @media (max-width: 768px) {
+    .xp-summary {
+        grid-template-columns: 18px 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .xp-meta {
+        grid-column: 2 / 3;
+        justify-content: space-between;
+    }
+
+    .xp-body {
+        padding-left: 16px;
+    }
+    }
+
+    /* Make ONLY real links blue (role/org/title), never plain spans */
+    #experience .xp-title a,
+    #experience a.xp-role,
+    #experience a.xp-org,
+    #experience a.xp-title-link {
+    color: var(--apple-blue) !important;
+    font-weight: 650;
+    }
+
+    /* Keep link blue on hover (no color change) */
+    #experience .xp-title a:hover,
+    #experience a.xp-role:hover,
+    #experience a.xp-org:hover,
+    #experience a.xp-title-link:hover {
+    color: var(--apple-blue) !important;
+    }
+
+    /* If the whole title is a link, keep its inner text inheriting blue */
+    #experience a.xp-title-link .xp-role,
+    #experience a.xp-title-link .xp-org,
+    #experience a.xp-title-link .xp-at {
+    color: inherit !important;
+    }
+
+    /* Make sure non-link org text NEVER changes color on hover */
+    #experience span.xp-org:hover {
+    color: rgba(255,255,255,0.85) !important;
+    }
+
 
 </style>
 
@@ -1065,61 +1265,194 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- EXPERIENCE -->
     <section id="experience" style="--order: 3;">
-        <div class="card">
-            <h2>Experience</h2>
-            <p>My work experience and professional development:</p>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Apr 2025 - Present</div>
-                    <div class="timeline-content">
-                        <h3><a href="https://github.com/derek-chui/Network-Optimization" target="_blank">Research Assistant</a></h3>
-                        <p>Santa Clara University · Internship · Hybrid</p>
-                    </div>
+    <div class="card">
+        <h2>Experience</h2>
+        <p>My work experience and professional development:</p>
+
+        <div class="xp-list">
+
+        <details class="xp-item">
+            <summary class="xp-summary">
+            <span class="xp-dot" aria-hidden="true"></span>
+
+            <div class="xp-main">
+                <div class="xp-title">
+                <a class="xp-role" href="https://github.com/derek-chui/Network-Optimization/blob/main/README.md" target="_blank">Research Assistant</a>
+                <span class="xp-at">·</span>
+                <span class="xp-org">Santa Clara University</span>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-date">Sep 2025 - Dec 2025</div>
-                    <div class="timeline-content">
-                        <h3>Teaching Assistant</h3>
-                        <p>Santa Clara University · Part-time · Hybrid</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Jul 2024 - Aug 2025</div>
-                    <div class="timeline-content">
-                        <h3>Sales Development Representative</h3>
-                        <p><a href="http://proofjump.com/" target="_blank">ProofJump</a> · Part-time · Remote</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Jul 2024 - Nov 2024</div>
-                    <div class="timeline-content">
-                        <h3>Training Specialist</h3>
-                        <p>Honeywell · Part-time · On-site</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Feb 2021 - Jul 2023</div>
-                    <div class="timeline-content">
-                        <h3><a href="/archives">Video Editor</a></h3>
-                        <p>Freelance · Remote</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-date">Dec 2015 - Feb 2021</div>
-                    <div class="timeline-content">
-                        <h3><a href="/archives">Content Creator</a></h3>
-                        <p>Self-employed · Remote</p>
-                    </div>
+                <div class="xp-chips">
+                <span class="xp-chip">Internship</span>
+                <span class="xp-chip">Hybrid</span>
                 </div>
             </div>
+
+            <div class="xp-meta">
+                <div class="xp-date">Apr 2025 – Present</div>
+                <span class="xp-caret" aria-hidden="true">↳</span>
+            </div>
+            </summary>
+
+            <div class="xp-body">
+            <ul>
+                <li>Wireless Intelligent Networks and efficient user clustering in NOMA 6G networks.</li>
+            </ul>
+            </div>
+        </details>
+
+        <details class="xp-item">
+            <summary class="xp-summary">
+            <span class="xp-dot" aria-hidden="true"></span>
+
+            <div class="xp-main">
+                <div class="xp-title">
+                <span class="xp-role">Teaching Assistant</span>
+                <span class="xp-at">·</span>
+                <span class="xp-org">Santa Clara University</span>
+                </div>
+
+                <div class="xp-chips">
+                <span class="xp-chip">Part-time</span>
+                <span class="xp-chip">Hybrid</span>
+                </div>
+            </div>
+
+            <div class="xp-meta">
+                <div class="xp-date">Sep 2025 – Dec 2025</div>
+                <span class="xp-caret" aria-hidden="true">↳</span>
+            </div>
+            </summary>
+
+            <div class="xp-body">
+            <ul>
+                <li>CSEN 171 Programming Languages, made assignments & autograders, led practicums & hosted office hours.</li>
+            </ul>
+            </div>
+        </details>
+
+        <details class="xp-item">
+            <summary class="xp-summary">
+            <span class="xp-dot" aria-hidden="true"></span>
+
+            <div class="xp-main">
+                <div class="xp-title">
+                <span class="xp-role">Sales Development Representative</span>
+                <span class="xp-at">·</span>
+                <a class="xp-org" href="http://proofjump.com/" target="_blank">ProofJump</a>
+                </div>
+
+                <div class="xp-chips">
+                <span class="xp-chip">Part-time</span>
+                <span class="xp-chip">Remote</span>
+                </div>
+            </div>
+
+            <div class="xp-meta">
+                <div class="xp-date">Jul 2024 – Apr 2025</div>
+                <span class="xp-caret" aria-hidden="true">↳</span>
+            </div>
+            </summary>
+
+            <div class="xp-body">
+            <ul>
+                <li>Connected with professionals in the SaaS, B2B, and SDR industries through LinkedIn Sales Navigator. Planned and automated outreach emails to specific audiences. Set up routines for both outbound & inbound communication.</li>
+            </ul>
+            </div>
+        </details>
+
+        <details class="xp-item">
+            <summary class="xp-summary">
+            <span class="xp-dot" aria-hidden="true"></span>
+
+            <div class="xp-main">
+                <div class="xp-title">
+                <span class="xp-role">Training Specialist</span>
+                <span class="xp-at">·</span>
+                <span class="xp-org">Honeywell</span>
+                </div>
+
+                <div class="xp-chips">
+                <span class="xp-chip">Part-time</span>
+                <span class="xp-chip">On-site</span>
+                </div>
+            </div>
+
+            <div class="xp-meta">
+                <div class="xp-date">Jul 2024 – Nov 2024</div>
+                <span class="xp-caret" aria-hidden="true">↳</span>
+            </div>
+            </summary>
+
+            <div class="xp-body">
+            <ul>
+                <li>Made training videos on Honeywell XLS fire alarm devices, helped plan courses, worked on site at various apartment buildings. Supported instructors during training. Training in Honeywell Building Automation Systems..</li>
+            </ul>
+            </div>
+        </details>
+
+        <details class="xp-item">
+            <summary class="xp-summary">
+            <span class="xp-dot" aria-hidden="true"></span>
+
+            <div class="xp-main">
+                <div class="xp-title">
+                <a class="xp-role" href="/archives">Video Editor</a>
+                <span class="xp-at">·</span>
+                <span class="xp-org">Freelance</span>
+                </div>
+
+                <div class="xp-chips">
+                <span class="xp-chip">Remote</span>
+                </div>
+            </div>
+
+            <div class="xp-meta">
+                <div class="xp-date">Feb 2021 – Jul 2024</div>
+                <span class="xp-caret" aria-hidden="true">↳</span>
+            </div>
+            </summary>
+
+            <div class="xp-body">
+            <ul>
+                <li>Edited video content for clients. Final Cut Pro for tasks like cutting, color grading, audio editing, and visual effects. Organized file management for raw footage, project files, and final exports. Motion graphics and animations.</li>
+            </ul>
+            </div>
+        </details>
+
+        <details class="xp-item">
+            <summary class="xp-summary">
+            <span class="xp-dot" aria-hidden="true"></span>
+
+            <div class="xp-main">
+                <div class="xp-title">
+                <a class="xp-role" href="/archives">Content Creator</a>
+                <span class="xp-at">·</span>
+                <span class="xp-org">Self-employed</span>
+                </div>
+
+                <div class="xp-chips">
+                <span class="xp-chip">Remote</span>
+                </div>
+            </div>
+
+            <div class="xp-meta">
+                <div class="xp-date">Dec 2015 – Feb 2021</div>
+                <span class="xp-caret" aria-hidden="true">↳</span>
+            </div>
+            </summary>
+
+            <div class="xp-body">
+            <ul>
+                <li>YouTube content on gaming, lifestyle, tech, original video essays, montage segments, and more. Hosted a podcast with discussions and interviews. Blogs with written content and in depth articles, later compiled into a short book.</li>
+            </ul>
+            </div>
+        </details>
+
         </div>
+    </div>
     </section>
+
 
     <!-- TECHNOLOGIES -->
     <section id="technologies" style="--order: 2;">
