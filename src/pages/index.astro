@@ -468,7 +468,7 @@ import Layout from '../layouts/Layout.astro';
     }
 
     .gallery-item {
-    flex: 0 0 360px;   /* <-- key: locks the flex item width */
+    flex: 0 0 360px;
     width: 360px;
     flex-shrink: 0;
     scroll-snap-align: start;
@@ -605,14 +605,13 @@ import Layout from '../layouts/Layout.astro';
     }
     }
 
-    /* Experience (compact expandable timeline) */
     .xp-list {
     position: relative;
     margin-top: 24px;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding-left: 18px; /* space for the rail/dots */
+    padding-left: 18px;
     }
 
     .xp-list:before {
@@ -737,7 +736,7 @@ import Layout from '../layouts/Layout.astro';
     }
 
     .xp-body {
-    padding: 0 16px 14px 48px; /* aligns body under title area */
+    padding: 0 16px 14px 48px;
     color: rgba(255,255,255,0.80);
     }
 
@@ -776,7 +775,6 @@ import Layout from '../layouts/Layout.astro';
     }
     }
 
-    /* Make ONLY real links blue (role/org/title), never plain spans */
     #experience .xp-title a,
     #experience a.xp-role,
     #experience a.xp-org,
@@ -785,7 +783,6 @@ import Layout from '../layouts/Layout.astro';
     font-weight: 650;
     }
 
-    /* Keep link blue on hover (no color change) */
     #experience .xp-title a:hover,
     #experience a.xp-role:hover,
     #experience a.xp-org:hover,
@@ -793,18 +790,106 @@ import Layout from '../layouts/Layout.astro';
     color: var(--apple-blue) !important;
     }
 
-    /* If the whole title is a link, keep its inner text inheriting blue */
     #experience a.xp-title-link .xp-role,
     #experience a.xp-title-link .xp-org,
     #experience a.xp-title-link .xp-at {
     color: inherit !important;
     }
 
-    /* Make sure non-link org text NEVER changes color on hover */
     #experience span.xp-org:hover {
     color: rgba(255,255,255,0.85) !important;
     }
 
+    /* mobile */
+    .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    }
+
+    .hero h1 {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+    }
+    h2 { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+    h3 { font-size: clamp(1.15rem, 4.5vw, 1.6rem); }
+
+    @media (max-width: 640px) {
+    .hero {
+        padding: 56px 12px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        max-width: 520px;
+        margin: 24px auto 0;
+    }
+
+    .btn, .btn-minor {
+        width: 100%;
+        padding: 14px 18px;
+        border-radius: 12px;
+    }
+
+    .card {
+        padding: 18px;
+        border-radius: 14px;
+    }
+    }
+
+    @media (max-width: 640px) {
+    .horizontal-scroll-container {
+        overflow-x: hidden;
+        flex-direction: column;
+        gap: 14px;
+        padding: 10px 0 0;
+        scroll-snap-type: none;
+    }
+
+    .project-card {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    .gallery-scroll {
+        overflow-x: hidden;
+        flex-direction: column;
+        gap: 14px;
+        scroll-snap-type: none;
+        padding: 10px 0 0;
+    }
+
+    .gallery-item {
+        width: 100%;
+        flex: 1 1 auto;
+    }
+
+    .gallery-item img {
+        height: 190px;
+    }
+    }
+
+    @media (hover: none) {
+    .card:hover,
+    .project-card:hover,
+    .gallery-item:hover,
+    .tech-card:hover,
+    .xp-item:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+    }
+
+    @media (max-width: 640px) {
+    .xp-summary {
+        padding: 16px 14px;
+    }
+    .xp-date {
+        font-size: 0.88rem;
+    }
+    }
 
 </style>
 
@@ -911,635 +996,635 @@ import Layout from '../layouts/Layout.astro';
 </script>
 
 <Layout title="Derek Chui">
-    
-    <!-- HERO -->
-    <section class="hero">
-        <h1>Hi, I'm Derek</h1>
-        <p>Computer Science and Engineering at Santa Clara University<br>Football Analytics & Network Optimization</p>
+    <main class="page">
+        <!-- HERO -->
+        <section class="hero">
+            <h1>Hi, I'm Derek</h1>
+            <p>Computer Science and Engineering at Santa Clara University<br>Football Analytics & Network Optimization</p>
 
-        <div class="hero-buttons">
-            <a href="#gallery-fa" class="btn">View My Work</a>
-            <a href="#contact" class="btn">Get In Touch</a>
-        </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section id="gallery-fa" style="--order: 2;">
-    <div class="card">
-        <h2>Football Analytics</h2>
-        <p>Collection of projects, tools, and resources for football data analysis & visualisation:</p>
-
-        <div class="gallery-wrapper">
-        <div class="gallery-scroll">
-
-            <div class="gallery-item">
-            <img src="fa1.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#santa-clara-university-soccer" />
-            <div class="gallery-caption">Player Catapult & VALD Outliers</div>
+            <div class="hero-buttons">
+                <a href="#gallery-fa" class="btn">View My Work</a>
+                <a href="#contact" class="btn">Get In Touch</a>
             </div>
+        </section>
 
-            <div class="gallery-item">
-            <img src="fa2.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#2---2025-summer-squad-assessment" />
-            <div class="gallery-caption">Transfer List Comparison</div>
+        <!-- GALLERY -->
+        <section id="gallery-fa" style="--order: 2;">
+        <div class="card">
+            <h2>Football Analytics</h2>
+            <p>Collection of projects, tools, and resources for football data analysis & visualisation:</p>
+
+            <div class="gallery-wrapper">
+            <div class="gallery-scroll">
+
+                <div class="gallery-item">
+                <img src="fa1.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#santa-clara-university-soccer" />
+                <div class="gallery-caption">Player Catapult & VALD Outliers</div>
+                </div>
+
+                <div class="gallery-item">
+                <img src="fa2.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#2---2025-summer-squad-assessment" />
+                <div class="gallery-caption">Transfer List Comparison</div>
+                </div>
+
+                <div class="gallery-item">
+                <img src="fa3.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#match-reviews" />
+                <div class="gallery-caption">Game Shot Preceding Actions</div>
+                </div>
+
+                <div class="gallery-item">
+                <img src="fa4.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#3---player-actions-v-usage-rates" />
+                <div class="gallery-caption">Goal Contributions vs Usage Rate</div>
+                </div>
+
+                <div class="gallery-item">
+                <img src="fa5.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#player-dashboard" />
+                <div class="gallery-caption">Player Dashboard</div>
+                </div>
+
+                <div class="gallery-item">
+                <img src="fa6.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#case-studies" />
+                <div class="gallery-caption">Player Phase Involvement Comparison</div>
+                </div>
+
+                <div class="gallery-item">
+                <img src="fa7.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#1---progression-analysis-2425" />
+                <div class="gallery-caption">Progression Analysis</div>
+                </div>
             </div>
-
-            <div class="gallery-item">
-            <img src="fa3.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#match-reviews" />
-            <div class="gallery-caption">Game Shot Preceding Actions</div>
-            </div>
-
-            <div class="gallery-item">
-            <img src="fa4.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#3---player-actions-v-usage-rates" />
-            <div class="gallery-caption">Goal Contributions vs Usage Rate</div>
-            </div>
-
-            <div class="gallery-item">
-            <img src="fa5.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#player-dashboard" />
-            <div class="gallery-caption">Player Dashboard</div>
-            </div>
-
-            <div class="gallery-item">
-            <img src="fa6.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#case-studies" />
-            <div class="gallery-caption">Player Phase Involvement Comparison</div>
-            </div>
-
-            <div class="gallery-item">
-            <img src="fa7.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#1---progression-analysis-2425" />
-            <div class="gallery-caption">Progression Analysis</div>
-            </div>
-        </div>
-        </div>
-    </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section id="gallery-win" style="--order: 2;">
-    <div class="card">
-        <h2>Network Optimization</h2>
-        <p>Collection of projects regarding efficient user clustering in NOMA (Non Orthogonal Multiple Access) 6G Networks:</p>
-
-        <div class="gallery-wrapper">
-        <div class="gallery-scroll">
-            <div class="gallery-item">
-            <img src="win1.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing" />
-            <div class="gallery-caption">State of the Field Poster</div>
-            </div>
-
-            <div class="gallery-item">
-            <img src="win2.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1TZ-hggjblw8D4OI7lmwQi5GvmUcgvjQ7/view?usp=sharing" />
-            <div class="gallery-caption">Semantic Greedy NOMA Grouping</div>
-            </div>
-
-            <div class="gallery-item">
-            <img src="win3.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing" />
-            <div class="gallery-caption">Traditional vs Semantic User Grouping</div>
-            </div>
-
-            <div class="gallery-item">
-            <img src="win4.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing" />
-            <div class="gallery-caption">NOMA Algorithm Comparison</div>
             </div>
         </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section id="gallery-win" style="--order: 2;">
+        <div class="card">
+            <h2>Network Optimization</h2>
+            <p>Collection of projects regarding efficient user clustering in NOMA (Non Orthogonal Multiple Access) 6G Networks:</p>
+
+            <div class="gallery-wrapper">
+            <div class="gallery-scroll">
+                <div class="gallery-item">
+                <img src="win1.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing" />
+                <div class="gallery-caption">State of the Field Poster</div>
+                </div>
+
+                <div class="gallery-item">
+                <img src="win2.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1TZ-hggjblw8D4OI7lmwQi5GvmUcgvjQ7/view?usp=sharing" />
+                <div class="gallery-caption">Semantic Greedy NOMA Grouping</div>
+                </div>
+
+                <div class="gallery-item">
+                <img src="win3.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing" />
+                <div class="gallery-caption">Traditional vs Semantic User Grouping</div>
+                </div>
+
+                <div class="gallery-item">
+                <img src="win4.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing" />
+                <div class="gallery-caption">NOMA Algorithm Comparison</div>
+                </div>
+            </div>
+            </div>
         </div>
-    </div>
-    </section>
+        </section>
 
-    <!-- RESEARCH -->
-    <section id="publications" style="--order: 6;">
-    <style>
-        #publications .research-list {
-        margin-top: 22px;
-        display: flex;
-        flex-direction: column;
-        }
+        <!-- RESEARCH -->
+        <section id="publications" style="--order: 6;">
+        <style>
+            #publications .research-list {
+            margin-top: 22px;
+            display: flex;
+            flex-direction: column;
+            }
 
-        #publications .research-item {
-        display: grid;
-        grid-template-columns: 92px 1fr;
-        gap: 18px;
-        padding: 14px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
+            #publications .research-item {
+            display: grid;
+            grid-template-columns: 92px 1fr;
+            gap: 18px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
 
-        #publications .research-item:last-child {
-        border-bottom: 0;
-        padding-bottom: 4px;
-        }
+            #publications .research-item:last-child {
+            border-bottom: 0;
+            padding-bottom: 4px;
+            }
 
-        #publications .research-date {
-        color: rgba(255, 255, 255, 0.75);
-        font-weight: 600;
-        font-size: 0.95rem;
-        letter-spacing: 0.2px;
-        padding-top: 2px;
-        white-space: nowrap;
-        }
+            #publications .research-date {
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
+            padding-top: 2px;
+            white-space: nowrap;
+            }
 
-        #publications .research-meta {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 6px;
-        }
-
-        #publications .research-venue {
-        margin: 0;
-        font-size: 1.15rem;
-        line-height: 1.25;
-        font-weight: 650;
-        }
-
-        #publications .research-badge {
-        font-size: 0.78rem;
-        padding: 4px 10px;
-        border-radius: 999px;
-        border: 1px solid rgba(41, 151, 255, 0.35);
-        background: rgba(41, 151, 255, 0.12);
-        color: var(--apple-blue);
-        font-weight: 650;
-        letter-spacing: 0.6px;
-        text-transform: uppercase;
-        }
-
-        #publications .research-title {
-        margin: 0;
-        font-size: 1rem;
-        color: rgba(255, 255, 255, 0.88);
-        line-height: 1.45;
-        }
-
-        #publications .research-title a {
-        font-weight: 650;
-        }
-
-        @media (max-width: 640px) {
-        #publications .research-item {
-            grid-template-columns: 1fr;
+            #publications .research-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
             gap: 10px;
-            padding: 16px 0;
-        }
+            margin-bottom: 6px;
+            }
 
-        #publications .research-date {
-            white-space: normal;
-        }
-        }
-    </style>
+            #publications .research-venue {
+            margin: 0;
+            font-size: 1.15rem;
+            line-height: 1.25;
+            font-weight: 650;
+            }
 
-    <div class="card">
-        <h2>Research</h2>
-        <p>Submissions to conferences, grants, symposiums, awards, and more derived from my research:</p>
+            #publications .research-badge {
+            font-size: 0.78rem;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(41, 151, 255, 0.35);
+            background: rgba(41, 151, 255, 0.12);
+            color: var(--apple-blue);
+            font-weight: 650;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            }
 
-        <div class="research-list">
-        <div class="research-item">
-            <div class="research-date">Nov 2025</div>
-            <div>
-            <div class="research-meta">
-                <h3 class="research-venue">Hackworth Applied Ethics Research Grant</h3>
-            </div>
-            <p class="research-title">
-                <a href="https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing" target="_blank">
-                <strong>How AI Biases Can Silence Certain Users in 6G Mobile Communications</strong>
-                </a>
-            </p>
-            </div>
-        </div>
+            #publications .research-title {
+            margin: 0;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.88);
+            line-height: 1.45;
+            }
 
-        <div class="research-item">
-            <div class="research-date">Oct 2025</div>
-            <div>
-            <div class="research-meta">
-                <h3 class="research-venue">IEEE Consumer Communications & Networking Conference Poster</h3>
-                <span class="research-badge">Accepted</span>
-            </div>
-            <p class="research-title">
-                <a href="https://drive.google.com/file/d/1TZ-hggjblw8D4OI7lmwQi5GvmUcgvjQ7/view?usp=sharing" target="_blank">
-                <strong>Semantic Utility-Aware User Grouping for 6G NOMA Networks (2 Page)</strong>
-                </a>
-            </p>
-            </div>
-        </div>
+            #publications .research-title a {
+            font-weight: 650;
+            }
 
-        <div class="research-item">
-            <div class="research-date">Sep 2025</div>
-            <div>
-            <div class="research-meta">
-                <h3 class="research-venue">BayLearn Machine Learning Symposium</h3>
-            </div>
-            <p class="research-title">
-                <a href="https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing" target="_blank">
-                <strong>Semantic-Aware User Pairing for 6G NOMA Networks</strong>
-                </a>
-            </p>
-            </div>
-        </div>
+            @media (max-width: 640px) {
+            #publications .research-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 16px 0;
+            }
 
-        <div class="research-item">
-            <div class="research-date">Aug 2025</div>
-            <div>
-            <div class="research-meta">
-                <h3 class="research-venue">IEEE Consumer Communications & Networking Conference</h3>
-            </div>
-            <p class="research-title">
-                <a href="https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing" target="_blank">
-                <strong>Semantic Utility-Aware User Grouping for 6G NOMA Networks</strong>
-                </a>
-            </p>
-            </div>
-        </div>
+            #publications .research-date {
+                white-space: normal;
+            }
+            }
+        </style>
 
-        <div class="research-item">
-            <div class="research-date">Apr 2025</div>
-            <div>
-            <div class="research-meta">
-                <h3 class="research-venue">2FURS (Faculty-mentored Undergraduate Research) Grant</h3>
-                <span class="research-badge">Accepted</span>
-            </div>
-            <p class="research-title">
-                <strong>Awarded in undergraduate research funding</strong>
-            </p>
-            </div>
-        </div>
-        </div>
-    </div>
-    </section>
-
-
-    <!-- PROJECTS -->
-    <section id="projects" style="--order: 2;">
         <div class="card">
-            <h2>Projects</h2>
-            <p>Here are some of the projects that I've worked on:</p>
+            <h2>Research</h2>
+            <p>Submissions to conferences, grants, symposiums, awards, and more derived from my research:</p>
 
-            <div class="horizontal-scroll-container">
-                <!-- Each project -->
-                <div class="project-card">
-                    <h3>Football Analytics</h3>
-                    <div class="tags">
-                        <span class="tag">IN PROG.</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Jupyter</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Football-Analytics" class="btn btn-minor" target="_blank">GitHub</a>
-                    <a href="https://x.com/thatderekchui" class="btn btn-minor" style="margin-left: 12px;" target="_blank">Twitter</a>
+            <div class="research-list">
+            <div class="research-item">
+                <div class="research-date">Nov 2025</div>
+                <div>
+                <div class="research-meta">
+                    <h3 class="research-venue">Hackworth Applied Ethics Research Grant</h3>
                 </div>
-
-                <div class="project-card">
-                    <h3>Network Optimization</h3>
-                    <div class="tags">
-                        <span class="tag">IN PROG.</span>
-                        <span class="tag">MATLAB</span>
-                        <span class="tag">ML</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Network-Optimization" class="btn btn-minor" target="_blank">GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Personal Website</h3>
-                    <div class="tags">
-                        <span class="tag">Astro</span>
-                        <span class="tag">Netlify</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Personal-Website" class="btn btn-minor" target="_blank">GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Benchmark</h3>
-                    <div class="tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Benchmark" class="btn btn-minor" target="_blank">GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>FPL</h3>
-                    <div class="tags">
-                        <span class="tag">C++</span>
-                        <span class="tag">OOP</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/FPL" class="btn btn-minor" target="_blank">GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Phonebook</h3>
-                    <div class="tags">
-                        <span class="tag">C</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Phonebook" class="btn btn-minor" target="_blank">GitHub</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Word Gravity</h3>
-                    <div class="tags">
-                        <span class="tag">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/derek-chui/Word-Gravity" class="btn btn-minor" target="_blank">GitHub</a>
+                <p class="research-title">
+                    <a href="https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing" target="_blank">
+                    <strong>How AI Biases Can Silence Certain Users in 6G Mobile Communications</strong>
+                    </a>
+                </p>
                 </div>
             </div>
 
-            <p style="margin-top: 24px; font-size: 1rem; text-align: center;">
-                <a href="https://github.com/derek-chui?tab=repositories" target="_blank" style="color: var(--apple-blue); font-weight: 600; text-decoration: none;">
-                    View all projects →
-                </a>
-            </p>
-        </div>
-    </section>
+            <div class="research-item">
+                <div class="research-date">Oct 2025</div>
+                <div>
+                <div class="research-meta">
+                    <h3 class="research-venue">IEEE Consumer Communications & Networking Conference Poster</h3>
+                    <span class="research-badge">Accepted</span>
+                </div>
+                <p class="research-title">
+                    <a href="https://drive.google.com/file/d/1TZ-hggjblw8D4OI7lmwQi5GvmUcgvjQ7/view?usp=sharing" target="_blank">
+                    <strong>Semantic Utility-Aware User Grouping for 6G NOMA Networks (2 Page)</strong>
+                    </a>
+                </p>
+                </div>
+            </div>
 
-    <!-- EDUCATION -->
-    <section id="education" style="--order: 4;">
-        <div class="card">
-            <h2>Education</h2>
-            <div style="display: flex; align-items: center; gap: 24px;">
-                <div style="flex: 1;">
-                    <h3>Santa Clara University</h3>
-                    <p>Bachelor of Science in Computer Science and Engineering</p>
-                    <p>Minor in Responsible Artificial Intelligence</p>
-                    <p>Sep 2023 - June 2027</p>
+            <div class="research-item">
+                <div class="research-date">Sep 2025</div>
+                <div>
+                <div class="research-meta">
+                    <h3 class="research-venue">BayLearn Machine Learning Symposium</h3>
                 </div>
-                <div style="flex: 0 0 100px;">
-                    <img src="/SCU.png" alt="SCU Logo" style="width: 100%; opacity: 0.8;">
+                <p class="research-title">
+                    <a href="https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing" target="_blank">
+                    <strong>Semantic-Aware User Pairing for 6G NOMA Networks</strong>
+                    </a>
+                </p>
                 </div>
+            </div>
+
+            <div class="research-item">
+                <div class="research-date">Aug 2025</div>
+                <div>
+                <div class="research-meta">
+                    <h3 class="research-venue">IEEE Consumer Communications & Networking Conference</h3>
+                </div>
+                <p class="research-title">
+                    <a href="https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing" target="_blank">
+                    <strong>Semantic Utility-Aware User Grouping for 6G NOMA Networks</strong>
+                    </a>
+                </p>
+                </div>
+            </div>
+
+            <div class="research-item">
+                <div class="research-date">Apr 2025</div>
+                <div>
+                <div class="research-meta">
+                    <h3 class="research-venue">2FURS (Faculty-mentored Undergraduate Research) Grant</h3>
+                    <span class="research-badge">Accepted</span>
+                </div>
+                <p class="research-title">
+                    <strong>Awarded in undergraduate research funding</strong>
+                </p>
+                </div>
+            </div>
             </div>
         </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" style="--order: 3;">
-    <div class="card">
-        <h2>Experience</h2>
-        <p>My work experience and professional development:</p>
-
-        <div class="xp-list">
-
-        <details class="xp-item">
-            <summary class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <a class="xp-role" href="https://github.com/derek-chui/Network-Optimization/blob/main/README.md" target="_blank">Research Assistant</a>
-                <span class="xp-at">·</span>
-                <span class="xp-org">Santa Clara University</span>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Internship</span>
-                <span class="xp-chip">Hybrid</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Apr 2025 – Present</div>
-                <span class="xp-caret" aria-hidden="true">↳</span>
-            </div>
-            </summary>
-
-            <div class="xp-body">
-            <ul>
-                <li>Wireless Intelligent Networks and efficient user clustering in NOMA 6G networks.</li>
-            </ul>
-            </div>
-        </details>
-
-        <details class="xp-item">
-            <summary class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <span class="xp-role">Teaching Assistant</span>
-                <span class="xp-at">·</span>
-                <span class="xp-org">Santa Clara University</span>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Part-time</span>
-                <span class="xp-chip">Hybrid</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Sep 2025 – Dec 2025</div>
-                <span class="xp-caret" aria-hidden="true">↳</span>
-            </div>
-            </summary>
-
-            <div class="xp-body">
-            <ul>
-                <li>CSEN 171 Programming Languages, made assignments & autograders, led practicums & hosted office hours.</li>
-            </ul>
-            </div>
-        </details>
-
-        <details class="xp-item">
-            <summary class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <span class="xp-role">Sales Development Representative</span>
-                <span class="xp-at">·</span>
-                <a class="xp-org" href="http://proofjump.com/" target="_blank">ProofJump</a>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Part-time</span>
-                <span class="xp-chip">Remote</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Jul 2024 – Apr 2025</div>
-                <span class="xp-caret" aria-hidden="true">↳</span>
-            </div>
-            </summary>
-
-            <div class="xp-body">
-            <ul>
-                <li>Connected with professionals in the SaaS, B2B, and SDR industries through LinkedIn Sales Navigator. Planned and automated outreach emails to specific audiences. Set up routines for both outbound & inbound communication.</li>
-            </ul>
-            </div>
-        </details>
-
-        <details class="xp-item">
-            <summary class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <span class="xp-role">Training Specialist</span>
-                <span class="xp-at">·</span>
-                <span class="xp-org">Honeywell</span>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Part-time</span>
-                <span class="xp-chip">On-site</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Jul 2024 – Nov 2024</div>
-                <span class="xp-caret" aria-hidden="true">↳</span>
-            </div>
-            </summary>
-
-            <div class="xp-body">
-            <ul>
-                <li>Made training videos on Honeywell XLS fire alarm devices, helped plan courses, worked on site at various apartment buildings. Supported instructors during training. Training in Honeywell Building Automation Systems..</li>
-            </ul>
-            </div>
-        </details>
-
-        <details class="xp-item">
-            <summary class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <a class="xp-role" href="/archives">Video Editor</a>
-                <span class="xp-at">·</span>
-                <span class="xp-org">Freelance</span>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Remote</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Feb 2021 – Jul 2024</div>
-                <span class="xp-caret" aria-hidden="true">↳</span>
-            </div>
-            </summary>
-
-            <div class="xp-body">
-            <ul>
-                <li>Edited video content for clients. Final Cut Pro for tasks like cutting, color grading, audio editing, and visual effects. Organized file management for raw footage, project files, and final exports. Motion graphics and animations.</li>
-            </ul>
-            </div>
-        </details>
-
-        <details class="xp-item">
-            <summary class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <a class="xp-role" href="/archives">Content Creator</a>
-                <span class="xp-at">·</span>
-                <span class="xp-org">Self-employed</span>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Remote</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Dec 2015 – Feb 2021</div>
-                <span class="xp-caret" aria-hidden="true">↳</span>
-            </div>
-            </summary>
-
-            <div class="xp-body">
-            <ul>
-                <li>YouTube content on gaming, lifestyle, tech, original video essays, montage segments, and more. Hosted a podcast with discussions and interviews. Blogs with written content and in depth articles, later compiled into a short book.</li>
-            </ul>
-            </div>
-        </details>
-
-        </div>
-    </div>
-    </section>
+        </section>
 
 
-    <!-- TECHNOLOGIES -->
-    <section id="technologies" style="--order: 2;">
-        <div class="card">
-            <h2>Most Used</h2>
-            <p>Languages I work with regularly:</p>
-            
-            <div class="tech-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
-                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
-                    <a href="https://github.com/derek-chui" target="_blank" style="text-decoration: none; color: inherit;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="font-size: 2rem;">🟦</div>
-                            <h3 style="margin: 0;">C/C++</h3>
+        <!-- PROJECTS -->
+        <section id="projects" style="--order: 2;">
+            <div class="card">
+                <h2>Projects</h2>
+                <p>Here are some of the projects that I've worked on:</p>
+
+                <div class="horizontal-scroll-container">
+                    <!-- Each project -->
+                    <div class="project-card">
+                        <h3>Football Analytics</h3>
+                        <div class="tags">
+                            <span class="tag">IN PROG.</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Jupyter</span>
                         </div>
-                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Used with most of my projects and classes</p>
+                        <a href="https://github.com/derek-chui/Football-Analytics" class="btn btn-minor" target="_blank">GitHub</a>
+                        <a href="https://x.com/thatderekchui" class="btn btn-minor" style="margin-left: 12px;" target="_blank">Twitter</a>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Network Optimization</h3>
+                        <div class="tags">
+                            <span class="tag">IN PROG.</span>
+                            <span class="tag">MATLAB</span>
+                            <span class="tag">ML</span>
+                        </div>
+                        <a href="https://github.com/derek-chui/Network-Optimization" class="btn btn-minor" target="_blank">GitHub</a>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Personal Website</h3>
+                        <div class="tags">
+                            <span class="tag">Astro</span>
+                            <span class="tag">Netlify</span>
+                        </div>
+                        <a href="https://github.com/derek-chui/Personal-Website" class="btn btn-minor" target="_blank">GitHub</a>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Benchmark</h3>
+                        <div class="tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <a href="https://github.com/derek-chui/Benchmark" class="btn btn-minor" target="_blank">GitHub</a>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>FPL</h3>
+                        <div class="tags">
+                            <span class="tag">C++</span>
+                            <span class="tag">OOP</span>
+                        </div>
+                        <a href="https://github.com/derek-chui/FPL" class="btn btn-minor" target="_blank">GitHub</a>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Phonebook</h3>
+                        <div class="tags">
+                            <span class="tag">C</span>
+                        </div>
+                        <a href="https://github.com/derek-chui/Phonebook" class="btn btn-minor" target="_blank">GitHub</a>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Word Gravity</h3>
+                        <div class="tags">
+                            <span class="tag">JavaScript</span>
+                        </div>
+                        <a href="https://github.com/derek-chui/Word-Gravity" class="btn btn-minor" target="_blank">GitHub</a>
+                    </div>
+                </div>
+
+                <p style="margin-top: 24px; font-size: 1rem; text-align: center;">
+                    <a href="https://github.com/derek-chui?tab=repositories" target="_blank" style="color: var(--apple-blue); font-weight: 600; text-decoration: none;">
+                        View all projects →
+                    </a>
+                </p>
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section id="education" style="--order: 4;">
+            <div class="card">
+                <h2>Education</h2>
+                <div style="display: flex; align-items: center; gap: 24px;">
+                    <div style="flex: 1;">
+                        <h3>Santa Clara University</h3>
+                        <p>Bachelor of Science in Computer Science and Engineering</p>
+                        <p>Minor in Responsible Artificial Intelligence</p>
+                        <p>Sep 2023 - June 2027</p>
+                    </div>
+                    <div style="flex: 0 0 100px;">
+                        <img src="/SCU.png" alt="SCU Logo" style="width: 100%; opacity: 0.8;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience" style="--order: 3;">
+        <div class="card">
+            <h2>Experience</h2>
+            <p>My work experience and professional development:</p>
+
+            <div class="xp-list">
+
+            <details class="xp-item">
+                <summary class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <a class="xp-role" href="https://github.com/derek-chui/Network-Optimization/blob/main/README.md" target="_blank">Research Assistant</a>
+                    <span class="xp-at">·</span>
+                    <span class="xp-org">Santa Clara University</span>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Internship</span>
+                    <span class="xp-chip">Hybrid</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Apr 2025 – Present</div>
+                    <span class="xp-caret" aria-hidden="true">↳</span>
+                </div>
+                </summary>
+
+                <div class="xp-body">
+                <ul>
+                    <li>Wireless Intelligent Networks and efficient user clustering in NOMA 6G networks.</li>
+                </ul>
+                </div>
+            </details>
+
+            <details class="xp-item">
+                <summary class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <span class="xp-role">Teaching Assistant</span>
+                    <span class="xp-at">·</span>
+                    <span class="xp-org">Santa Clara University</span>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Part-time</span>
+                    <span class="xp-chip">Hybrid</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Sep 2025 – Dec 2025</div>
+                    <span class="xp-caret" aria-hidden="true">↳</span>
+                </div>
+                </summary>
+
+                <div class="xp-body">
+                <ul>
+                    <li>CSEN 171 Programming Languages, made assignments & autograders, led practicums & hosted office hours.</li>
+                </ul>
+                </div>
+            </details>
+
+            <details class="xp-item">
+                <summary class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <span class="xp-role">Sales Development Representative</span>
+                    <span class="xp-at">·</span>
+                    <a class="xp-org" href="http://proofjump.com/" target="_blank">ProofJump</a>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Part-time</span>
+                    <span class="xp-chip">Remote</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Jul 2024 – Apr 2025</div>
+                    <span class="xp-caret" aria-hidden="true">↳</span>
+                </div>
+                </summary>
+
+                <div class="xp-body">
+                <ul>
+                    <li>Connected with professionals in the SaaS, B2B, and SDR industries through LinkedIn Sales Navigator. Planned and automated outreach emails to specific audiences. Set up routines for both outbound & inbound communication.</li>
+                </ul>
+                </div>
+            </details>
+
+            <details class="xp-item">
+                <summary class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <span class="xp-role">Training Specialist</span>
+                    <span class="xp-at">·</span>
+                    <span class="xp-org">Honeywell</span>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Part-time</span>
+                    <span class="xp-chip">On-site</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Jul 2024 – Nov 2024</div>
+                    <span class="xp-caret" aria-hidden="true">↳</span>
+                </div>
+                </summary>
+
+                <div class="xp-body">
+                <ul>
+                    <li>Made training videos on Honeywell XLS fire alarm devices, helped plan courses, worked on site at various apartment buildings. Supported instructors during training. Training in Honeywell Building Automation Systems..</li>
+                </ul>
+                </div>
+            </details>
+
+            <details class="xp-item">
+                <summary class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <a class="xp-role" href="/archives">Video Editor</a>
+                    <span class="xp-at">·</span>
+                    <span class="xp-org">Freelance</span>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Remote</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Feb 2021 – Jul 2024</div>
+                    <span class="xp-caret" aria-hidden="true">↳</span>
+                </div>
+                </summary>
+
+                <div class="xp-body">
+                <ul>
+                    <li>Edited video content for clients. Final Cut Pro for tasks like cutting, color grading, audio editing, and visual effects. Organized file management for raw footage, project files, and final exports. Motion graphics and animations.</li>
+                </ul>
+                </div>
+            </details>
+
+            <details class="xp-item">
+                <summary class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <a class="xp-role" href="/archives">Content Creator</a>
+                    <span class="xp-at">·</span>
+                    <span class="xp-org">Self-employed</span>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Remote</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Dec 2015 – Feb 2021</div>
+                    <span class="xp-caret" aria-hidden="true">↳</span>
+                </div>
+                </summary>
+
+                <div class="xp-body">
+                <ul>
+                    <li>YouTube content on gaming, lifestyle, tech, original video essays, montage segments, and more. Hosted a podcast with discussions and interviews. Blogs with written content and in depth articles, later compiled into a short book.</li>
+                </ul>
+                </div>
+            </details>
+
+            </div>
+        </div>
+        </section>
+
+
+        <!-- TECHNOLOGIES -->
+        <section id="technologies" style="--order: 2;">
+            <div class="card">
+                <h2>Most Used</h2>
+                <p>Languages I work with regularly:</p>
+                
+                <div class="tech-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+                    <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
+                        <a href="https://github.com/derek-chui" target="_blank" style="text-decoration: none; color: inherit;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="font-size: 2rem;">🟦</div>
+                                <h3 style="margin: 0;">C/C++</h3>
+                            </div>
+                            <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Used with most of my projects and classes</p>
+                        </a>
+                    </div>
+                    
+                    <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
+                        <a href="https://github.com/derek-chui/Network-Optimization/tree/main" target="_blank" style="text-decoration: none; color: inherit;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="font-size: 2rem;">📈</div>
+                                <h3 style="margin: 0;">MATLAB</h3>
+                            </div>
+                            <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">For current network optimization project</p>
+                        </a>
+                    </div>
+                    
+                    <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
+                        <a href="https://x.com/thatderekchui" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="font-size: 2rem;">🐍</div>
+                                <h3 style="margin: 0;">Python</h3>
+                            </div>
+                            <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Football (soccer) data analytics & visualization</p>
+                        </a>
+                    </div>
+                    
+                    <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
+                        <a href="https://github.com/derek-chui/Personal-Website" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+                            <div style="display: flex; align-items: center; gap: 15px;">
+                                <div style="font-size: 2rem;">🚀</div>
+                                <h3 style="margin: 0;">Astro</h3>
+                            </div>
+                            <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Framework used to build and update this website</p>
+                        </a>
+                    </div>
+                </div>
+                    
+                <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); text-align: center; line-height: 1.5;">
+                    <a href="https://github.com/derek-chui?tab=repositories" target="_blank" style="color: var(--apple-blue); text-decoration: none;">
+                        View all repositories →
+                    </a>
+                </p>
+
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" style="--order: 5;">
+            <div class="card">
+                <h2>Get In Touch</h2>
+                <p>I'm always open to discussing new projects and opportunities!</p>
+                
+                <div style="display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap;">
+                    <a href="mailto:thatderekchui@gmail.com" class="btn">
+                        ✉️ Email Me
+                    </a>
+                    <a href="https://www.linkedin.com/in/derek-chui/" class="btn btn-minor" target="_blank">
+                        <span style="margin-right: 8px;">🔗</span> LinkedIn
+                    </a>
+                    <a href="https://x.com/thatderekchui" class="btn btn-minor" target="_blank">
+                        <span style="margin-right: 8px;">🐦</span> Twitter
                     </a>
                 </div>
-                
-                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
-                    <a href="https://github.com/derek-chui/Network-Optimization/tree/main" target="_blank" style="text-decoration: none; color: inherit;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="font-size: 2rem;">📈</div>
-                            <h3 style="margin: 0;">MATLAB</h3>
-                        </div>
-                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">For current network optimization project</p>
-                    </a>
-                </div>
-                
-                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
-                    <a href="https://x.com/thatderekchui" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="font-size: 2rem;">🐍</div>
-                            <h3 style="margin: 0;">Python</h3>
-                        </div>
-                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Football (soccer) data analytics & visualization</p>
-                    </a>
-                </div>
-                
-                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
-                    <a href="https://github.com/derek-chui/Personal-Website" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
-                        <div style="display: flex; align-items: center; gap: 15px;">
-                            <div style="font-size: 2rem;">🚀</div>
-                            <h3 style="margin: 0;">Astro</h3>
-                        </div>
-                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Framework used to build and update this website</p>
-                    </a>
-                </div>
             </div>
-                
-            <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); text-align: center; line-height: 1.5;">
-                <a href="https://github.com/derek-chui?tab=repositories" target="_blank" style="color: var(--apple-blue); text-decoration: none;">
-                    View all repositories →
-                </a>
-            </p>
+        </section>
 
+        <!-- LIGHTBOX -->
+        <div id="lightbox" class="lightbox" aria-hidden="true">
+        <div class="lightbox-backdrop" data-lightbox-close></div>
+
+        <figure class="lightbox-content" role="dialog" aria-modal="true" aria-label="Expanded image">
+            <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close">×</button>
+                <img class="lightbox-img" alt="" />
+            <figcaption class="lightbox-caption"></figcaption>
+        </figure>
         </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" style="--order: 5;">
-        <div class="card">
-            <h2>Get In Touch</h2>
-            <p>I'm always open to discussing new projects and opportunities!</p>
-            
-            <div style="display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap;">
-                <a href="mailto:thatderekchui@gmail.com" class="btn">
-                    ✉️ Email Me
-                </a>
-                <a href="https://www.linkedin.com/in/derek-chui/" class="btn btn-minor" target="_blank">
-                    <span style="margin-right: 8px;">🔗</span> LinkedIn
-                </a>
-                <a href="https://x.com/thatderekchui" class="btn btn-minor" target="_blank">
-                    <span style="margin-right: 8px;">🐦</span> Twitter
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- LIGHTBOX -->
-    <div id="lightbox" class="lightbox" aria-hidden="true">
-    <div class="lightbox-backdrop" data-lightbox-close></div>
-
-    <figure class="lightbox-content" role="dialog" aria-modal="true" aria-label="Expanded image">
-        <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close">×</button>
-            <img class="lightbox-img" alt="" />
-        <figcaption class="lightbox-caption"></figcaption>
-    </figure>
-    </div>
-
+    </main>
 </Layout>
