@@ -486,8 +486,9 @@ import Layout from '../layouts/Layout.astro';
     .gallery-item img {
     width: 100%;
     height: 220px;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+    background: #000;
     }
 
     .gallery-caption {
@@ -501,12 +502,12 @@ import Layout from '../layouts/Layout.astro';
     .gallery-item img { height: 180px; }
     }
 
-    .gallery-item img {
+    /* .gallery-item img {
     width: 100%;
     height: auto;
     max-height: 320px;
     object-fit: contain;
-    }
+    } */
 
     /* Lightbox */
     .gallery-item img,
@@ -722,7 +723,7 @@ import Layout from '../layouts/Layout.astro';
     </section>
 
     <!-- GALLERY -->
-    <section id="gallery" style="--order: 2;">
+    <section id="gallery-fa" style="--order: 2;">
     <div class="card">
         <h2>Football Analytics</h2>
         <p>Collection of projects, tools, and resources for football data analysis & visualisation:</p>
@@ -770,7 +771,7 @@ import Layout from '../layouts/Layout.astro';
     </section>
 
     <!-- GALLERY -->
-    <section id="gallery" style="--order: 2;">
+    <section id="gallery-win" style="--order: 2;">
     <div class="card">
         <h2>Network Optimization</h2>
         <p>Collection of projects regarding efficient user clustering in NOMA (Non Orthogonal Multiple Access) 6G Networks:</p>
@@ -1127,11 +1128,13 @@ import Layout from '../layouts/Layout.astro';
             
             <div class="tech-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
                 <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="font-size: 2rem;">🟦</div>
-                        <h3 style="margin: 0;">C/C++</h3>
-                    </div>
-                    <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Used with most of my projects and classes</p>
+                    <a href="https://github.com/derek-chui" target="_blank" style="text-decoration: none; color: inherit;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 2rem;">🟦</div>
+                            <h3 style="margin: 0;">C/C++</h3>
+                        </div>
+                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Used with most of my projects and classes</p>
+                    </a>
                 </div>
                 
                 <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
