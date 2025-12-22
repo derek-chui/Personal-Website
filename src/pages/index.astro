@@ -724,40 +724,77 @@ import Layout from '../layouts/Layout.astro';
     <!-- GALLERY -->
     <section id="gallery" style="--order: 2;">
     <div class="card">
-        <h2>Current Projects</h2>
-        <p>Football Analytics & Network Optimization:</p>
+        <h2>Football Analytics</h2>
+        <p>Collection of projects, tools, and resources for football data analysis & visualisation:</p>
 
         <div class="gallery-wrapper">
         <div class="gallery-scroll">
 
             <div class="gallery-item">
             <img src="fa1.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#santa-clara-university-soccer" />
-            <div class="gallery-caption">Football Analytics: Catapult & VALD Outliers</div>
+            <div class="gallery-caption">Player Catapult & VALD Outliers</div>
             </div>
 
             <div class="gallery-item">
             <img src="fa2.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#2---2025-summer-squad-assessment" />
-            <div class="gallery-caption">Football Analytics: Transfer List Comparison</div>
+            <div class="gallery-caption">Transfer List Comparison</div>
             </div>
 
             <div class="gallery-item">
             <img src="fa3.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#match-reviews" />
-            <div class="gallery-caption">Football Analytics: Shot Preceding Actions</div>
+            <div class="gallery-caption">Game Shot Preceding Actions</div>
             </div>
 
             <div class="gallery-item">
+            <img src="fa4.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#3---player-actions-v-usage-rates" />
+            <div class="gallery-caption">Goal Contributions vs Usage Rate</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="fa5.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#player-dashboard" />
+            <div class="gallery-caption">Player Dashboard</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="fa6.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#case-studies" />
+            <div class="gallery-caption">Player Phase Involvement Comparison</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="fa7.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#1---progression-analysis-2425" />
+            <div class="gallery-caption">Progression Analysis</div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" style="--order: 2;">
+    <div class="card">
+        <h2>Network Optimization</h2>
+        <p>Collection of projects regarding efficient user clustering in NOMA (Non Orthogonal Multiple Access) 6G Networks:</p>
+
+        <div class="gallery-wrapper">
+        <div class="gallery-scroll">
+            <div class="gallery-item">
             <img src="win1.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing" />
-            <div class="gallery-caption">Network Optimization: State of the Field Poster</div>
+            <div class="gallery-caption">State of the Field Poster</div>
             </div>
 
             <div class="gallery-item">
             <img src="win2.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1TZ-hggjblw8D4OI7lmwQi5GvmUcgvjQ7/view?usp=sharing" />
-            <div class="gallery-caption">Network Optimization: Semantic NOMA Greedy Grouping</div>
+            <div class="gallery-caption">Semantic Greedy NOMA Grouping</div>
             </div>
 
             <div class="gallery-item">
-            <img src="win3.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing" />
-            <div class="gallery-caption">Network Optimization: NOMA Algorithm Comparison</div>
+            <img src="win3.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing" />
+            <div class="gallery-caption">Traditional vs Semantic User Grouping</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="win4.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing" />
+            <div class="gallery-caption">NOMA Algorithm Comparison</div>
             </div>
         </div>
         </div>
@@ -767,69 +804,163 @@ import Layout from '../layouts/Layout.astro';
     <!-- RESEARCH -->
     <section id="publications" style="--order: 6;">
     <style>
-        #publications .timeline-item:before {
-        display: none;
+        #publications .research-list {
+        margin-top: 22px;
+        display: flex;
+        flex-direction: column;
+        }
+
+        #publications .research-item {
+        display: grid;
+        grid-template-columns: 92px 1fr;
+        gap: 18px;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        #publications .research-item:last-child {
+        border-bottom: 0;
+        padding-bottom: 4px;
+        }
+
+        #publications .research-date {
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.2px;
+        padding-top: 2px;
+        white-space: nowrap;
+        }
+
+        #publications .research-meta {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 6px;
+        }
+
+        #publications .research-venue {
+        margin: 0;
+        font-size: 1.15rem;
+        line-height: 1.25;
+        font-weight: 650;
+        }
+
+        #publications .research-badge {
+        font-size: 0.78rem;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(41, 151, 255, 0.35);
+        background: rgba(41, 151, 255, 0.12);
+        color: var(--apple-blue);
+        font-weight: 650;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        }
+
+        #publications .research-title {
+        margin: 0;
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.45;
+        }
+
+        #publications .research-title a {
+        font-weight: 650;
+        }
+
+        @media (max-width: 640px) {
+        #publications .research-item {
+            grid-template-columns: 1fr;
+            gap: 10px;
+            padding: 16px 0;
+        }
+
+        #publications .research-date {
+            white-space: normal;
+        }
         }
     </style>
 
     <div class="card">
         <h2>Research</h2>
+        <p>Submissions to conferences, grants, symposiums, awards, and more derived from my research:</p>
 
-        <div class="timeline">
-
-        <div class="timeline-item">
-            <div class="timeline-date">Nov 2025</div>
-            <div class="timeline-content">
-            <h3>Hackworth Applied Ethics Research Grant</h3>
-            <p><em>Submission</em></p>
-            <p>
+        <div class="research-list">
+        <div class="research-item">
+            <div class="research-date">Nov 2025</div>
+            <div>
+            <div class="research-meta">
+                <h3 class="research-venue">Hackworth Applied Ethics Research Grant</h3>
+            </div>
+            <p class="research-title">
                 <a href="https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing" target="_blank">
-                    <strong>How AI Biases Can Silence Certain Users in 6G Mobile Communications</strong>
+                <strong>How AI Biases Can Silence Certain Users in 6G Mobile Communications</strong>
                 </a>
             </p>
             </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="timeline-date">Sep 2025</div>
-            <div class="timeline-content">
-            <h3>BayLearn Machine Learning Symposium</h3>
-            <p><em>Submission</em></p>
-            <p>
+        <div class="research-item">
+            <div class="research-date">Oct 2025</div>
+            <div>
+            <div class="research-meta">
+                <h3 class="research-venue">IEEE Consumer Communications & Networking Conference Poster</h3>
+                <span class="research-badge">Accepted</span>
+            </div>
+            <p class="research-title">
+                <a href="https://drive.google.com/file/d/1TZ-hggjblw8D4OI7lmwQi5GvmUcgvjQ7/view?usp=sharing" target="_blank">
+                <strong>Semantic Utility-Aware User Grouping for 6G NOMA Networks (2 Page)</strong>
+                </a>
+            </p>
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="research-date">Sep 2025</div>
+            <div>
+            <div class="research-meta">
+                <h3 class="research-venue">BayLearn Machine Learning Symposium</h3>
+            </div>
+            <p class="research-title">
                 <a href="https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing" target="_blank">
-                    <strong>Semantic-Aware User Pairing for 6G NOMA Networks</strong>
+                <strong>Semantic-Aware User Pairing for 6G NOMA Networks</strong>
                 </a>
             </p>
             </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="timeline-date">Aug 2025</div>
-            <div class="timeline-content">
-            <h3>IEEE Consumer Communications & Networking Conference Poster</h3>
-            <p><em>Accepted</em></p>
-            <p>
+        <div class="research-item">
+            <div class="research-date">Aug 2025</div>
+            <div>
+            <div class="research-meta">
+                <h3 class="research-venue">IEEE Consumer Communications & Networking Conference</h3>
+            </div>
+            <p class="research-title">
                 <a href="https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing" target="_blank">
-                    <strong>Semantic Utility-Aware User Grouping for 6G NOMA Networks</strong>
+                <strong>Semantic Utility-Aware User Grouping for 6G NOMA Networks</strong>
                 </a>
             </p>
             </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="timeline-date">Apr 2025</div>
-            <div class="timeline-content">
-            <h3>2FURS (Faculty-mentored Undergraduate Research) Grant</h3>
-            <p><em>Accepted</em></p>
-            <p>
+        <div class="research-item">
+            <div class="research-date">Apr 2025</div>
+            <div>
+            <div class="research-meta">
+                <h3 class="research-venue">2FURS (Faculty-mentored Undergraduate Research) Grant</h3>
+                <span class="research-badge">Accepted</span>
+            </div>
+            <p class="research-title">
                 <strong>Awarded in undergraduate research funding</strong>
             </p>
             </div>
         </div>
-
         </div>
     </div>
     </section>
+
 
     <!-- PROJECTS -->
     <section id="projects" style="--order: 2;">
