@@ -40,6 +40,7 @@ import Layout from '../layouts/Layout.astro';
 
     h3 {
         font-size: 1.5rem;
+        margin-top: 0;
     }
 
     /* Links & Buttons */
@@ -66,6 +67,23 @@ import Layout from '../layouts/Layout.astro';
 
     .btn:hover {
         background-color: var(--apple-blue);
+        transform: translateY(-3px);
+    }
+
+    .btn-minor {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #1a1a1a;
+        color: #fff;
+        border-radius: 8px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-minor:hover {
+        background-color: #2997ff;
         transform: translateY(-3px);
     }
 
@@ -97,15 +115,145 @@ import Layout from '../layouts/Layout.astro';
     .mb-6 {
         margin-bottom: 1.5rem;
     }
+
+    /* Horizontal Scroll Container */
+    .horizontal-scroll-container {
+        display: flex;
+        overflow-x: auto;
+        padding: 16px 0 8px 4px;
+        gap: 32px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,255,255,0.2) transparent;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+
+    /* Project Cards */
+    .project-card {
+        min-width: 340px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-card .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 16px 0;
+    }
+
+    .project-card .tag {
+        background: rgba(41, 151, 255, 0.2);
+        color: var(--apple-blue);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+    }
 </style>
 
 <Layout title="Archives">
     <h1 class="mb-6">Archives</h1>
 
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="card">
+            <h2 class="mb-6">Projects</h2>
+
+            <div class="horizontal-scroll-container">
+                <!-- Each project -->
+                <div class="project-card">
+                    <h3>Football Analytics</h3>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Football-Analytics" class="btn btn-minor" target="_blank">GitHub</a>
+                    <a href="https://x.com/thatderekchui" class="btn btn-minor" style="margin-left: 12px;" target="_blank">Twitter</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Network Optimization</h3>
+                    <div class="tags">
+                        <span class="tag">MATLAB</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Network-Optimization" class="btn btn-minor" target="_blank">GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Personal Website</h3>
+                    <div class="tags">
+                        <span class="tag">Astro</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Personal-Website" class="btn btn-minor" target="_blank">GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Benchmark</h3>
+                    <div class="tags">
+                        <span class="tag">Multiple</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Benchmark" class="btn btn-minor" target="_blank">GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>FPL</h3>
+                    <div class="tags">
+                        <span class="tag">C++</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/FPL" class="btn btn-minor" target="_blank">GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Phonebook</h3>
+                    <div class="tags">
+                        <span class="tag">C</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Phonebook" class="btn btn-minor" target="_blank">GitHub</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>Word Gravity</h3>
+                    <div class="tags">
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <a href="https://github.com/derek-chui/Word-Gravity" class="btn btn-minor" target="_blank">GitHub</a>
+                </div>
+            </div>
+
+            <p style="margin-top: 24px; font-size: 1rem; text-align: center;">
+                <a href="https://github.com/derek-chui?tab=repositories" target="_blank" style="color: var(--apple-blue); font-weight: 600; text-decoration: none;">
+                    View all projects →
+                </a>
+            </p>
+        </div>
+    </section>
+
     <!-- FREELANCE -->
     <section>
         <div class="card">
-            <h2 class="mb-6">Freelance</h2>
+            <h2 class="mb-6">Freelance Work</h2>
             <div class="flex-container">
                 <a href="https://drive.google.com/drive/folders/1Dbq81PbuWpvcdAOGbwpfIGN0uBo1Uaqc" class="btn" target="_blank">My Favorite Pieces</a>
                 <a href="https://drive.google.com/drive/folders/14gG3ILCjsT7INghoY-wmethqwbDdUF9H" class="btn" target="_blank">All Freelance Work</a>
@@ -125,4 +273,5 @@ import Layout from '../layouts/Layout.astro';
             </div>
         </div>
     </section>
+
 </Layout>
