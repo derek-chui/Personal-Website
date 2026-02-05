@@ -1,17 +1,9 @@
 ---
-// import Logo from '../components/Logo.astro';
-
 const navItems = [
-    { linkText: 'Home', href: '/' },
+    { linkText: 'Football', href: '/football' },
+    { linkText: 'Research', href: '/research' },
     { linkText: 'CV', href: '/DerekChuiCV.pdf', newTab: true },
-    { linkText: 'Matchday', href: 'https://matchdays.app/about', newTab: true },
-    // { linkText: 'Logs', href: '/logs' },
     { linkText: 'Archives', href: '/archives' },
-    // { linkText: 'Personal Records', href: '/pr' },
-
-    // { linkText: 'Projects', href: '/revalidation' },
-    // { linkText: 'Blobs', href: '/blobs' }
-    
 ];
 ---
 
@@ -26,12 +18,25 @@ const navItems = [
         text-decoration: none;
         color: #1e90ff;
     }
+
+    .site-title {
+        text-decoration: none;
+        color: white;
+        font-size: 1.4rem;
+        font-weight: 600;
+        transition: color 0.2s ease;
+    }
+
+    .site-title:hover {
+        color: #1e90ff;
+    }
 </style>
 
 <nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
+    <a href="/" class="site-title">derekchui.com</a>
     {
         !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
+            <ul class="flex flex-wrap gap-x-4 gap-y-1 ml-auto">
                 {navItems.map((item) => (
                     <li>
                         <a

@@ -1,0 +1,796 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<style>
+    /* General CSS */
+
+    /* Root */
+    :root {
+        --apple-blue: #2997ff;
+        --bg-dark: #000;
+        --card-bg: #1a1a1a;
+    }
+
+    /* Key Frames */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Base Styles */
+    body {
+        background-color: var(--bg-dark);
+        color: white;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+        position: relative;
+        display: inline-block;
+    }
+
+    h2:after {
+        content: '';
+        position: absolute;
+        width: 50%;
+        height: 4px;
+        bottom: -8px;
+        left: 0;
+        background: linear-gradient(90deg, var(--apple-blue), transparent);
+        border-radius: 2px;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+
+    /* Links & Buttons */
+    a {
+        color: var(--apple-blue);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    a:hover {
+        color: var(--apple-blue);
+    }
+
+    a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -2px;
+        left: 0;
+        background-color: var(--apple-blue);
+        transition: width 0.3s ease;
+    }
+
+    a:hover::after {
+        width: 100%;
+        display: none;
+    }
+
+    /* Cards */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .card {
+        background-color: var(--card-bg);
+        border-radius: 16px;
+        padding: 28px;
+        margin-bottom: 28px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        opacity: 0;
+        animation: fadeIn 0.6s forwards;
+        animation-delay: calc(var(--order) * 0.1s);
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    section {
+        margin-bottom: 60px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+    }
+
+    section.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Gallery */
+    .gallery-wrapper {
+        position: relative;
+        margin-top: 24px;
+    }
+
+    .gallery-scroll {
+        display: flex;
+        overflow-x: auto;
+        gap: 20px;
+        padding: 16px 0 8px 4px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,255,255,0.2) transparent;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .gallery-scroll::-webkit-scrollbar { height: 6px; }
+    .gallery-scroll::-webkit-scrollbar-track { background: transparent; }
+    .gallery-scroll::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+
+    .gallery-item {
+        flex: 0 0 360px;
+        width: 360px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        background: var(--card-bg);
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 220px;
+        object-fit: contain;
+        display: block;
+        background: #000;
+    }
+
+    .gallery-caption {
+        padding: 14px 16px;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+        .gallery-item { min-width: 280px; }
+        .gallery-item img { height: 180px; }
+    }
+
+    /* Lightbox */
+    .gallery-item img,
+    .gallery-media img {
+        cursor: zoom-in;
+    }
+
+    .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+    }
+
+    .lightbox.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .lightbox-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+    }
+
+    .lightbox-content {
+        position: relative;
+        z-index: 1;
+        width: min(1000px, 92vw);
+        max-height: 86vh;
+        padding: 14px;
+        border-radius: 16px;
+        background: var(--card-bg);
+        border: 1px solid rgba(255,255,255,0.12);
+        box-shadow: 0 18px 60px rgba(0,0,0,0.6);
+        transform: translateY(10px) scale(0.98);
+        transition: transform 0.2s ease;
+    }
+
+    .lightbox.open .lightbox-content {
+        transform: translateY(0) scale(1);
+    }
+
+    .lightbox-img {
+        width: 100%;
+        max-height: 72vh;
+        object-fit: contain;
+        display: block;
+        border-radius: 12px;
+    }
+
+    .lightbox-caption {
+        margin-top: 10px;
+        color: rgba(255,255,255,0.8);
+        font-size: 0.95rem;
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(0,0,0,0.35);
+        color: white;
+        cursor: pointer;
+        font-size: 22px;
+        line-height: 1;
+        z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+        .lightbox-content {
+            padding-top: calc(56px + env(safe-area-inset-top));
+        }
+
+        .lightbox-close {
+            top: calc(10px + env(safe-area-inset-top));
+            right: 12px;
+        }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        h2 {
+            font-size: 1.8rem;
+        }
+    }
+
+    /* Intro Section */
+    .intro-section {
+        text-align: center;
+        padding: 40px 20px 20px;
+        margin-bottom: 20px;
+    }
+
+    .intro-section h1 {
+        font-size: 2.8rem;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .intro-section p {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.7;
+    }
+
+    .intro-section a {
+        font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+        .intro-section h1 {
+            font-size: 2rem;
+        }
+        .intro-section p {
+            font-size: 1.05rem;
+        }
+    }
+
+    /* Collaborators Section */
+    .collaborators-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 24px;
+    }
+
+    .collaborator-card {
+        background: var(--card-bg);
+        border-radius: 14px;
+        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .collaborator-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .collaborator-name {
+        font-size: 1.15rem;
+        font-weight: 650;
+        margin: 0 0 6px 0;
+        color: #fff;
+    }
+
+    .collaborator-name a {
+        color: #fff;
+    }
+
+    .collaborator-name a:hover {
+        color: var(--apple-blue);
+    }
+
+    .collaborator-role {
+        font-size: 0.9rem;
+        color: var(--apple-blue);
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .collaborator-affiliation {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 0;
+    }
+
+    .collaborators-subsection {
+        margin-top: 32px;
+    }
+
+    .collaborators-subsection h3 {
+        font-size: 1.3rem;
+        margin-bottom: 16px;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .student-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .student-chip {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        padding: 10px 18px;
+        font-size: 0.92rem;
+        color: rgba(255, 255, 255, 0.85);
+        transition: all 0.2s ease;
+    }
+
+    .student-chip:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .student-chip a {
+        color: rgba(255, 255, 255, 0.85);
+        font-weight: 500;
+    }
+
+    .student-chip a:hover {
+        color: var(--apple-blue);
+    }
+
+    .student-chip .degree {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.82rem;
+        margin-left: 6px;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('section');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        const lightbox = document.getElementById('lightbox') as HTMLDivElement | null;
+        const lbImg = lightbox?.querySelector('.lightbox-img') as HTMLImageElement | null;
+        const lbCaption = lightbox?.querySelector('.lightbox-caption') as HTMLElement | null;
+
+        let activeHref: string | null = null;
+        let armNavigateAt = 0;
+
+        const openLightbox = (imgEl: HTMLImageElement) => {
+            if (!lightbox || !lbImg || !lbCaption) return;
+
+            lbImg.src = imgEl.src;
+            lbImg.alt = imgEl.alt || '';
+            lbCaption.textContent =
+                imgEl.dataset.caption ||
+                (imgEl.closest('.gallery-item')?.querySelector('.gallery-caption') as HTMLElement | null)?.textContent ||
+                '';
+
+            activeHref = imgEl.dataset.link || null;
+            armNavigateAt = Date.now() + 400;
+
+            lightbox.classList.add('open');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeLightbox = () => {
+            if (!lightbox || !lbImg) return;
+
+            lightbox.classList.remove('open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+
+            activeHref = null;
+
+            setTimeout(() => { lbImg.src = ''; }, 150);
+        };
+
+        document
+            .querySelectorAll<HTMLImageElement>('.gallery-item img, .gallery-media img')
+            .forEach((img) => img.addEventListener('click', () => openLightbox(img)));
+
+        lbImg?.addEventListener('click', (e) => {
+            if (!lightbox?.classList.contains('open')) return;
+            if (!activeHref) return;
+            if (Date.now() < armNavigateAt) return;
+
+            e.preventDefault();
+            e.stopPropagation();
+            const w = window.open(activeHref, '_blank', 'noopener,noreferrer');
+            if (w) w.opener = null;
+        });
+
+        lightbox?.addEventListener('click', (e) => {
+            const target = e.target;
+            if (!(target instanceof Element)) return;
+
+            if (target.matches('[data-lightbox-close]')) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && lightbox?.classList.contains('open')) closeLightbox();
+        });
+    });
+</script>
+
+<Layout title="Research">
+
+    <!-- INTRO SECTION -->
+    <section class="intro-section visible">
+        <h1>Research Assistant</h1>
+        <p>
+            I conduct research at the <a href="https://krishnaramamoorthy.com/winlab/" target="_blank">Wireless Intelligent Networks (WIN) Lab</a> at Santa Clara University. Below are some of the projects & publications from my work.
+        </p>
+    </section>
+
+    <!-- GALLERY - NETWORK OPTIMIZATION -->
+    <section id="gallery-win" style="--order: 1;">
+    <div class="card">
+        <h2>Gallery</h2>
+        <p>Efficient user clustering in NOMA (Non Orthogonal Multiple Access) 6G Networks:</p>
+
+        <div class="gallery-wrapper">
+        <div class="gallery-scroll">
+
+            <div class="gallery-item">
+            <img src="/win0.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/12F5-P4dct3hl-_B_vAe0MAUBt1dEbzD7/view?usp=sharing" />
+            <div class="gallery-caption">6G Semantic Q Learning NOMA</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="/win2.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1TZ-hggjblw8D4OI7lmwQi5GvmUcgvjQ7/view?usp=sharing" />
+            <div class="gallery-caption">Semantic Greedy NOMA Grouping</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="/win1.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing" />
+            <div class="gallery-caption">State of the Field Poster</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="/win3.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing" />
+            <div class="gallery-caption">Traditional vs Semantic User Grouping</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="/win4.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing" />
+            <div class="gallery-caption">NOMA Algorithm Comparison</div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- RESEARCH PUBLICATIONS -->
+    <section id="publications" style="--order: 2;">
+    <style>
+        #publications .research-list {
+        margin-top: 22px;
+        display: flex;
+        flex-direction: column;
+        }
+
+        #publications .research-item {
+        display: grid;
+        grid-template-columns: 92px 1fr;
+        gap: 18px;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        #publications .research-item:last-child {
+        border-bottom: 0;
+        padding-bottom: 4px;
+        }
+
+        #publications .research-date {
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.2px;
+        padding-top: 2px;
+        white-space: nowrap;
+        }
+
+        #publications .research-meta {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 6px;
+        }
+
+        #publications .research-venue {
+        margin: 0;
+        font-size: 1.15rem;
+        line-height: 1.25;
+        font-weight: 650;
+        }
+
+        #publications .research-badge {
+        font-size: 0.78rem;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(41, 151, 255, 0.35);
+        background: rgba(41, 151, 255, 0.12);
+        color: var(--apple-blue);
+        font-weight: 650;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+        }
+
+        #publications .research-title {
+        margin: 0;
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.45;
+        }
+
+        #publications .research-title a {
+        font-weight: 650;
+        }
+
+        @media (max-width: 640px) {
+        #publications .research-item {
+            grid-template-columns: 1fr;
+            gap: 10px;
+            padding: 16px 0;
+        }
+
+        #publications .research-date {
+            white-space: normal;
+        }
+        }
+    </style>
+
+    <div class="card">
+        <h2>Publications & Awards</h2>
+        <p>Submissions to conferences, grants, symposiums, awards, showcases and more derived from my research:</p>
+
+        <div class="research-list">
+
+        <div class="research-item">
+            <div class="research-date">Jan 2026</div>
+            <div>
+            <div class="research-meta">
+                <h3 class="research-venue">IEEE Wireless Communications and Networking Conference</h3>
+                <span class="research-badge">Pending</span>
+            </div>
+            <p class="research-title">
+                <a href="https://drive.google.com/file/d/12F5-P4dct3hl-_B_vAe0MAUBt1dEbzD7/view?usp=sharing" target="_blank">
+                <strong>Semantic-Aware Learning-Based NOMA User Grouping for Programmable 6G RANs</strong>
+                </a>
+            </p>
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="research-date">Jan 2026</div>
+            <div>
+            <div class="research-meta">
+                <h3 class="research-venue">SCU School of Engineering Research Showcase</h3>
+                <span class="research-badge">Accepted</span>
+            </div>
+            <p class="research-title">
+                <a href="https://docs.google.com/presentation/d/15wbhp1hyqlNEOpRb6__YwI2Yva6Opd4get-9A5VJ10k/edit?usp=sharing" target="_blank">
+                <strong>Semantic Aware User Grouping for 6G NOMA Networks using Q-Learning</strong>
+                </a>
+            </p>
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="research-date">Nov 2025</div>
+            <div>
+            <div class="research-meta">
+                <h3 class="research-venue">Hackworth Applied Ethics Research Grant</h3>
+            </div>
+            <p class="research-title">
+                <a href="https://drive.google.com/file/d/1C5jopMzgl9t2hgAJOYhTnA18xQ7LQbZU/view?usp=sharing" target="_blank">
+                <strong>How AI Biases Can Silence Certain Users in 6G Mobile Communications</strong>
+                </a>
+            </p>
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="research-date">Oct 2025</div>
+            <div>
+            <div class="research-meta">
+                <h3 class="research-venue">IEEE Consumer Communications & Networking Conference Poster</h3>
+                <span class="research-badge">Accepted</span>
+            </div>
+            <p class="research-title">
+                <a href="https://drive.google.com/file/d/1TZ-hggjblw8D4OI7lmwQi5GvmUcgvjQ7/view?usp=sharing" target="_blank">
+                <strong>Semantic Utility-Aware User Grouping for 6G NOMA Networks (2 Page)</strong>
+                </a>
+            </p>
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="research-date">Sep 2025</div>
+            <div>
+            <div class="research-meta">
+                <h3 class="research-venue">BayLearn Machine Learning Symposium</h3>
+            </div>
+            <p class="research-title">
+                <a href="https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing" target="_blank">
+                <strong>Semantic-Aware User Pairing for 6G NOMA Networks</strong>
+                </a>
+            </p>
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="research-date">Aug 2025</div>
+            <div>
+            <div class="research-meta">
+                <h3 class="research-venue">IEEE Consumer Communications & Networking Conference</h3>
+            </div>
+            <p class="research-title">
+                <a href="https://drive.google.com/file/d/1bnmEY68AvoT-BOUoi62nJNvAtt0XLwHg/view?usp=sharing" target="_blank">
+                <strong>Semantic Utility-Aware User Grouping for 6G NOMA Networks</strong>
+                </a>
+            </p>
+            </div>
+        </div>
+
+        <div class="research-item">
+            <div class="research-date">Apr 2025</div>
+            <div>
+            <div class="research-meta">
+                <h3 class="research-venue">2FURS (Faculty-mentored Undergraduate Research) Grant</h3>
+                <span class="research-badge">Accepted</span>
+            </div>
+            <p class="research-title">
+                <strong>Awarded in undergraduate research funding</strong>
+            </p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- COLLABORATORS -->
+    <section id="collaborators" style="--order: 3;">
+    <div class="card">
+        <h2>Collaborators</h2>
+        <p>People I work closely with in my research:</p>
+
+        <div class="collaborators-subsection">
+            <h3>Faculty Advisors</h3>
+            <div class="collaborators-grid">
+                <div class="collaborator-card">
+                    <h4 class="collaborator-name">
+                        <a href="https://krishnaramamoorthy.com/" target="_blank">Krishna Ramamoorthy</a>
+                    </h4>
+                    <div class="collaborator-role">Assistant Professor</div>
+                    <p class="collaborator-affiliation">Computer Science and Engineering, Santa Clara University</p>
+                </div>
+
+                <div class="collaborator-card">
+                    <h4 class="collaborator-name">
+                        <a href="https://wwang.sdsu.edu/" target="_blank">Wei Wang</a>
+                    </h4>
+                    <div class="collaborator-role">Professor</div>
+                    <p class="collaborator-affiliation">Computer Science, San Diego State University</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="collaborators-subsection">
+            <h3>Student Collaborators</h3>
+            <div class="student-list">
+                <div class="student-chip">
+                    Zack Common <span class="degree">M.S., Santa Clara University</span>
+                </div>
+                <div class="student-chip">
+                    Jefferson Duan <span class="degree">M.S., San Diego State University</span>
+                </div>
+                <div class="student-chip">
+                    <a href="https://collinfiske.vercel.app/" target="_blank">Collin Fiske</a> <span class="degree">B.S., Santa Clara University</span>
+                </div>
+                <div class="student-chip">
+                    Pedro Aguirre-Salas <span class="degree">B.S., Santa Clara University</span>
+                </div>
+                <div class="student-chip">
+                    Ramon Anaya <span class="degree">B.S., Santa Clara University</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop" data-lightbox-close></div>
+
+    <figure class="lightbox-content" role="dialog" aria-modal="true" aria-label="Expanded image">
+        <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close">×</button>
+            <img class="lightbox-img" alt="" />
+        <figcaption class="lightbox-caption"></figcaption>
+    </figure>
+    </div>
+
+</Layout>
