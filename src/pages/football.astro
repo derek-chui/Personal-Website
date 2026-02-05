@@ -274,14 +274,108 @@ import Layout from '../layouts/Layout.astro';
         }
     }
 
-    /* Intro Section */
-    .intro-section {
-        text-align: center;
-        padding: 40px 20px 20px;
+    /* Featured App Section */
+    .featured-app {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+        padding: 32px;
+        background: var(--card-bg);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 40px;
+        transition: all 0.3s ease;
+    }
+
+    .featured-app:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .featured-app-image {
+        flex: 0 0 420px;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #000;
+    }
+
+    .featured-app-image img {
+        width: 100%;
+        height: 280px;
+        object-fit: contain;
+        display: block;
+        cursor: zoom-in;
+    }
+
+    .featured-app-content {
+        flex: 1;
+    }
+
+    .featured-app-content h2 {
+        font-size: 2rem;
+        margin-bottom: 16px;
+    }
+
+    .featured-app-content p {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1.05rem;
+        line-height: 1.7;
         margin-bottom: 20px;
     }
 
-    .intro-section h1 {
+    .featured-app-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background: var(--apple-blue);
+        color: white;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .featured-app-link:hover {
+        background: #1a7fe8;
+        transform: translateY(-2px);
+    }
+
+    .featured-app-link::after {
+        display: none;
+    }
+
+    @media (max-width: 900px) {
+        .featured-app {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .featured-app-image {
+            flex: none;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .featured-app-content h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    /* Story Flow Sections */
+    .story-section {
+        text-align: center;
+        padding: 60px 20px;
+        position: relative;
+    }
+
+    .story-section.intro {
+        padding-top: 40px;
+        padding-bottom: 0;
+    }
+
+    .story-section h1 {
         font-size: 2.8rem;
         margin-bottom: 16px;
         background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
@@ -290,24 +384,233 @@ import Layout from '../layouts/Layout.astro';
         background-clip: text;
     }
 
-    .intro-section p {
-        font-size: 1.2rem;
+    .story-section p {
+        font-size: 1.25rem;
         color: rgba(255, 255, 255, 0.75);
         max-width: 700px;
         margin: 0 auto;
         line-height: 1.7;
     }
 
-    .intro-section a {
+    .story-section a {
         font-weight: 600;
     }
 
+    .story-section .step-label {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--apple-blue);
+        margin-bottom: 12px;
+        opacity: 0.9;
+    }
+
+    /* Tools Section */
+    .tools-section {
+        padding: 12px 20px 0;
+        text-align: center;
+    }
+
+    .tools-section .step-label {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--apple-blue);
+        margin-bottom: 12px;
+        opacity: 0.9;
+    }
+
+    .tools-section p {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 12px auto 0;
+        white-space: nowrap;
+    }
+
+    .tool-badges {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 12px;
+        margin: 0 auto;
+    }
+
+    .tool-badge {
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.85);
+        transition: all 0.3s ease;
+    }
+
+    .tool-badge:hover {
+        background: rgba(41, 151, 255, 0.15);
+        border-color: rgba(41, 151, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Result Section */
+    .result-section {
+        text-align: center;
+        padding: 50px 20px 30px;
+    }
+
+    .result-section .step-label {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--apple-blue);
+        margin-bottom: 12px;
+        opacity: 0.9;
+    }
+
+    .result-section p {
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.6);
+        max-width: 600px;
+        margin: 0 auto 30px;
+        line-height: 1.6;
+    }
+
     @media (max-width: 768px) {
-        .intro-section h1 {
+        .story-section h1 {
             font-size: 2rem;
         }
-        .intro-section p {
-            font-size: 1.05rem;
+        .story-section p {
+            font-size: 1.1rem;
+        }
+        .tool-badge {
+            padding: 8px 14px;
+            font-size: 0.85rem;
+        }
+        .tools-section,
+        .result-section {
+            padding: 40px 20px;
+        }
+    }
+
+    /* Featured App Title Link */
+    .featured-app-title {
+        color: white;
+        text-decoration: none;
+    }
+
+    .featured-app-title:hover {
+        color: var(--apple-blue);
+    }
+
+    .featured-app-title::after {
+        display: none;
+    }
+
+    /* Suite Labels */
+    .suite-label {
+        color: var(--apple-blue);
+        font-weight: 600;
+    }
+
+    /* Wolves Twitter Section */
+    #wolves-twitter .card {
+        background-color: #1a1a1a;
+        border-left: 6px solid #fdb913;
+    }
+
+    #wolves-twitter h2:after {
+        background: linear-gradient(90deg, #fdb913, transparent);
+    }
+
+    #wolves-twitter h3 {
+        color: #fdb913;
+    }
+
+    #wolves-twitter .card:hover {
+        box-shadow: 0 12px 28px rgba(253, 185, 19, 0.2);
+        border-color: rgba(253, 185, 19, 0.3);
+    }
+
+    #wolves-twitter img {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    #wolves-twitter img:hover {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    #wolves-twitter a {
+        color: #fdb913;
+    }
+
+    #wolves-twitter a:hover {
+        color: #ffe066;
+    }
+
+    #wolves-twitter a::after {
+        background-color: #fdb913;
+    }
+
+    /* Industry Connections Section */
+    .connections-section {
+        text-align: center;
+        padding: 24px 20px 20px;
+    }
+
+    .connections-section .step-label {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--apple-blue);
+        margin-bottom: 12px;
+        opacity: 0.9;
+    }
+
+    .connections-section p {
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 700px;
+        margin: 0 auto 32px;
+        line-height: 1.7;
+    }
+
+    .league-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 48px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+    }
+
+    .league-logo {
+        height: 60px;
+        width: auto;
+        opacity: 0.85;
+        transition: all 0.3s ease;
+        filter: grayscale(20%);
+    }
+
+    .league-logo:hover {
+        opacity: 1;
+        transform: scale(1.08);
+        filter: grayscale(0%);
+    }
+
+    @media (max-width: 768px) {
+        .league-logos {
+            gap: 32px;
+        }
+        .league-logo {
+            height: 48px;
         }
     }
 </style>
@@ -399,27 +702,79 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Football Analytics">
 
-    <!-- INTRO SECTION -->
-    <section class="intro-section visible">
+    <!-- STEP 1: THE ROLE -->
+    <section class="story-section intro visible">
         <h1>Football Analytics</h1>
         <p>
-            Projects, tools, and resources for football data analysis & visualisation.
+            I support both the coaching staff and athletic performance with data<br>at Santa Clara Broncos <a href="https://santaclarabroncos.com/sports/womens-soccer" target="_blank" rel="noopener noreferrer">Women's</a> and <a href="https://santaclarabroncos.com/sports/mens-soccer" target="_blank" rel="noopener noreferrer">Men's</a> Soccer.
         </p>
+    </section>
+
+    <!-- STEP 2: THE TOOLS -->
+    <section class="tools-section visible">
+        <span class="step-label">Tools</span>
+        <div class="tool-badges">
+            <span class="tool-badge">Hudl Wyscout</span>
+            <span class="tool-badge">Catapult</span>
+            <span class="tool-badge">VALD</span>
+            <span class="tool-badge">Output</span>
+            <span class="tool-badge">1080</span>
+            <span class="tool-badge">LedsReact</span>
+        </div>
+        <p>In turn I built matchdays.app to centralize the analytics workflows and tie all these tools together.</p>
+    </section>
+
+    <!-- FEATURED APP CARD -->
+    <section id="matchdays" style="--order: 0; margin-top: -30px;">
+        <div class="featured-app">
+            <div class="featured-app-image">
+                <img src="/fa0.png" loading="lazy" data-caption="Click the image for project details." data-link="https://matchdays.app/about" />
+            </div>
+            <div class="featured-app-content">
+                <h2><a href="https://matchdays.app" target="_blank" rel="noopener noreferrer" class="featured-app-title">matchdays.app</a></h2>
+                <p>
+                    This platform is two-fold:
+                </p>
+                <p>
+                    <span class="suite-label">Coaching Suite:</span> Turns Wyscout PDFs into interactive dashboards, compares players side by side, and breaks down zone stats.
+                </p>
+                <p>
+                    <span class="suite-label">Performance Center:</span> Connects to Catapult, VALD, Output, 1080, and Ledsreact APIs to automate report generation and track athlete metrics over time.
+                </p>
+                <p>
+                    Currently used across <a href="https://santaclarabroncos.com/" target="_blank" rel="noopener noreferrer">Santa Clara Broncos Athletics</a> including Women's Soccer, Men's Soccer, Men's Basketball,
+                    Women's Basketball, Women's Volleyball, and more soon.
+                </p>
+                <a href="https://matchdays.app/about" target="_blank" rel="noopener noreferrer" class="featured-app-link">
+                    Learn More →
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- INDUSTRY CONNECTIONS -->
+    <section class="connections-section visible">
+        <span class="step-label">Connections</span>
+        <p>
+            Building these tools has connected me with coaching staff, performance analysts, and sports scientists working professionally across the football industry.
+            <br>I regularly talk with professionals at teams in the MLS, USL, EFL, and NCAA Division I.
+        </p>
+        <div class="league-logos">
+            <img src="/mls.svg" alt="MLS" class="league-logo" />
+            <img src="/usl.png" alt="USL" class="league-logo" />
+            <img src="/efl.svg" alt="EFL" class="league-logo" />
+            <img src="/ncaa.avif" alt="NCAA" class="league-logo" />
+        </div>
     </section>
 
     <!-- GALLERY -->
     <section id="gallery-fa" style="--order: 1;">
     <div class="card">
-        <h2>Gallery</h2>
-        <p>A collection of my previous football analytics work:</p>
+        <h2>Previous Projects</h2>
+        <p>Work that eventually became the building blocks of matchdays.app:</p>
 
         <div class="gallery-wrapper">
         <div class="gallery-scroll">
-
-            <div class="gallery-item">
-            <img src="/fa0.png" loading="lazy" data-caption="Click the image for project details." data-link="https://matchdays.app/about" />
-            <div class="gallery-caption">matchdays.app</div>
-            </div>
 
             <div class="gallery-item">
             <img src="/fa00.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md/#hudl-wyscout-match-report-extension" />
@@ -468,6 +823,22 @@ import Layout from '../layouts/Layout.astro';
         </div>
         </div>
     </div>
+    </section>
+
+    <!-- WOLVES TWITTER SECTION -->
+    <section id="wolves-twitter" style="--order: 2;">
+        <div class="card">
+            <h2>Twitter (X)</h2>
+            <div style="display: flex; align-items: center; gap: 24px;">
+                <div style="flex: 1;">
+                    <h3>Wolves Data Analytics</h3>
+                    <p>I also post data analytics about <a href="https://www.wolves.co.uk/" target="_blank" rel="noopener noreferrer">Wolverhampton Wanderers</a> on <a href="https://x.com/thatderekchui" target="_blank" rel="noopener noreferrer">Twitter (X)</a>.<br>Using a lot of my existing workflows as shown above to do so.</p>
+                </div>
+                <div style="flex: 0 0 100px;">
+                    <img src="/wolves.png" alt="Wolves Logo" style="width: 100%; opacity: 0.9;">
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- LIGHTBOX -->
