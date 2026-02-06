@@ -116,6 +116,39 @@ import Layout from '../layouts/Layout.astro';
         margin-bottom: 1.5rem;
     }
 
+    /* Intro Section */
+    .intro-section {
+        text-align: center;
+        padding: 40px 20px 20px;
+        margin-bottom: 20px;
+    }
+
+    .intro-section h1 {
+        font-size: 2.8rem;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .intro-section p {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+        .intro-section h1 {
+            font-size: 2rem;
+        }
+        .intro-section p {
+            font-size: 1.05rem;
+        }
+    }
+
     /* Horizontal Scroll Container */
     .horizontal-scroll-container {
         display: flex;
@@ -175,12 +208,15 @@ import Layout from '../layouts/Layout.astro';
 </style>
 
 <Layout title="Archives">
-    <h1 class="mb-6">Archives</h1>
+    <div class="intro-section">
+        <h1>Archives</h1>
+        <p>A collection of my previous work, projects, and content prior to my current roles.</p>
+    </div>
 
     <!-- PROJECTS -->
     <section id="projects">
         <div class="card">
-            <h2 class="mb-6">Projects</h2>
+            <h2 class="mb-6">Project List</h2>
 
             <div class="horizontal-scroll-container">
                 <!-- Each project -->
@@ -253,7 +289,7 @@ import Layout from '../layouts/Layout.astro';
     <!-- FREELANCE -->
     <section>
         <div class="card">
-            <h2 class="mb-6">Freelance Work</h2>
+            <h2 class="mb-6">Freelance Video Editing</h2>
             <div class="flex-container">
                 <a href="https://drive.google.com/drive/folders/1Dbq81PbuWpvcdAOGbwpfIGN0uBo1Uaqc" class="btn" target="_blank">My Favorite Pieces</a>
                 <a href="https://drive.google.com/drive/folders/14gG3ILCjsT7INghoY-wmethqwbDdUF9H" class="btn" target="_blank">All Freelance Work</a>
@@ -264,7 +300,7 @@ import Layout from '../layouts/Layout.astro';
     <!-- OTHER ARCHIVED CONTENT -->
     <section>
         <div class="card">
-            <h2 class="mb-6">Other Archived Content</h2>
+            <h2 class="mb-6">Other Archived Contents</h2>
             <div class="flex-container">
                 <a href="https://www.youtube.com/channel/UChR2eOEKcV-7upxgD0ziafw" class="btn" target="_blank">YouTube</a>
                 <a href="https://www.youtube.com/channel/UCclJISmJl23Nu0Io9N1Lb1g" class="btn" target="_blank">Podcast</a>

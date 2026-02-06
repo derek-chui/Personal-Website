@@ -406,6 +406,56 @@ import Layout from '../layouts/Layout.astro';
         font-size: 0.82rem;
         margin-left: 6px;
     }
+
+    /* Teaching Section */
+    .teaching-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 8px;
+    }
+
+    .teaching-header img {
+        width: 60px;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .teaching-course {
+        font-size: 1.15rem;
+        font-weight: 650;
+        color: #fff;
+        margin: 0;
+    }
+
+    .teaching-role {
+        font-size: 0.9rem;
+        color: var(--apple-blue);
+        font-weight: 600;
+        margin: 2px 0 0 0;
+    }
+
+    .teaching-details {
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .teaching-tag {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.85);
+        transition: all 0.2s ease;
+    }
+
+    .teaching-tag:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
 </style>
 
 <script>
@@ -497,7 +547,7 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- INTRO SECTION -->
     <section class="intro-section visible">
-        <h1>Research Assistant</h1>
+        <h1>Research</h1>
         <p>
             I conduct research at the <a href="https://krishnaramamoorthy.com/winlab/" target="_blank">Wireless Intelligent Networks (WIN) Lab</a> at Santa Clara University. Below are some of the projects & publications from my work.
         </p>
@@ -777,6 +827,31 @@ import Layout from '../layouts/Layout.astro';
                 <div class="student-chip">
                     Ramon Anaya <span class="degree">B.S., Santa Clara University</span>
                 </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- TEACHING -->
+    <section id="teaching" style="--order: 4;">
+    <div class="card">
+        <h2>Teaching</h2>
+        <p>My research experience also led to an opportunity as a teaching assistant under Krishna Ramamoorthy:</p>
+
+        <div style="margin-top: 20px;">
+            <div class="teaching-header">
+                <!-- <img src="/csen.png" alt="Santa Clara Engineering" /> -->
+                <div>
+                    <h3 class="teaching-course">CSEN 171: Programming Languages</h3>
+                    <!-- <p class="teaching-role">Teaching Assistant</p> -->
+                </div>
+            </div>
+
+            <div class="teaching-details">
+                <span class="teaching-tag">Hosted Office Hours</span>
+                <span class="teaching-tag">Created Assignments</span>
+                <span class="teaching-tag">Built Autograders</span>
+                <span class="teaching-tag">Led Practicums</span>
             </div>
         </div>
     </div>
