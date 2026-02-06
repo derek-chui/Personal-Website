@@ -380,6 +380,92 @@ import Layout from '../layouts/Layout.astro';
         margin-top: 0;
     }
 
+    /* Highlight Cards (Football & Research) */
+    .highlight-card {
+        background-color: var(--card-bg);
+        border-radius: 16px;
+        padding: 28px;
+        margin-bottom: 28px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        opacity: 0;
+        animation: fadeIn 0.6s forwards;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .highlight-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .highlight-card-content {
+        flex: 1;
+    }
+
+    .highlight-card-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
+
+    .highlight-card-content p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .highlight-card img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        opacity: 0.9;
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+    }
+
+    .highlight-card img:hover {
+        transform: scale(1.1);
+    }
+
+    #football-highlight .highlight-card {
+        border-left: 6px solid #b30738;
+        animation-delay: 0.1s;
+    }
+
+    #football-highlight .highlight-card:hover {
+        box-shadow: 0 12px 28px rgba(179, 7, 56, 0.15);
+        border-color: rgba(179, 7, 56, 0.3);
+    }
+
+    #football-highlight h3 {
+        color: #b30738;
+    }
+
+    #football-highlight .btn {
+        background-color: #b30738;
+    }
+
+    #football-highlight .btn:hover {
+        background-color: #9d0631;
+    }
+
+    #research-highlight .highlight-card {
+        border-left: 6px solid var(--apple-blue);
+        animation-delay: 0.2s;
+    }
+
+    #research-highlight .highlight-card:hover {
+        box-shadow: 0 12px 28px rgba(41, 151, 255, 0.15);
+        border-color: rgba(41, 151, 255, 0.3);
+    }
+
+    #research-highlight h3 {
+        color: var(--apple-blue);
+    }
+
     /* Education */
     #education .card {
         background-color: #1a1a1a;
@@ -951,6 +1037,28 @@ import Layout from '../layouts/Layout.astro';
             <span class="hero-role">Computer Science and Engineering at Santa Clara University</span>
             <a href="/football" class="hero-role-btn">Football Analytics at Santa Clara Broncos</a>
             <a href="/research" class="hero-role-btn">Research at WIN Labs</a>
+        </div>
+    </section>
+
+    <!-- HIGHLIGHT CARDS -->
+    <section id="football-highlight" class="visible">
+        <div class="highlight-card">
+            <div class="highlight-card-content">
+                <h3>Football Analytics</h3>
+                <p>Supporting coaching staff & athletic performance with data analytics for Santa Clara Broncos Women's and Men's Soccer.</p>
+                <a href="/football" class="btn">View Football Analytics</a>
+            </div>
+            <img src="/santaclarabroncos.png" alt="Santa Clara Broncos">
+        </div>
+    </section>
+
+    <section id="research-highlight" class="visible">
+        <div class="highlight-card">
+            <div class="highlight-card-content">
+                <h3>Research at WIN Labs</h3>
+                <p>Conducting research at the Wireless Intelligent Networks (WIN) Lab at Santa Clara University on 6G NOMA network optimization.</p>
+                <a href="/research" class="btn">View Research</a>
+            </div>
         </div>
     </section>
 
