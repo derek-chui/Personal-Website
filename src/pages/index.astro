@@ -431,25 +431,25 @@ import Layout from '../layouts/Layout.astro';
     }
 
     #football-highlight .highlight-card {
-        border-left: 6px solid #b30738;
+        border-left: 6px solid #6b8fa8;
         animation-delay: 0.1s;
     }
 
     #football-highlight .highlight-card:hover {
-        box-shadow: 0 12px 28px rgba(179, 7, 56, 0.15);
-        border-color: rgba(179, 7, 56, 0.3);
+        box-shadow: 0 12px 28px rgba(107, 143, 168, 0.15);
+        border-color: rgba(107, 143, 168, 0.3);
     }
 
     #football-highlight h3 {
-        color: #b30738;
+        color: #8fb3cc;
     }
 
     #football-highlight .btn {
-        background-color: #b30738;
+        background-color: #6b8fa8;
     }
 
     #football-highlight .btn:hover {
-        background-color: #9d0631;
+        background-color: #5a7e97;
     }
 
     #research-highlight .highlight-card {
@@ -1035,8 +1035,8 @@ import Layout from '../layouts/Layout.astro';
         <h1>Hi, I'm Derek</h1>
         <div class="hero-roles">
             <span class="hero-role">Computer Science and Engineering at Santa Clara University</span>
-            <a href="/football" class="hero-role-btn">Football Analytics at Santa Clara Broncos</a>
-            <a href="/research" class="hero-role-btn">Research at WIN Labs</a>
+            <!-- <a href="/football" class="hero-role-btn">Football Analytics</a>
+            <a href="/research" class="hero-role-btn">Research at WIN Labs</a> -->
         </div>
     </section>
 
@@ -1045,20 +1045,24 @@ import Layout from '../layouts/Layout.astro';
         <div class="highlight-card">
             <div class="highlight-card-content">
                 <h3>Football Analytics</h3>
-                <p>Supporting coaching staff & athletic performance with data analytics for Santa Clara Broncos Women's and Men's Soccer.</p>
-                <a href="/football" class="btn">View Football Analytics</a>
+                <p>I support both the coaching staff and athletic performance with data<br> @ Santa Clara Broncos Women's and Men's Soccer and Oakland Roots.</p>
+                <a href="/football" class="btn">View Full Page</a>
             </div>
-            <img src="/santaclarabroncos.png" alt="Santa Clara Broncos">
+            <div style="display: flex; align-items: center; gap: 16px; flex-shrink: 0;">
+                <img src="/santaclarabroncos.png" alt="Santa Clara Broncos" style="width: 60px; height: 60px; object-fit: contain; opacity: 0.9; transition: transform 0.3s ease;">
+                <img src="/Oakland_Roots_SC_logo.svg" alt="Oakland Roots" style="width: 60px; height: 60px; object-fit: contain; opacity: 0.9; transition: transform 0.3s ease;">
+            </div>
         </div>
     </section>
 
     <section id="research-highlight" class="visible">
         <div class="highlight-card">
             <div class="highlight-card-content">
-                <h3>Research at WIN Labs</h3>
-                <p>Conducting research at the Wireless Intelligent Networks (WIN) Lab at Santa Clara University on 6G NOMA network optimization.</p>
-                <a href="/research" class="btn">View Research</a>
+                <h3>Network Optimization</h3>
+                <p>Research at the Wireless Intelligent Networks (WIN) Lab at Santa Clara University on 6G NOMA network optimization.</p>
+                <a href="/research" class="btn">View Full Page</a>
             </div>
+            <img src="/scu_win_lab_logo.jpeg" alt="WIN Lab">
         </div>
     </section>
 
@@ -1095,12 +1099,12 @@ import Layout from '../layouts/Layout.astro';
             <div class="xp-main">
                 <div class="xp-title">
                 <a class="xp-role" href="/football" target="_blank">
-                    Soccer Data Scientist · Santa Clara Broncos
+                    Undergraduate Assistant · Santa Clara Broncos, Oakland Roots
                 </a>
                 </div>
 
                 <div class="xp-chips">
-                <span class="xp-chip">Internship</span>
+                <span class="xp-chip">Apprenticeship</span>
                 <span class="xp-chip">Hybrid</span>
                 </div>
             </div>
@@ -1118,7 +1122,7 @@ import Layout from '../layouts/Layout.astro';
             <div class="xp-main">
                 <div class="xp-title">
                 <a class="xp-role" href="/research" target="_blank">
-                    Research Assistant · Santa Clara University
+                    Research Assistant · Santa Clara University - Wireless Intelligent Networks (WIN) Lab
                 </a>
                 </div>
 
