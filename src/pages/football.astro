@@ -679,9 +679,97 @@ import Layout from '../layouts/Layout.astro';
             height: 48px;
         }
     }
+
+    /* Sample Gallery Tabs */
+    .gallery-tab-header {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .gallery-tab-btn {
+        padding: 8px 18px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .gallery-tab-btn.active {
+        background: var(--apple-blue);
+        border-color: var(--apple-blue);
+        color: white;
+    }
+
+    .gallery-tab-btn:hover:not(.active) {
+        background: rgba(41, 151, 255, 0.15);
+        border-color: rgba(41, 151, 255, 0.3);
+        color: white;
+    }
+
+    .gallery-panel { display: block; }
+    .gallery-panel.hidden { display: none; }
+
+    .sample-gallery-inline {
+        width: 100%;
+        padding-bottom: 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        overflow: visible;
+    }
+
+    .sample-scroll {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        overflow-y: visible;
+        padding: 6px 6px 12px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,255,255,0.2) transparent;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sample-scroll::-webkit-scrollbar { height: 6px; }
+    .sample-scroll::-webkit-scrollbar-track { background: transparent; }
+    .sample-scroll::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+
+    .sample-img {
+        flex: 0 0 auto;
+        height: 200px;
+        width: auto;
+        border-radius: 10px;
+        object-fit: cover;
+        scroll-snap-align: start;
+        cursor: zoom-in;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .sample-img:hover {
+        transform: scale(1.02);
+        border-color: rgba(41, 151, 255, 0.4);
+    }
+
+    @media (max-width: 768px) {
+        .sample-img { height: 160px; }
+    }
 </style>
 
 <script>
+    (window as any).switchGallery = (tab: string, btn: HTMLButtonElement) => {
+        document.querySelectorAll<HTMLElement>('.gallery-panel').forEach(p => p.classList.add('hidden'));
+        document.querySelectorAll<HTMLButtonElement>('.gallery-tab-btn').forEach(b => b.classList.remove('active'));
+        const panel = document.getElementById('gallery-' + tab);
+        if (panel) panel.classList.remove('hidden');
+        btn.classList.add('active');
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
         const sections = document.querySelectorAll('section');
 
@@ -735,7 +823,7 @@ import Layout from '../layouts/Layout.astro';
         };
 
         document
-            .querySelectorAll<HTMLImageElement>('.gallery-item img, .gallery-media img, .featured-app-image img')
+            .querySelectorAll<HTMLImageElement>('.gallery-item img, .gallery-media img, .featured-app-image img, .sample-img')
             .forEach((img) => img.addEventListener('click', () => openLightbox(img)));
 
         lbImg?.addEventListener('click', (e) => {
@@ -794,8 +882,47 @@ import Layout from '../layouts/Layout.astro';
     <!-- FEATURED APP CARD -->
     <section id="matchdays" style="--order: 0; margin-top: -30px;">
         <div class="featured-app">
+            <div class="sample-gallery-inline">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                    <h4 style="margin: 0; font-size: 1rem; font-weight: 600;">See It In Action</h4>
+                    <div class="gallery-tab-header" style="margin-bottom: 0;">
+                        <button class="gallery-tab-btn active" onclick="switchGallery('exports', this)">Exports</button>
+                        <button class="gallery-tab-btn" onclick="switchGallery('ui', this)">UI</button>
+                    </div>
+                </div>
+
+                <div id="gallery-exports" class="gallery-panel">
+                    <div class="sample-scroll">
+                        <img src="/samples/exports/player.png" alt="Player Report" class="sample-img" loading="lazy" data-caption="Player Dashboard Aggregated from Hudl Wyscout Match Reports" />
+                        <img src="/samples/exports/team.png" alt="Team Report" class="sample-img" loading="lazy" data-caption="Progressive Actions vs Usage Reveals Player Productivity" />
+                        <img src="/samples/exports/sprint.png" alt="Sprint Analysis" class="sample-img" loading="lazy" data-caption="Sprint & Acceleration Timeline via Catapult Events" />
+                        <img src="/samples/exports/outliers.png" alt="Outliers" class="sample-img" loading="lazy" data-caption="Catapult Metric Outlier Overview (Average vs Recent Events)" />
+                        <img src="/samples/exports/compare.png" alt="Compare" class="sample-img" loading="lazy" data-caption="Player Ranking Grid for Metric Comparison" />
+                        <img src="/samples/exports/shot.png" alt="Shot Analysis" class="sample-img" loading="lazy" data-caption="Shooting Funnel (Shots, Shots on Target, Goals, xG)" />
+                        <img src="/samples/exports/outlier2.png" alt="Outlier Analysis" class="sample-img" loading="lazy" data-caption="Catapult Metric Outliers (Average vs Recent Events)" />
+                        <img src="/samples/exports/heatmap.png" alt="Heatmap" class="sample-img" loading="lazy" data-caption="Heatmap via Catapult Events" />
+                        <img src="/samples/exports/timeline.png" alt="Timeline" class="sample-img" loading="lazy" data-caption="Aggregated Shooting Timeline Over a Season" />
+                        <img src="/samples/exports/zone.png" alt="Zone Analysis" class="sample-img" loading="lazy" data-caption="Zone Analysis (Recoveries, Losses, Locations, Passes)" />
+                    </div>
+                </div>
+
+                <div id="gallery-ui" class="gallery-panel hidden">
+                    <div class="sample-scroll">
+                        <img src="/samples/ui/home.png" alt="Home" class="sample-img" loading="lazy" data-caption="Home Page" />
+                        <img src="/samples/ui/coaching.png" alt="Coaching" class="sample-img" loading="lazy" data-caption="Coaching Suite" />
+                        <img src="/samples/ui/match.png" alt="Match" class="sample-img" loading="lazy" data-caption="Upload Hudl Wyscout Match Reports" />
+                        <img src="/samples/ui/playerlist.png" alt="Player List" class="sample-img" loading="lazy" data-caption="Player List Comparison Options" />
+                        <img src="/samples/ui/analysis.png" alt="Analysis" class="sample-img" loading="lazy" data-caption="Catapult Analysis by Event and Player" />
+                        <img src="/samples/ui/performance.png" alt="Performance" class="sample-img" loading="lazy" data-caption="Performance" />
+                        <img src="/samples/ui/generate.png" alt="Generate" class="sample-img" loading="lazy" data-caption="Generate Performance Reports" />
+                        <img src="/samples/ui/download.png" alt="Download" class="sample-img" loading="lazy" data-caption="Download Performance Reports" />
+                        <img src="/samples/ui/api.png" alt="API" class="sample-img" loading="lazy" data-caption="Configure API Keys and Credentials" />
+                    </div>
+                </div>
+            </div>
+
             <div class="featured-app-image">
-                <img src="/matchday.png" loading="lazy" data-caption="Click the image for project details." data-link="https://matchdays.app/about" />
+                <img src="/samples/ui/home.png" loading="lazy" data-caption="Click the image for project details." data-link="https://matchdays.app/about" />
             </div>
             <div class="featured-app-content">
                 <h2><a href="https://matchdays.app" target="_blank" rel="noopener noreferrer" class="featured-app-title">matchdays.app</a></h2>
