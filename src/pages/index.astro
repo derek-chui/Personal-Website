@@ -193,7 +193,7 @@ import Layout from '../layouts/Layout.astro';
     /* Hero */
     .hero {
         text-align: center;
-        padding: 80px 20px;
+        padding: 80px 20px 40px;
         position: relative;
         overflow: hidden;
     }
@@ -923,10 +923,487 @@ import Layout from '../layouts/Layout.astro';
     color: rgba(255,255,255,0.85) !important;
     }
 
+    /* Story Flow Sections */
+    .story-section {
+        text-align: center;
+        padding: 60px 20px;
+        position: relative;
+    }
+
+    .story-section.intro {
+        padding-top: 40px;
+        padding-bottom: 0;
+        margin-bottom: 16px;
+    }
+
+    .story-section h1 {
+        font-size: 2.8rem;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .story-section p {
+        font-size: 1.25rem;
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.7;
+    }
+
+    .story-section a {
+        font-weight: 600;
+    }
+
+    .story-section .step-label {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--apple-blue);
+        margin-bottom: 12px;
+        opacity: 0.9;
+    }
+
+    /* Tools Section */
+    .tools-section {
+        padding: 12px 20px 0;
+        text-align: center;
+    }
+
+    .tools-section .step-label {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--apple-blue);
+        margin-bottom: 12px;
+        opacity: 0.9;
+    }
+
+    .tools-section p {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 12px auto 0;
+        white-space: nowrap;
+    }
+
+    .tool-badges {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 12px;
+        margin: 0 auto;
+    }
+
+    .tool-badge {
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.85);
+        transition: all 0.3s ease;
+    }
+
+    .tool-badge:hover {
+        background: rgba(41, 151, 255, 0.15);
+        border-color: rgba(41, 151, 255, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Featured App Section */
+    .featured-app {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        align-items: center;
+        padding: 32px;
+        background: var(--card-bg);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 40px;
+        transition: all 0.3s ease;
+    }
+
+    .featured-app:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .featured-app-image {
+        flex: 0 0 420px;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #000;
+    }
+
+    .featured-app-image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        cursor: zoom-in;
+    }
+
+    .featured-app-content {
+        flex: 1;
+    }
+
+    .featured-app-content h2 {
+        font-size: 2rem;
+        margin-bottom: 16px;
+    }
+
+    .featured-app-content p {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+
+    .featured-app-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background: var(--apple-blue);
+        color: white;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .featured-app-link:hover {
+        background: #1a7fe8;
+        transform: translateY(-2px);
+    }
+
+    .featured-app-link::after {
+        display: none;
+    }
+
+    /* Trusted By */
+    .trusted-by {
+        width: 100%;
+        margin-top: 4px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    .trusted-by-heading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 20px;
+    }
+
+    .verified-icon {
+        width: 18px;
+        height: 18px;
+        color: var(--apple-blue);
+    }
+
+    .trusted-by-clients {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .trusted-by-org {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .trusted-by-logo {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    .trusted-by-logo:hover {
+        transform: translateY(-4px);
+    }
+
+    .trusted-by-org span {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    @media (max-width: 900px) {
+        .featured-app {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .featured-app-image {
+            flex: none;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .featured-app-content h2:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    /* Featured App Title Link */
+    .featured-app-title {
+        color: var(--apple-blue);
+        text-decoration: none;
+    }
+
+    .featured-app-title:hover {
+        color: var(--apple-blue);
+    }
+
+    .featured-app-title::after {
+        display: none;
+    }
+
+    /* Suite Labels */
+    .suite-label {
+        color: rgba(255, 255, 255, 0.85);
+        font-weight: 700;
+    }
+
+    /* Wolves Twitter Section */
+    #wolves-twitter .card {
+        background-color: #1a1a1a;
+        border-left: 6px solid #fdb913;
+    }
+
+    #wolves-twitter h2:after {
+        background: linear-gradient(90deg, #fdb913, transparent);
+    }
+
+    #wolves-twitter h3 {
+        color: #fdb913;
+    }
+
+    #wolves-twitter .card:hover {
+        box-shadow: 0 12px 28px rgba(253, 185, 19, 0.2);
+        border-color: rgba(253, 185, 19, 0.3);
+    }
+
+    #wolves-twitter img {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    #wolves-twitter img:hover {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    #wolves-twitter a {
+        color: #fdb913;
+    }
+
+    #wolves-twitter a:hover {
+        color: #ffe066;
+    }
+
+    #wolves-twitter a::after {
+        background-color: #fdb913;
+    }
+
+    /* Industry Connections Section */
+    .connections-section {
+        text-align: center;
+        padding: 0 20px;
+        margin-top: -40px;
+        margin-bottom: 20px;
+    }
+
+    .connections-section .step-label {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--apple-blue);
+        margin-bottom: 12px;
+        opacity: 0.9;
+    }
+
+    .connections-section p {
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 700px;
+        margin: 0 auto 12px;
+        line-height: 1.7;
+    }
+
+    .league-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 48px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+    }
+
+    .league-logo {
+        height: 60px;
+        width: auto;
+        opacity: 0.85;
+        transition: all 0.3s ease;
+        filter: grayscale(20%);
+    }
+
+    .league-logo:hover {
+        opacity: 1;
+        transform: scale(1.08);
+        filter: grayscale(0%);
+    }
+
+    @media (max-width: 768px) {
+        .league-logos {
+            gap: 32px;
+        }
+        .league-logo {
+            height: 48px;
+        }
+    }
+
+    /* Sample Gallery Tabs */
+    .gallery-tab-header {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .gallery-tab-btn {
+        padding: 8px 18px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .gallery-tab-btn.active {
+        background: var(--apple-blue);
+        border-color: var(--apple-blue);
+        color: white;
+    }
+
+    .gallery-tab-btn:hover:not(.active) {
+        background: rgba(41, 151, 255, 0.15);
+        border-color: rgba(41, 151, 255, 0.3);
+        color: white;
+    }
+
+    .gallery-panel { display: block; }
+    .gallery-panel.hidden { display: none; }
+
+    .sample-gallery-inline {
+        width: 100%;
+        overflow: visible;
+    }
+
+    .sample-gallery-inline h2::after {
+        display: none;
+    }
+
+    .matchdays-description {
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .matchdays-description p {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }
+
+    .sample-scroll {
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        overflow-y: visible;
+        padding: 6px 6px 12px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,255,255,0.2) transparent;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sample-scroll::-webkit-scrollbar { height: 6px; }
+    .sample-scroll::-webkit-scrollbar-track { background: transparent; }
+    .sample-scroll::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+
+    .sample-img {
+        flex: 0 0 auto;
+        height: 200px;
+        width: auto;
+        border-radius: 10px;
+        object-fit: cover;
+        scroll-snap-align: start;
+        cursor: zoom-in;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .sample-img:hover {
+        transform: scale(1.02);
+        border-color: rgba(41, 151, 255, 0.4);
+    }
+
+    @media (max-width: 768px) {
+        .sample-img { height: 160px; }
+        .tool-badges {
+            flex-wrap: wrap;
+        }
+        .tool-badge {
+            padding: 8px 14px;
+            font-size: 0.85rem;
+        }
+        .tools-section p {
+            white-space: normal;
+        }
+        .story-section h1 {
+            font-size: 2rem;
+        }
+        .story-section p {
+            font-size: 1.1rem;
+        }
+    }
 
 </style>
 
 <script>
+    (window as any).switchGallery = (tab: string, btn: HTMLButtonElement) => {
+        document.querySelectorAll<HTMLElement>('.gallery-panel').forEach(p => p.classList.add('hidden'));
+        document.querySelectorAll<HTMLButtonElement>('.gallery-tab-btn').forEach(b => b.classList.remove('active'));
+        const panel = document.getElementById('gallery-' + tab);
+        if (panel) panel.classList.remove('hidden');
+        btn.classList.add('active');
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
         const sections = document.querySelectorAll('section');
         
@@ -980,7 +1457,7 @@ import Layout from '../layouts/Layout.astro';
         };
 
         document
-        .querySelectorAll<HTMLImageElement>('.gallery-item img, .gallery-media img')
+        .querySelectorAll<HTMLImageElement>('.gallery-item img, .gallery-media img, .featured-app-image img, .sample-img')
         .forEach((img) => img.addEventListener('click', () => openLightbox(img)));
 
         lbImg?.addEventListener('click', (e) => {
@@ -1031,38 +1508,182 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Derek Chui">
     
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" style="margin-bottom: 12px;">
         <h1>Hi, I'm Derek</h1>
         <div class="hero-roles">
             <span class="hero-role">Computer Science and Engineering at Santa Clara University</span>
-            <!-- <a href="/football" class="hero-role-btn">Football Analytics</a>
-            <a href="/research" class="hero-role-btn">Research at WIN Labs</a> -->
+            <span class="hero-role" style="font-size: 1rem;">I support both the coaching staff and athletic performance with data <br> at Santa Clara Broncos <a href="https://santaclarabroncos.com/sports/womens-soccer" target="_blank" rel="noopener noreferrer">Women's</a> and <a href="https://santaclarabroncos.com/sports/mens-soccer" target="_blank" rel="noopener noreferrer">Men's</a> Soccer and at the <a href="https://www.oaklandrootssc.com/" target="_blank" rel="noopener noreferrer">Oakland Roots</a>.</span>
         </div>
     </section>
 
-    <!-- HIGHLIGHT CARDS -->
-    <section id="football-highlight" class="visible">
-        <div class="highlight-card">
-            <div class="highlight-card-content">
-                <h3>Football Analytics</h3>
-                <p>I support both the coaching staff and athletic performance with data<br> @ Santa Clara Broncos Women's and Men's Soccer and Oakland Roots.</p>
-                <a href="/football" class="btn">View Full Page</a>
+    <!-- STEP 2: THE TOOLS -->
+    <section class="tools-section visible">
+        <span class="step-label">Tools</span>
+        <div class="tool-badges">
+            <span class="tool-badge">Hudl Wyscout</span>
+            <span class="tool-badge">Impect</span>
+            <span class="tool-badge">Catapult</span>
+            <span class="tool-badge">VALD</span>
+            <span class="tool-badge">Output Sports</span>
+            <span class="tool-badge">1080 Motion</span>
+            <span class="tool-badge">Ledsreact</span>
+        </div>
+        <p><b><a href="https://matchdays.app/about" target="_blank" rel="noopener noreferrer">In turn I built matchdays.app to centralize the analytics workflows and tie all these tools together.</a></b></p>
+    </section>
+
+    <!-- FEATURED APP CARD -->
+    <section id="matchdays" style="--order: 0; margin-top: -30px;">
+        <div class="featured-app">
+            <div class="sample-gallery-inline">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                    <h2 style="margin: 0;"><a href="https://matchdays.app" target="_blank" rel="noopener noreferrer" class="featured-app-title">matchdays.app</a></h2>
+                    <div class="gallery-tab-header" style="margin-bottom: 0;">
+                        <button class="gallery-tab-btn active" onclick="switchGallery('exports', this)">Exports</button>
+                        <button class="gallery-tab-btn" onclick="switchGallery('ui', this)">UI</button>
+                    </div>
+                </div>
+                <p style="margin: 0 0 4px; font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.6;"><span class="suite-label">Coaching Suite:</span> Turns Hudl Wyscout & Impect exports into interactive dashboards, detailed analysis, and more.</p>
+                <p style="margin: 0 0 12px; font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.6;"><span class="suite-label">Performance Center:</span> Connects to Catapult, VALD, and more to automate report generation and track athlete metrics over time.</p>
+                <div id="gallery-exports" class="gallery-panel">
+                    <div class="sample-scroll">
+                        <img src="/samples/exports/player.png" alt="Player Report" class="sample-img" loading="lazy" data-caption="Player Dashboard Aggregated from Hudl Wyscout Match Reports" />
+                        <img src="/samples/exports/team.png" alt="Team Report" class="sample-img" loading="lazy" data-caption="Progressive Actions vs Usage Reveals Player Productivity" />
+                        <img src="/samples/exports/sprint.png" alt="Sprint Analysis" class="sample-img" loading="lazy" data-caption="Sprint & Acceleration Timeline via Catapult Events" />
+                        <img src="/samples/exports/outliers.png" alt="Outliers" class="sample-img" loading="lazy" data-caption="Catapult Metric Outlier Overview (Average vs Recent Events)" />
+                        <img src="/samples/exports/compare.png" alt="Compare" class="sample-img" loading="lazy" data-caption="Player Ranking Grid for Metric Comparison" />
+                        <img src="/samples/exports/shot.png" alt="Shot Analysis" class="sample-img" loading="lazy" data-caption="Shooting Funnel (Shots, Shots on Target, Goals, xG)" />
+                        <img src="/samples/exports/outlier2.png" alt="Outlier Analysis" class="sample-img" loading="lazy" data-caption="Catapult Metric Outliers (Average vs Recent Events)" />
+                        <img src="/samples/exports/heatmap.png" alt="Heatmap" class="sample-img" loading="lazy" data-caption="Heatmap via Catapult Events" />
+                        <img src="/samples/exports/timeline.png" alt="Timeline" class="sample-img" loading="lazy" data-caption="Aggregated Shooting Timeline Over a Season" />
+                        <img src="/samples/exports/zone.png" alt="Zone Analysis" class="sample-img" loading="lazy" data-caption="Zone Analysis (Recoveries, Losses, Locations, Passes)" />
+                    </div>
+                </div>
+
+                <div id="gallery-ui" class="gallery-panel hidden">
+                    <div class="sample-scroll">
+                        <img src="/samples/ui/home.png" alt="Home" class="sample-img" loading="lazy" data-caption="Home Page" />
+                        <img src="/samples/ui/coaching.png" alt="Coaching" class="sample-img" loading="lazy" data-caption="Coaching Suite" />
+                        <img src="/samples/ui/match.png" alt="Match" class="sample-img" loading="lazy" data-caption="Upload Hudl Wyscout Match Reports" />
+                        <img src="/samples/ui/playerlist.png" alt="Player List" class="sample-img" loading="lazy" data-caption="Player List Comparison Options" />
+                        <img src="/samples/ui/analysis.png" alt="Analysis" class="sample-img" loading="lazy" data-caption="Catapult Analysis by Event and Player" />
+                        <img src="/samples/ui/performance.png" alt="Performance" class="sample-img" loading="lazy" data-caption="Performance" />
+                        <img src="/samples/ui/generate.png" alt="Generate" class="sample-img" loading="lazy" data-caption="Generate Performance Reports" />
+                        <img src="/samples/ui/download.png" alt="Download" class="sample-img" loading="lazy" data-caption="Download Performance Reports" />
+                        <img src="/samples/ui/api.png" alt="API" class="sample-img" loading="lazy" data-caption="Configure API Keys and Credentials" />
+                    </div>
+                </div>
+                <p style="margin: 6px 0 0; font-size: 0.78rem; color: rgba(255,255,255,0.3);">Click any image to enlarge · Scroll to see more</p>
             </div>
-            <div style="display: flex; align-items: center; gap: 16px; flex-shrink: 0;">
-                <img src="/santaclarabroncos.png" alt="Santa Clara Broncos" style="width: 60px; height: 60px; object-fit: contain; opacity: 0.9; transition: transform 0.3s ease;">
-                <img src="/Oakland_Roots_SC_logo.svg" alt="Oakland Roots" style="width: 60px; height: 60px; object-fit: contain; opacity: 0.9; transition: transform 0.3s ease;">
+
+            <div class="trusted-by">
+                <h4 class="trusted-by-heading">
+                    <svg class="verified-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82 1.89 3.2L12 21.04l3.4 1.46 1.89-3.2 3.61-.82-.34-3.69L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z"/>
+                    </svg>
+                    Trusted By
+                </h4>
+                <div class="trusted-by-clients">
+                    <a href="https://santaclarabroncos.com/" target="_blank" rel="noopener noreferrer" class="trusted-by-org">
+                        <img src="/santaclarabroncos.png" alt="Santa Clara Broncos" class="trusted-by-logo" />
+                        <span>Santa Clara Broncos</span>
+                    </a>
+                    <a href="https://www.oaklandrootssc.com/" target="_blank" rel="noopener noreferrer" class="trusted-by-org">
+                        <img src="/Oakland_Roots_SC_logo.svg" alt="Oakland Roots" class="trusted-by-logo" />
+                        <span>Oakland Roots</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="research-highlight" class="visible">
-        <div class="highlight-card">
-            <div class="highlight-card-content">
-                <h3>Network Optimization</h3>
-                <p>Research at the Wireless Intelligent Networks (WIN) Lab at Santa Clara University on 6G NOMA network optimization.</p>
-                <a href="/research" class="btn">View Full Page</a>
+    <!-- INDUSTRY CONNECTIONS -->
+    <section class="connections-section visible">
+        <span class="step-label">Connections</span>
+        <p>
+            Building these tools has connected me with coaching staff, performance analysts, and sports scientists working professionally across the football industry.
+            <br>I regularly talk and collaborate with professionals at teams in the MLS, USL, EFL, NCAA Division I, and other football analytic tools.
+        </p>
+        <div class="league-logos">
+            <img src="/mls.svg" alt="MLS" class="league-logo" />
+            <img src="/usl.png" alt="USL" class="league-logo" />
+            <img src="/efl.svg" alt="EFL" class="league-logo" />
+            <img src="/ncaa.avif" alt="NCAA" class="league-logo" />
+            <a href="https://taka.io/" target="_blank" rel="noopener noreferrer"><img src="/taka.svg" alt="Taka" class="league-logo" style="height: 72px;" /></a>
+            <a href="https://www.xval.app/" target="_blank" rel="noopener noreferrer"><img src="/xval.png" alt="Xval" class="league-logo" style="height: 90px;" /></a>
+        </div>
+    </section>
+
+    <!-- PREVIOUS PROJECTS GALLERY -->
+    <section id="gallery-fa" style="--order: 1;">
+    <div class="card">
+        <h2>Previous Projects</h2>
+        <p>Work that eventually became the building blocks of matchdays.app:</p>
+
+        <div class="gallery-wrapper">
+        <div class="gallery-scroll">
+
+            <div class="gallery-item">
+            <img src="/fa00.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md/#hudl-wyscout-match-report-extension" />
+            <div class="gallery-caption">Hudl Wyscout Match Report Extension</div>
             </div>
-            <img src="/scu_win_lab_logo.jpeg" alt="WIN Lab">
+
+            <div class="gallery-item">
+            <img src="/fa1.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md/#player-performance-outliers" />
+            <div class="gallery-caption">Player Catapult & VALD Outliers</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="/fa11.png" loading="lazy" data-caption="Click the image for project details." data-link="https://plscout.streamlit.app/" />
+            <div class="gallery-caption">Premier League Scouting Portal</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="/fa2.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#2---2025-summer-squad-assessment" />
+            <div class="gallery-caption">Transfer List Comparison</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="/fa3.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#match-reviews" />
+            <div class="gallery-caption">Game Shot Preceding Actions</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="/fa4.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#3---player-actions-v-usage-rates" />
+            <div class="gallery-caption">Goal Contributions vs Usage Rate</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="/fa5.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#player-dashboard" />
+            <div class="gallery-caption">Player Dashboard</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="/fa6.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#case-studies" />
+            <div class="gallery-caption">Player Phase Involvement Comparison</div>
+            </div>
+
+            <div class="gallery-item">
+            <img src="/fa7.png" loading="lazy" data-caption="Click the image for project details." data-link="https://github.com/derek-chui/Football-Analytics/blob/main/README.md#1---progression-analysis-2425" />
+            <div class="gallery-caption">Progression Analysis</div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- WOLVES TWITTER SECTION -->
+    <section id="wolves-twitter" style="--order: 2;">
+        <div class="card">
+            <h2>Twitter (X)</h2>
+            <div style="display: flex; align-items: center; gap: 24px;">
+                <div style="flex: 1;">
+                    <h3>Football Analytics on Wolves</h3>
+                    <p>I also post data analytics about <a href="https://www.wolves.co.uk/" target="_blank" rel="noopener noreferrer">Wolverhampton Wanderers</a> on <a href="https://x.com/thatderekchui" target="_blank" rel="noopener noreferrer">Twitter (X)</a>.<br>Using a lot of my existing workflows as shown above to do so, reaching 500k+ impressions.</p>
+                </div>
+                <div style="flex: 0 0 100px;">
+                    <img src="/wolves.png" alt="Wolves Logo" style="width: 100%; opacity: 0.9;">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1084,169 +1705,7 @@ import Layout from '../layouts/Layout.astro';
     </section>
 
     <!-- EXPERIENCE -->
-    <section id="experience" style="--order: 3;">
-    <div class="card">
-        <h2>Experience</h2>
-        <p>My work experience and professional development:</p>
-
-        <div class="xp-list">
-
-        <div class="xp-item">
-            <div class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <a class="xp-role" href="/football" target="_blank">
-                    Undergraduate Assistant · Santa Clara Broncos, Oakland Roots
-                </a>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Apprenticeship</span>
-                <span class="xp-chip">Hybrid</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Sep 2025 – Present</div>
-            </div>
-            </div>
-        </div>
-
-        <div class="xp-item">
-            <div class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <a class="xp-role" href="/research" target="_blank">
-                    Research Assistant · Santa Clara University - Wireless Intelligent Networks (WIN) Lab
-                </a>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Internship</span>
-                <span class="xp-chip">Hybrid</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Apr 2025 – Present</div>
-            </div>
-            </div>
-        </div>
-
-        <div class="xp-item">
-            <div class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <span class="xp-role">Teaching Assistant · Santa Clara University</span>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Part-time</span>
-                <span class="xp-chip">Hybrid</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Sep 2025 – Dec 2025</div>
-            </div>
-            </div>
-        </div>
-
-        <div class="xp-item">
-            <div class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <a class="xp-org" href="http://proofjump.com/" target="_blank">
-                    Sales Development Representative · ProofJump
-                </a>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Part-time</span>
-                <span class="xp-chip">Remote</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Jul 2024 – Apr 2025</div>
-            </div>
-            </div>
-        </div>
-
-        <div class="xp-item">
-            <div class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <span class="xp-role">Training Specialist · Honeywell</span>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Part-time</span>
-                <span class="xp-chip">On-site</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Jul 2024 – Nov 2024</div>
-            </div>
-            </div>
-        </div>
-
-        <div class="xp-item">
-            <div class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <a class="xp-role" href="/archives">Video Editor · Freelance</a>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Remote</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Feb 2021 – Jul 2024</div>
-            </div>
-            </div>
-        </div>
-
-        <div class="xp-item">
-            <div class="xp-summary">
-            <span class="xp-dot" aria-hidden="true"></span>
-
-            <div class="xp-main">
-                <div class="xp-title">
-                <a class="xp-role" href="/archives">Content Creator · Self-employed</a>
-                </div>
-
-                <div class="xp-chips">
-                <span class="xp-chip">Remote</span>
-                </div>
-            </div>
-
-            <div class="xp-meta">
-                <div class="xp-date">Dec 2015 – Feb 2021</div>
-            </div>
-            </div>
-        </div>
-
-        </div>
-    </div>
-    </section>
-
-    <!-- <section id="technologies" style="--order: 2;">
+<!-- <section id="technologies" style="--order: 2;">
         <div class="card">
             <h2>Most Used</h2>
             <p>Languages I work with regularly:</p>

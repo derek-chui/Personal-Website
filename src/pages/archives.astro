@@ -205,22 +205,315 @@ import Layout from '../layouts/Layout.astro';
         border-radius: 20px;
         font-size: 0.8rem;
     }
+
+    /* Experience */
+    .xp-list {
+        position: relative;
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding-left: 18px;
+    }
+
+    .xp-list:before {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+        background: linear-gradient(to bottom, rgba(41,151,255,0.9), transparent);
+        opacity: 0.9;
+    }
+
+    .xp-item {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.10);
+        border-radius: 14px;
+        overflow: hidden;
+        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .xp-item:hover {
+        transform: translateY(-3px);
+        border-color: rgba(41,151,255,0.35);
+        box-shadow: 0 10px 26px rgba(0,0,0,0.35);
+    }
+
+    .xp-summary {
+        list-style: none;
+        display: grid;
+        grid-template-columns: 18px 1fr auto;
+        gap: 14px;
+        align-items: center;
+        padding: 14px 16px;
+    }
+
+    .xp-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        background: #fff;
+        border: 3px solid var(--card-bg);
+        box-shadow: 0 0 0 2px rgba(41,151,255,0.35);
+        margin-left: -2px;
+    }
+
+    .xp-main {
+        min-width: 0;
+    }
+
+    .xp-title {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .xp-role {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: rgba(255,255,255,0.95);
+    }
+
+    .xp-org {
+        font-weight: 650;
+        color: rgba(255,255,255,0.85);
+    }
+
+    .xp-chips {
+        margin-top: 6px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .xp-chip {
+        font-size: 0.78rem;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(0,0,0,0.25);
+        color: rgba(255,255,255,0.78);
+    }
+
+    .xp-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        white-space: nowrap;
+    }
+
+    .xp-date {
+        color: rgba(255,255,255,0.72);
+        font-weight: 600;
+        font-size: 0.92rem;
+    }
+
+    #experience .xp-title a,
+    #experience a.xp-role,
+    #experience a.xp-org {
+        color: var(--apple-blue) !important;
+        font-weight: 650;
+    }
+
+    #experience .xp-title a:hover,
+    #experience a.xp-role:hover,
+    #experience a.xp-org:hover {
+        color: var(--apple-blue) !important;
+    }
+
+    @media (max-width: 768px) {
+        .xp-summary {
+            grid-template-columns: 18px 1fr;
+            grid-template-rows: auto auto;
+        }
+
+        .xp-meta {
+            grid-column: 2 / 3;
+            justify-content: space-between;
+        }
+    }
 </style>
 
 <Layout title="Archives">
     <div class="intro-section">
         <h1>Archives</h1>
-        <p>A collection of my previous work, projects, and content prior to my current roles.</p>
+        <p>A collection of my experience, previous work, projects, and content.</p>
     </div>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="card">
+            <h2 class="mb-6">Previous Experience</h2>
+            <p>My work experience and professional development:</p>
+
+            <div class="xp-list">
+
+            <div class="xp-item">
+                <div class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <a class="xp-role" href="/football" target="_blank">
+                        Undergraduate Assistant · Santa Clara Broncos, Oakland Roots
+                    </a>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Apprenticeship</span>
+                    <span class="xp-chip">Hybrid</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Sep 2025 – Present</div>
+                </div>
+                </div>
+            </div>
+
+            <div class="xp-item">
+                <div class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <a class="xp-role" href="/research" target="_blank">
+                        Research Assistant · Santa Clara University - Wireless Intelligent Networks (WIN) Lab
+                    </a>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Internship</span>
+                    <span class="xp-chip">Hybrid</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Apr 2025 – Present</div>
+                </div>
+                </div>
+            </div>
+
+            <div class="xp-item">
+                <div class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <span class="xp-role">Teaching Assistant · Santa Clara University</span>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Part-time</span>
+                    <span class="xp-chip">Hybrid</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Sep 2025 – Dec 2025</div>
+                </div>
+                </div>
+            </div>
+
+            <div class="xp-item">
+                <div class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <a class="xp-org" href="http://proofjump.com/" target="_blank">
+                        Sales Development Representative · ProofJump
+                    </a>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Part-time</span>
+                    <span class="xp-chip">Remote</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Jul 2024 – Apr 2025</div>
+                </div>
+                </div>
+            </div>
+
+            <div class="xp-item">
+                <div class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <span class="xp-role">Training Specialist · Honeywell</span>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Part-time</span>
+                    <span class="xp-chip">On-site</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Jul 2024 – Nov 2024</div>
+                </div>
+                </div>
+            </div>
+
+            <div class="xp-item">
+                <div class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <a class="xp-role" href="/archives">Video Editor · Freelance</a>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Remote</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Feb 2021 – Jul 2024</div>
+                </div>
+                </div>
+            </div>
+
+            <div class="xp-item">
+                <div class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <a class="xp-role" href="/archives">Content Creator · Self-employed</a>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Remote</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Dec 2015 – Feb 2021</div>
+                </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </section>
 
     <!-- PROJECTS -->
     <section id="projects">
         <div class="card">
-            <h2 class="mb-6">Project List</h2>
+            <h2 class="mb-6">Archived Projects</h2>
 
             <div class="horizontal-scroll-container">
                 <!-- Each project -->
-                <div class="project-card">
+                <!-- <div class="project-card">
                     <h3>Football Analytics</h3>
                     <div class="tags">
                         <span class="tag">Python</span>
@@ -235,7 +528,7 @@ import Layout from '../layouts/Layout.astro';
                         <span class="tag">MATLAB</span>
                     </div>
                     <a href="https://github.com/derek-chui/Network-Optimization" class="btn btn-minor" target="_blank">GitHub</a>
-                </div>
+                </div> -->
 
                 <div class="project-card">
                     <h3>Personal Website</h3>
