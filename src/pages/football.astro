@@ -407,12 +407,14 @@ import Layout from '../layouts/Layout.astro';
         .featured-app {
             flex-direction: column;
             text-align: center;
+            align-items: stretch;
         }
 
         .featured-app-image {
             flex: none;
             width: 100%;
             max-width: 420px;
+            margin: 0 auto;
         }
 
         .featured-app-content h2:after {
@@ -420,6 +422,24 @@ import Layout from '../layouts/Layout.astro';
             transform: translateX(-50%);
         }
 
+    }
+
+    @media (max-width: 768px) {
+        .featured-app {
+            padding: 20px 16px;
+            gap: 20px;
+        }
+
+        .sample-gallery-header {
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .featured-app-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
 
     /* Story Flow Sections */
@@ -757,7 +777,7 @@ import Layout from '../layouts/Layout.astro';
     }
 
     @media (max-width: 768px) {
-        .sample-img { height: 160px; }
+        .sample-img { height: 180px; }
     }
 </style>
 
@@ -883,7 +903,7 @@ import Layout from '../layouts/Layout.astro';
     <section id="matchdays" style="--order: 0; margin-top: -30px;">
         <div class="featured-app">
             <div class="sample-gallery-inline">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <div class="sample-gallery-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
                     <h4 style="margin: 0; font-size: 1rem; font-weight: 600;">See It In Action</h4>
                     <div class="gallery-tab-header" style="margin-bottom: 0;">
                         <button class="gallery-tab-btn active" onclick="switchGallery('exports', this)">Exports</button>
