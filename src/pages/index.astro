@@ -265,6 +265,33 @@ import Layout from '../layouts/Layout.astro';
         margin-top: 32px;
     }
 
+    .affiliation-logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        flex-wrap: wrap;
+        padding: 12px 20px 0;
+    }
+
+    .affiliation-logo {
+        display: flex;
+        align-items: center;
+        opacity: 0.65;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .affiliation-logo:hover {
+        opacity: 1;
+        transform: translateY(-2px);
+    }
+
+    .affiliation-logo img {
+        height: 44px;
+        width: auto;
+        object-fit: contain;
+    }
+
     /* Most Used */
     .tech-card {
         transform-origin: center;
@@ -1513,12 +1540,28 @@ import Layout from '../layouts/Layout.astro';
         <div class="hero-roles">
             <span class="hero-role">Computer Science and Engineering at Santa Clara University</span>
             <span class="hero-role" style="font-size: 1rem;">I support both the coaching staff and athletic performance with data <br> at Santa Clara Broncos <a href="https://santaclarabroncos.com/sports/womens-soccer" target="_blank" rel="noopener noreferrer">Women's</a> and <a href="https://santaclarabroncos.com/sports/mens-soccer" target="_blank" rel="noopener noreferrer">Men's</a> Soccer and at the <a href="https://www.oaklandrootssc.com/" target="_blank" rel="noopener noreferrer">Oakland Roots</a>.</span>
+            <!-- <span class="hero-role" style="font-size: 1rem;">Collaborator at <a href="https://www.xval.app/" target="_blank" rel="noopener noreferrer">xVal</a> and <a href="https://taka.io/" target="_blank" rel="noopener noreferrer">Taka</a>.</span> -->
+            <span class="hero-role" style="font-size: 1rem;">Collaborator at <a href="https://www.xval.app/" target="_blank" rel="noopener noreferrer">xVal</a>.</span>
+        </div>
+        <div class="affiliation-logos">
+            <a href="https://santaclarabroncos.com/" target="_blank" rel="noopener noreferrer" class="affiliation-logo">
+                <img src="/santaclarabroncos.png" alt="Santa Clara Broncos" />
+            </a>
+            <a href="https://www.oaklandrootssc.com/" target="_blank" rel="noopener noreferrer" class="affiliation-logo">
+                <img src="/Oakland_Roots_SC_logo.svg" alt="Oakland Roots" />
+            </a>
+            <a href="https://www.xval.app/" target="_blank" rel="noopener noreferrer" class="affiliation-logo">
+                <img src="/xval.png" alt="xVal" />
+            </a>
+            <!-- <a href="https://taka.io/" target="_blank" rel="noopener noreferrer" class="affiliation-logo">
+                <img src="/taka.svg" alt="Taka" />
+            </a> -->
         </div>
     </section>
 
     <!-- STEP 2: THE TOOLS -->
     <section class="tools-section visible">
-        <span class="step-label">Tools</span>
+        <span class="step-label">Most Used Tools</span>
         <div class="tool-badges">
             <span class="tool-badge">Hudl Wyscout</span>
             <span class="tool-badge">Impect</span>
@@ -1536,7 +1579,7 @@ import Layout from '../layouts/Layout.astro';
         <div class="featured-app">
             <div class="sample-gallery-inline">
                 <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
-                    <h2 style="margin: 0;"><a href="https://matchdays.app" target="_blank" rel="noopener noreferrer" class="featured-app-title">matchdays.app</a></h2>
+                    <h2 style="margin: 0;"><a href="https://matchdays.app/about" target="_blank" rel="noopener noreferrer" class="featured-app-title">matchdays.app</a></h2>
                     <div class="gallery-tab-header" style="margin-bottom: 0;">
                         <button class="gallery-tab-btn active" onclick="switchGallery('exports', this)">Exports</button>
                         <button class="gallery-tab-btn" onclick="switchGallery('ui', this)">UI</button>
@@ -1575,24 +1618,6 @@ import Layout from '../layouts/Layout.astro';
                 <p style="margin: 6px 0 0; font-size: 0.78rem; color: rgba(255,255,255,0.3);">Click any image to enlarge · Scroll to see more</p>
             </div>
 
-            <div class="trusted-by">
-                <h4 class="trusted-by-heading">
-                    <svg class="verified-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82 1.89 3.2L12 21.04l3.4 1.46 1.89-3.2 3.61-.82-.34-3.69L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z"/>
-                    </svg>
-                    Trusted By
-                </h4>
-                <div class="trusted-by-clients">
-                    <a href="https://santaclarabroncos.com/" target="_blank" rel="noopener noreferrer" class="trusted-by-org">
-                        <img src="/santaclarabroncos.png" alt="Santa Clara Broncos" class="trusted-by-logo" />
-                        <span>Santa Clara Broncos</span>
-                    </a>
-                    <a href="https://www.oaklandrootssc.com/" target="_blank" rel="noopener noreferrer" class="trusted-by-org">
-                        <img src="/Oakland_Roots_SC_logo.svg" alt="Oakland Roots" class="trusted-by-logo" />
-                        <span>Oakland Roots</span>
-                    </a>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1608,15 +1633,13 @@ import Layout from '../layouts/Layout.astro';
             <img src="/usl.png" alt="USL" class="league-logo" />
             <img src="/efl.svg" alt="EFL" class="league-logo" />
             <img src="/ncaa.avif" alt="NCAA" class="league-logo" />
-            <a href="https://taka.io/" target="_blank" rel="noopener noreferrer"><img src="/taka.svg" alt="Taka" class="league-logo" style="height: 72px;" /></a>
-            <a href="https://www.xval.app/" target="_blank" rel="noopener noreferrer"><img src="/xval.png" alt="Xval" class="league-logo" style="height: 90px;" /></a>
         </div>
     </section>
 
     <!-- PREVIOUS PROJECTS GALLERY -->
-    <section id="gallery-fa" style="--order: 1;">
+    <section id="gallery-fa" style="--order: 1; margin-top: 40px;">
     <div class="card">
-        <h2>Previous Projects</h2>
+        <h2><a href="https://github.com/derek-chui/Football-Analytics" target="_blank" rel="noopener noreferrer">Previous Projects</a></h2>
         <p>Work that eventually became the building blocks of matchdays.app:</p>
 
         <div class="gallery-wrapper">
@@ -1633,7 +1656,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
 
             <div class="gallery-item">
-            <img src="/fa11.png" loading="lazy" data-caption="Click the image for project details." data-link="https://plscout.streamlit.app/" />
+            <img src="/fa11.png" loading="lazy" data-caption="Click the image for project details." data-link="https://cap.so/s/nnffkwdkwnare2w" />
             <div class="gallery-caption">Premier League Scouting Portal</div>
             </div>
 
@@ -1673,18 +1696,19 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- WOLVES TWITTER SECTION -->
     <section id="wolves-twitter" style="--order: 2;">
-        <div class="card">
-            <h2>Twitter (X)</h2>
-            <div style="display: flex; align-items: center; gap: 24px;">
+        <a href="https://x.com/thatderekchui" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
+            <div class="card" style="display: flex; align-items: center; gap: 24px; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
                 <div style="flex: 1;">
+                    <h2>Twitter (X)</h2>
                     <h3>Football Analytics on Wolves</h3>
-                    <p>I also post data analytics about <a href="https://www.wolves.co.uk/" target="_blank" rel="noopener noreferrer">Wolverhampton Wanderers</a> on <a href="https://x.com/thatderekchui" target="_blank" rel="noopener noreferrer">Twitter (X)</a>.<br>Using a lot of my existing workflows as shown above to do so, reaching 500k+ impressions.</p>
+                    <p>I also post data analytics about Wolverhampton Wanderers on Twitter (X).<br>Using a lot of my existing workflows as shown above to do so, reaching 500k+ impressions.</p>
+                    <p style="margin: 8px 0 0 0; color: var(--apple-blue); font-size: 0.9rem;">View Twitter (X) →</p>
                 </div>
                 <div style="flex: 0 0 100px;">
                     <img src="/wolves.png" alt="Wolves Logo" style="width: 100%; opacity: 0.9;">
                 </div>
             </div>
-        </div>
+        </a>
     </section>
 
     <!-- EDUCATION -->
@@ -1789,9 +1813,6 @@ import Layout from '../layouts/Layout.astro';
                 </a>
                 <a href="https://www.linkedin.com/in/derek-chui/" class="btn btn-minor" target="_blank">
                     <span style="margin-right: 8px;">🔗</span> LinkedIn
-                </a>
-                <a href="https://x.com/thatderekchui" class="btn btn-minor" target="_blank">
-                    <span style="margin-right: 8px;">🐦</span> Twitter
                 </a>
             </div>
         </div>

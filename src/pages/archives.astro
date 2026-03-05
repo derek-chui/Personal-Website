@@ -233,6 +233,14 @@ import Layout from '../layouts/Layout.astro';
         border-radius: 14px;
         overflow: hidden;
         transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        position: relative;
+    }
+
+    .xp-item a.xp-role::after,
+    .xp-item a.xp-org::after {
+        content: '';
+        position: absolute;
+        inset: 0;
     }
 
     .xp-item:hover {
@@ -340,13 +348,13 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Archives">
     <div class="intro-section">
         <h1>Archives</h1>
-        <p>A collection of my experience, previous work, projects, and content.</p>
+        <p>A collection of my previous experiences, projects, and content.</p>
     </div>
 
     <!-- EXPERIENCE -->
     <section id="experience">
         <div class="card">
-            <h2 class="mb-6">Previous Experience</h2>
+            <h2 class="mb-6">Experience</h2>
             <p>My work experience and professional development:</p>
 
             <div class="xp-list">
@@ -357,7 +365,7 @@ import Layout from '../layouts/Layout.astro';
 
                 <div class="xp-main">
                     <div class="xp-title">
-                    <a class="xp-role" href="/football" target="_blank">
+                    <a class="xp-role" href="/">
                         Undergraduate Assistant · Santa Clara Broncos, Oakland Roots
                     </a>
                     </div>
@@ -380,7 +388,30 @@ import Layout from '../layouts/Layout.astro';
 
                 <div class="xp-main">
                     <div class="xp-title">
-                    <a class="xp-role" href="/research" target="_blank">
+                    <a class="xp-role" href="https://www.xval.app/" target="_blank">
+                        Collaborator · xVal
+                    </a>
+                    </div>
+
+                    <div class="xp-chips">
+                    <span class="xp-chip">Part-time</span>
+                    <span class="xp-chip">Remote</span>
+                    </div>
+                </div>
+
+                <div class="xp-meta">
+                    <div class="xp-date">Sep 2025 – Present</div>
+                </div>
+                </div>
+            </div>
+
+            <div class="xp-item">
+                <div class="xp-summary">
+                <span class="xp-dot" aria-hidden="true"></span>
+
+                <div class="xp-main">
+                    <div class="xp-title">
+                    <a class="xp-role" href="/research">
                         Research Assistant · Santa Clara University - Wireless Intelligent Networks (WIN) Lab
                     </a>
                     </div>
@@ -403,7 +434,9 @@ import Layout from '../layouts/Layout.astro';
 
                 <div class="xp-main">
                     <div class="xp-title">
-                    <span class="xp-role">Teaching Assistant · Santa Clara University</span>
+                    <a class="xp-role" href="/research#teaching">
+                        Teaching Assistant · Santa Clara University
+                    </a>
                     </div>
 
                     <div class="xp-chips">
@@ -468,7 +501,7 @@ import Layout from '../layouts/Layout.astro';
 
                 <div class="xp-main">
                     <div class="xp-title">
-                    <a class="xp-role" href="/archives">Video Editor · Freelance</a>
+                    <a class="xp-role" href="/archives#freelance">Video Editor · Freelance</a>
                     </div>
 
                     <div class="xp-chips">
@@ -488,7 +521,7 @@ import Layout from '../layouts/Layout.astro';
 
                 <div class="xp-main">
                     <div class="xp-title">
-                    <a class="xp-role" href="/archives">Content Creator · Self-employed</a>
+                    <a class="xp-role" href="/archives#other-content">Content Creator · Self-employed</a>
                     </div>
 
                     <div class="xp-chips">
@@ -509,7 +542,7 @@ import Layout from '../layouts/Layout.astro';
     <!-- PROJECTS -->
     <section id="projects">
         <div class="card">
-            <h2 class="mb-6">Archived Projects</h2>
+            <h2 class="mb-6">Projects</h2>
 
             <div class="horizontal-scroll-container">
                 <!-- Each project -->
@@ -580,7 +613,7 @@ import Layout from '../layouts/Layout.astro';
     </section>
 
     <!-- FREELANCE -->
-    <section>
+    <section id="freelance">
         <div class="card">
             <h2 class="mb-6">Freelance Video Editing</h2>
             <div class="flex-container">
@@ -591,7 +624,7 @@ import Layout from '../layouts/Layout.astro';
     </section>
 
     <!-- OTHER ARCHIVED CONTENT -->
-    <section>
+    <section id="other-content">
         <div class="card">
             <h2 class="mb-6">Other Archived Contents</h2>
             <div class="flex-container">

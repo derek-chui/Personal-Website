@@ -325,6 +325,13 @@ import Layout from '../layouts/Layout.astro';
         padding: 20px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         transition: all 0.3s ease;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .collaborator-card::after {
+        display: none;
     }
 
     .collaborator-card:hover {
@@ -340,17 +347,13 @@ import Layout from '../layouts/Layout.astro';
         color: #fff;
     }
 
-    .collaborator-name a {
-        color: #fff;
-    }
-
-    .collaborator-name a:hover {
+    a.collaborator-card .collaborator-name {
         color: var(--apple-blue);
     }
 
     .collaborator-role {
         font-size: 0.9rem;
-        color: var(--apple-blue);
+        color: rgba(255, 255, 255, 0.6);
         font-weight: 600;
         margin-bottom: 4px;
     }
@@ -385,20 +388,21 @@ import Layout from '../layouts/Layout.astro';
         font-size: 0.92rem;
         color: rgba(255, 255, 255, 0.85);
         transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .student-chip::after {
+        display: none;
+    }
+
+    a.student-chip {
+        color: var(--apple-blue);
     }
 
     .student-chip:hover {
         background: rgba(255, 255, 255, 0.1);
         border-color: rgba(255, 255, 255, 0.2);
-    }
-
-    .student-chip a {
-        color: rgba(255, 255, 255, 0.85);
-        font-weight: 500;
-    }
-
-    .student-chip a:hover {
-        color: var(--apple-blue);
     }
 
     .student-chip .degree {
@@ -450,11 +454,23 @@ import Layout from '../layouts/Layout.astro';
         font-size: 0.9rem;
         color: rgba(255, 255, 255, 0.85);
         transition: all 0.2s ease;
+        display: inline-block;
     }
 
     .teaching-tag:hover {
         background: rgba(255, 255, 255, 0.1);
         border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .teaching-tag::after {
+        display: none;
+    }
+
+    .gallery-hint {
+        margin-top: 12px;
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.35);
+        letter-spacing: 0.3px;
     }
 </style>
 
@@ -578,6 +594,11 @@ import Layout from '../layouts/Layout.astro';
             </div>
 
             <div class="gallery-item">
+            <img src="/showcase.webp" loading="lazy" data-caption="Click the image for project details." data-link="https://www.scu.edu/engineering/labs--research/research/research-showcase/2026-research-showcase/" />
+            <div class="gallery-caption">Research Showcase</div>
+            </div>
+
+            <div class="gallery-item">
             <img src="/win3.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1sKTumPeglMpADQQpm-wT4cGTqHteR7Kh/view?usp=sharing" />
             <div class="gallery-caption">Traditional vs Semantic User Grouping</div>
             </div>
@@ -588,6 +609,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
         </div>
         </div>
+        <p class="gallery-hint">Click any image to enlarge · Scroll to see more</p>
     </div>
     </section>
 
@@ -598,6 +620,18 @@ import Layout from '../layouts/Layout.astro';
         margin-top: 22px;
         display: flex;
         flex-direction: column;
+        max-height: 420px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,255,255,0.2) transparent;
+        padding-right: 6px;
+        }
+
+        #publications .research-list::-webkit-scrollbar { width: 6px; }
+        #publications .research-list::-webkit-scrollbar-track { background: transparent; }
+        #publications .research-list::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
         }
 
         #publications .research-item {
@@ -674,7 +708,7 @@ import Layout from '../layouts/Layout.astro';
     </style>
 
     <div class="card">
-        <h2>More Research</h2>
+        <h2>Latest Work</h2>
         <p>Submissions to conferences, grants, symposiums, awards, showcases and more derived from my research:</p>
 
         <div class="research-list">
@@ -791,21 +825,17 @@ import Layout from '../layouts/Layout.astro';
         <div class="collaborators-subsection">
             <h3>Faculty Advisors</h3>
             <div class="collaborators-grid">
-                <div class="collaborator-card">
-                    <h4 class="collaborator-name">
-                        <a href="https://krishnaramamoorthy.com/" target="_blank">Krishna Ramamoorthy</a>
-                    </h4>
+                <a class="collaborator-card" href="https://krishnaramamoorthy.com/" target="_blank" rel="noopener noreferrer">
+                    <h4 class="collaborator-name">Krishna Ramamoorthy</h4>
                     <div class="collaborator-role">Assistant Professor</div>
                     <p class="collaborator-affiliation">Computer Science and Engineering, Santa Clara University</p>
-                </div>
+                </a>
 
-                <div class="collaborator-card">
-                    <h4 class="collaborator-name">
-                        <a href="https://wwang.sdsu.edu/" target="_blank">Wei Wang</a>
-                    </h4>
+                <a class="collaborator-card" href="https://wwang.sdsu.edu/" target="_blank" rel="noopener noreferrer">
+                    <h4 class="collaborator-name">Wei Wang</h4>
                     <div class="collaborator-role">Professor</div>
                     <p class="collaborator-affiliation">Computer Science, San Diego State University</p>
-                </div>
+                </a>
             </div>
         </div>
 
@@ -818,9 +848,9 @@ import Layout from '../layouts/Layout.astro';
                 <div class="student-chip">
                     Jefferson Duan <span class="degree">M.S., San Diego State University</span>
                 </div>
-                <div class="student-chip">
-                    <a href="https://collinfiske.vercel.app/" target="_blank">Collin Fiske</a> <span class="degree">B.S., Santa Clara University</span>
-                </div>
+                <a class="student-chip" href="https://collinfiske.vercel.app/" target="_blank" rel="noopener noreferrer">
+                    Collin Fiske <span class="degree">B.S., Santa Clara University</span>
+                </a>
                 <div class="student-chip">
                     Pedro Aguirre-Salas <span class="degree">B.S., Santa Clara University</span>
                 </div>
@@ -836,7 +866,7 @@ import Layout from '../layouts/Layout.astro';
     <section id="teaching" style="--order: 4;">
     <div class="card">
         <h2>Teaching</h2>
-        <p>My research experience also led to an opportunity as a teaching assistant under Krishna Ramamoorthy:</p>
+        <p>My research experience also led to an opportunity as a teaching assistant under <a href="https://krishnaramamoorthy.com/" target="_blank" rel="noopener noreferrer">Krishna Ramamoorthy</a>:</p>
 
         <div style="margin-top: 20px;">
             <div class="teaching-header">
@@ -848,12 +878,39 @@ import Layout from '../layouts/Layout.astro';
             </div>
 
             <div class="teaching-details">
-                <span class="teaching-tag">Hosted Office Hours</span>
-                <span class="teaching-tag">Created Assignments</span>
-                <span class="teaching-tag">Built Autograders</span>
-                <span class="teaching-tag">Led Practicums</span>
+                <a class="teaching-tag" href="/teaching/CSEN_171__Syllabus__Section1-3.pdf" target="_blank" rel="noopener noreferrer">Hosted Office Hours</a>
+                <a class="teaching-tag" href="/teaching/Practicum%203%20Description.pdf" target="_blank" rel="noopener noreferrer">Created Assignments</a>
+                <a class="teaching-tag" href="/teaching/autograder.png" target="_blank" rel="noopener noreferrer">Built Autograders</a>
+                <a class="teaching-tag" href="/teaching/Practicum%203%20Slides.pdf" target="_blank" rel="noopener noreferrer">Led Practicums</a>
             </div>
         </div>
+
+        <div class="gallery-wrapper">
+            <div class="gallery-scroll">
+
+                <div class="gallery-item">
+                    <img src="/teaching/syllabus.png" loading="lazy" data-caption="Click image for project details" data-link="/teaching/CSEN_171__Syllabus__Section1-3.pdf" />
+                    <div class="gallery-caption">Course Syllabus</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="/teaching/slides.png" loading="lazy" data-caption="Click image for project details" data-link="/teaching/Practicum%203%20Slides.pdf" />
+                    <div class="gallery-caption">Practicum 3 Slides</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="/teaching/description.png" loading="lazy" data-caption="Click image for project details" data-link="/teaching/Practicum%203%20Description.pdf" />
+                    <div class="gallery-caption">Practicum 3 Description</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="/teaching/autograder.png" loading="lazy" data-caption="Click image for project details" />
+                    <div class="gallery-caption">Autograder Results</div>
+                </div>
+
+            </div>
+        </div>
+        <p class="gallery-hint">Click any image to enlarge · Scroll to see more</p>
     </div>
     </section>
 
