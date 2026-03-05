@@ -1585,8 +1585,6 @@ import Layout from '../layouts/Layout.astro';
                         <button class="gallery-tab-btn" onclick="switchGallery('ui', this)">UI</button>
                     </div>
                 </div>
-                <p style="margin: 0 0 4px; font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.6;"><span class="suite-label">Coaching Suite:</span> Turns Hudl Wyscout & Impect exports into interactive dashboards, detailed analysis, and more.</p>
-                <p style="margin: 0 0 12px; font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.6;"><span class="suite-label">Performance Center:</span> Connects to Catapult, VALD, and more to automate report generation and track athlete metrics over time.</p>
                 <div id="gallery-exports" class="gallery-panel">
                     <div class="sample-scroll">
                         <img src="/samples/exports/player.png" alt="Player Report" class="sample-img" loading="lazy" data-caption="Player Dashboard Aggregated from Hudl Wyscout Match Reports" />
@@ -1615,6 +1613,8 @@ import Layout from '../layouts/Layout.astro';
                         <img src="/samples/ui/api.png" alt="API" class="sample-img" loading="lazy" data-caption="Configure API Keys and Credentials" />
                     </div>
                 </div>
+                <p style="margin: 20px 0 4px; font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.6;"><span class="suite-label">Coaching Suite:</span> Turns Hudl Wyscout & Impect exports into interactive dashboards, detailed analysis, and more.</p>
+                <p style="margin: 0 0 12px; font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.6;"><span class="suite-label">Performance Center:</span> Connects to Catapult, VALD, and more to automate report generation and track athlete metrics over time.</p>
                 <p style="margin: 6px 0 0; font-size: 0.78rem; color: rgba(255,255,255,0.3);">Click any image to enlarge · Scroll to see more</p>
             </div>
 
@@ -1785,20 +1785,43 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section> -->
 
-    <!-- WIN LAB -->
+    <!-- QUICK LINKS -->
     <section id="win-lab" style="--order: 5;">
-        <a href="/research" style="text-decoration: none; color: inherit; display: block;">
-            <div class="card" style="display: flex; align-items: center; gap: 24px; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
-                <div style="flex: 0 0 90px;">
-                    <img src="/scu_win_lab_logo.jpeg" alt="WIN Lab Logo" style="width: 100%; border-radius: 8px; opacity: 0.9;">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+
+            <!-- CV -->
+            <a href="/DerekChuiCV.pdf" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+                <div class="card" style="height: 100%; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">📄</div>
+                    <h3 style="margin: 0 0 8px 0;">CV / Resume</h3>
+                    <p style="margin: 0; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Relevant work experience, projects, and professional development</p>
+                    <p style="margin: 12px 0 0 0; color: var(--apple-blue); font-size: 0.9rem;">View CV →</p>
                 </div>
-                <div style="flex: 1;">
-                    <h3 style="margin: 0 0 8px 0;">Wireless Intelligent Networks (WIN) Lab</h3>
-                    <p style="margin: 0; color: rgba(255, 255, 255, 0.8);">I also conduct research at the WIN Lab at Santa Clara University</p>
-                    <p style="margin: 8px 0 0 0; color: var(--apple-blue); font-size: 0.9rem;">View research →</p>
+            </a>
+
+            <!-- WIN LAB -->
+            <a href="/research" style="text-decoration: none; color: inherit; display: block;">
+                <div class="card" style="height: 100%; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                    <div style="margin-bottom: 12px;">
+                        <img src="/scu_win_lab_logo.jpeg" alt="WIN Lab Logo" style="width: 72px; border-radius: 8px; opacity: 0.9;">
+                    </div>
+                    <h3 style="margin: 0 0 8px 0;">Research</h3>
+                    <p style="margin: 0; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Wireless Intelligent Networks (WIN) Lab at Santa Clara University</p>
+                    <p style="margin: 12px 0 0 0; color: var(--apple-blue); font-size: 0.9rem;">View research →</p>
                 </div>
-            </div>
-        </a>
+            </a>
+
+            <!-- ARCHIVES -->
+            <a href="/archives" style="text-decoration: none; color: inherit; display: block;">
+                <div class="card" style="height: 100%; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">🗂️</div>
+                    <h3 style="margin: 0 0 8px 0;">Archives</h3>
+                    <p style="margin: 0; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">A collection of older projects, content, and miscellaneous work</p>
+                    <p style="margin: 12px 0 0 0; color: var(--apple-blue); font-size: 0.9rem;">View archives →</p>
+                </div>
+            </a>
+
+        </div>
     </section>
 
     <!-- CONTACT -->
