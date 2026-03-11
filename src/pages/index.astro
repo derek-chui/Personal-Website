@@ -1420,6 +1420,18 @@ import Layout from '../layouts/Layout.astro';
         }
     }
 
+    .quick-links-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    @media (max-width: 768px) {
+        .quick-links-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
 </style>
 
 <script>
@@ -1786,7 +1798,7 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- QUICK LINKS -->
     <section id="win-lab" style="--order: 5;">
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+        <div class="quick-links-grid">
 
             <!-- CV -->
             <a href="/DerekChuiCV.pdf" target="_blank" style="text-decoration: none; color: inherit; display: block;">
