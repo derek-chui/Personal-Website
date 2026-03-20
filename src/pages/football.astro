@@ -18,6 +18,12 @@ import Layout from '../layouts/Layout.astro';
         to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+
     /* Base Styles */
     body {
         background-color: var(--bg-dark);
@@ -33,6 +39,15 @@ import Layout from '../layouts/Layout.astro';
     h1, h2, h3 {
         font-weight: 600;
         margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 2.8rem;
+        background: #ffffff;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: inline-block;
     }
 
     h2 {
@@ -84,6 +99,42 @@ import Layout from '../layouts/Layout.astro';
         display: none;
     }
 
+    .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: var(--apple-blue);
+        color: #fff;
+        border-radius: 8px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        font-weight: 500;
+    }
+
+    .btn:hover {
+        background-color: #2997ff;
+        transform: translateY(-3px);
+        color: white;
+    }
+
+    .btn-minor {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #1a1a1a;
+        color: #fff;
+        border-radius: 8px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-minor:hover {
+        background-color: #2997ff;
+        transform: translateY(-3px);
+    }
+
     /* Cards */
     html {
         scroll-behavior: smooth;
@@ -107,6 +158,24 @@ import Layout from '../layouts/Layout.astro';
         border-color: rgba(255, 255, 255, 0.2);
     }
 
+    .card ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .card ul li {
+        margin-bottom: 16px;
+        padding-left: 24px;
+        position: relative;
+    }
+
+    .card ul li:before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        color: white;
+    }
+
     section {
         margin-bottom: 60px;
         opacity: 0;
@@ -119,328 +188,766 @@ import Layout from '../layouts/Layout.astro';
         transform: translateY(0);
     }
 
-    /* Gallery */
-    .gallery-wrapper {
+    /* Section Based CSS*/
+
+    /* Hero */
+    .hero {
+        text-align: center;
+        padding: 80px 20px 40px;
         position: relative;
-        margin-top: 24px;
+        overflow: hidden;
     }
 
-    .gallery-scroll {
+    .hero:before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+        z-index: -1;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 24px;
+        animation: float 4s ease-in-out infinite;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 32px;
+    }
+
+    .hero-roles {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 32px;
+    }
+
+    .hero-role {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 400;
+    }
+
+    .hero-role-btn {
+        display: inline-block;
+        padding: 12px 24px;
+        font-size: 1rem;
+        color: var(--apple-blue);
+        background: transparent;
+        border: 2px solid var(--apple-blue);
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .hero-role-btn:hover {
+        background: var(--apple-blue);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .hero-role-btn::after {
+        display: none;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        margin-top: 32px;
+    }
+
+    .affiliation-logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        flex-wrap: wrap;
+        padding: 12px 20px 0;
+    }
+
+    .affiliation-logo {
+        display: flex;
+        align-items: center;
+        opacity: 0.65;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .affiliation-logo:hover {
+        opacity: 1;
+        transform: translateY(-2px);
+    }
+
+    .affiliation-logo img {
+        height: 44px;
+        width: auto;
+        object-fit: contain;
+    }
+
+    /* Most Used */
+    .tech-card {
+        transform-origin: center;
+        will-change: transform;
+    }
+
+    .tech-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 10px 25px rgba(41, 151, 255, 0.15);
+        border-color: rgba(41, 151, 255, 0.4);
+        background: linear-gradient(135deg, rgba(41, 151, 255, 0.15) 0%, rgba(0, 0, 0, 0) 100%) !important;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother easing */
+    }
+
+    .tech-grid {
+        animation: fadeIn 0.6s forwards;
+        transform-style: preserve-3d; /* Helps with smooth transitions */
+    }
+
+    @media (max-width: 768px) {
+        .tech-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Project */
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        margin-top: 32px;
+    }
+
+    .project-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 24px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-card h3 {
+        margin-top: 0;
+    }
+
+    .project-card .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 16px 0;
+    }
+
+    .project-card .tag {
+        background: rgba(41, 151, 255, 0.2);
+        color: var(--apple-blue);
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+    }
+
+    /* Experience */
+    .timeline {
+        position: relative;
+        padding-left: 30px;
+        margin-top: 40px;
+    }
+
+    .timeline:before {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, var(--apple-blue), transparent);
+
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 40px;
+        padding-left: 30px;
+    }
+
+    .timeline-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .timeline-item:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 5px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: white;
+        border: 3px solid var(--card-bg);
+    }
+
+    .timeline-date {
+        color: white;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+
+    .timeline-content h3 {
+        margin-top: 0;
+    }
+
+    /* Highlight Cards (Football & Research) */
+    .highlight-card {
+        background-color: var(--card-bg);
+        border-radius: 16px;
+        padding: 28px;
+        margin-bottom: 28px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        opacity: 0;
+        animation: fadeIn 0.6s forwards;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .highlight-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .highlight-card-content {
+        flex: 1;
+    }
+
+    .highlight-card-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
+
+    .highlight-card-content p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .highlight-card img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        opacity: 0.9;
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+    }
+
+    .highlight-card img:hover {
+        transform: scale(1.1);
+    }
+
+    #football-highlight .highlight-card {
+        border-left: 6px solid #6b8fa8;
+        animation-delay: 0.1s;
+    }
+
+    #football-highlight .highlight-card:hover {
+        box-shadow: 0 12px 28px rgba(107, 143, 168, 0.15);
+        border-color: rgba(107, 143, 168, 0.3);
+    }
+
+    #football-highlight h3 {
+        color: #8fb3cc;
+    }
+
+    #football-highlight .btn {
+        background-color: #6b8fa8;
+    }
+
+    #football-highlight .btn:hover {
+        background-color: #5a7e97;
+    }
+
+    #research-highlight .highlight-card {
+        border-left: 6px solid var(--apple-blue);
+        animation-delay: 0.2s;
+    }
+
+    #research-highlight .highlight-card:hover {
+        box-shadow: 0 12px 28px rgba(41, 151, 255, 0.15);
+        border-color: rgba(41, 151, 255, 0.3);
+    }
+
+    #research-highlight h3 {
+        color: var(--apple-blue);
+    }
+
+    /* Education */
+    #education .card {
+        background-color: #1a1a1a;
+        border-left: 6px solid #b30738;
+    }
+
+    #education h2:after {
+        background: linear-gradient(90deg, #b30738, transparent);
+    }
+
+    #education h3 {
+        color: #b30738;
+    }
+
+    #education .btn {
+        background-color: #b30738;
+    }
+
+    #education .btn:hover {
+        background-color: #9d0631;
+    }
+
+    #education .card:hover {
+        box-shadow: 0 12px 28px rgba(179, 7, 56, 0.2);
+        border-color: rgba(179, 7, 56, 0.3);
+    }
+
+    #education img {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    
+    #education img:hover {
+        transform: scale(1.05);
+        opacity: 1;
+    }  
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2.2rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        
+        .project-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .hero-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    .horizontal-scroll-container {
         display: flex;
         overflow-x: auto;
-        gap: 20px;
         padding: 16px 0 8px 4px;
+        gap: 32px;
         scroll-snap-type: x mandatory;
         scrollbar-width: thin;
         scrollbar-color: rgba(255,255,255,0.2) transparent;
         -webkit-overflow-scrolling: touch;
     }
 
-    .gallery-scroll::-webkit-scrollbar { height: 6px; }
-    .gallery-scroll::-webkit-scrollbar-track { background: transparent; }
-    .gallery-scroll::-webkit-scrollbar-thumb {
+    .horizontal-scroll-container::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar-thumb {
         background-color: rgba(255, 255, 255, 0.2);
         border-radius: 3px;
     }
 
-    .gallery-item {
-        flex: 0 0 360px;
-        width: 360px;
+    .project-card {
+        min-width: 340px;
         flex-shrink: 0;
         scroll-snap-align: start;
         background: var(--card-bg);
         border-radius: 16px;
-        overflow: hidden;
+        padding: 24px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .gallery-item:hover {
+    .project-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
 
+     /* Gallery */
+    .gallery-wrapper {
+    position: relative;
+    margin-top: 24px;
+    }
+
+    .gallery-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 16px 0 8px 4px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.2) transparent;
+    -webkit-overflow-scrolling: touch;
+    }
+
+    .gallery-scroll::-webkit-scrollbar { height: 6px; }
+    .gallery-scroll::-webkit-scrollbar-track { background: transparent; }
+    .gallery-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    }
+
+    .gallery-item {
+    flex: 0 0 360px;
+    width: 360px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
     .gallery-item img {
-        width: 100%;
-        height: 220px;
-        object-fit: contain;
-        display: block;
-        background: #000;
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    display: block;
+    background: #000;
     }
 
     .gallery-caption {
-        padding: 14px 16px;
-        color: rgba(255, 255, 255, 0.85);
-        font-size: 0.95rem;
+    padding: 14px 16px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
     }
 
     @media (max-width: 768px) {
-        .gallery-item { min-width: 280px; }
-        .gallery-item img { height: 180px; }
+    .gallery-item { min-width: 280px; }
+    .gallery-item img { height: 180px; }
     }
+
+    /* .gallery-item img {
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+    object-fit: contain;
+    } */
 
     /* Lightbox */
     .gallery-item img,
     .gallery-media img {
-        cursor: zoom-in;
+    cursor: zoom-in;
     }
 
     .lightbox {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.2s ease;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
     }
 
     .lightbox.open {
-        opacity: 1;
-        pointer-events: auto;
+    opacity: 1;
+    pointer-events: auto;
     }
 
     .lightbox-backdrop {
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.75);
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
     }
 
     .lightbox-content {
-        position: relative;
-        z-index: 1;
-        width: min(1000px, 92vw);
-        max-height: 86vh;
-        padding: 14px;
-        border-radius: 16px;
-        background: var(--card-bg);
-        border: 1px solid rgba(255,255,255,0.12);
-        box-shadow: 0 18px 60px rgba(0,0,0,0.6);
-        transform: translateY(10px) scale(0.98);
-        transition: transform 0.2s ease;
+    position: relative;
+    z-index: 1;
+
+    width: min(1000px, 92vw);
+    max-height: 86vh;
+    padding: 14px;
+    border-radius: 16px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.12);
+
+    box-shadow: 0 18px 60px rgba(0,0,0,0.6);
+    transform: translateY(10px) scale(0.98);
+    transition: transform 0.2s ease;
     }
 
     .lightbox.open .lightbox-content {
-        transform: translateY(0) scale(1);
+    transform: translateY(0) scale(1);
     }
 
     .lightbox-img {
-        width: 100%;
-        max-height: 72vh;
-        object-fit: contain;
-        display: block;
-        border-radius: 12px;
+    width: 100%;
+    max-height: 72vh;
+    object-fit: contain;
+    display: block;
+    border-radius: 12px;
     }
 
     .lightbox-caption {
-        margin-top: 10px;
-        color: rgba(255,255,255,0.8);
-        font-size: 0.95rem;
+    margin-top: 10px;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
     }
 
     .lightbox-close {
-        position: absolute;
-        top: 8px;
-        right: 10px;
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
-        border: 1px solid rgba(255,255,255,0.12);
-        background: rgba(0,0,0,0.35);
-        color: white;
-        cursor: pointer;
-        font-size: 22px;
-        line-height: 1;
-        z-index: 10;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(0,0,0,0.35);
+    color: white;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+    }
+
+    .lightbox-close {
+    z-index: 10;
     }
 
     @media (max-width: 768px) {
-        .lightbox-content {
-            padding-top: calc(56px + env(safe-area-inset-top));
-        }
-
-        .lightbox-close {
-            top: calc(10px + env(safe-area-inset-top));
-            right: 12px;
-        }
+    .lightbox-content {
+        padding-top: calc(56px + env(safe-area-inset-top));
     }
 
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-        h2 {
-            font-size: 1.8rem;
-        }
+    .lightbox-close {
+        top: calc(10px + env(safe-area-inset-top));
+        right: 12px;
+    }
     }
 
-    /* Featured App Section */
-    .featured-app {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 32px;
-        align-items: center;
-        padding: 32px;
-        background: var(--card-bg);
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        margin-bottom: 40px;
-        transition: all 0.3s ease;
-        overflow: hidden;
+    .xp-list {
+    position: relative;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 18px;
     }
 
-    .featured-app:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-        border-color: rgba(255, 255, 255, 0.15);
+    .xp-list:before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(41,151,255,0.9), transparent);
+    opacity: 0.9;
     }
 
-    .featured-app-image {
-        flex: 0 0 420px;
-        border-radius: 14px;
-        overflow: hidden;
-        background: #000;
+    .xp-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .featured-app-image img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        display: block;
-        cursor: zoom-in;
+    .xp-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(41,151,255,0.35);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.35);
     }
 
-    .featured-app-content {
-        flex: 1;
+    .xp-summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 18px 1fr auto;
+    gap: 14px;
+    align-items: center;
+    padding: 14px 16px;
     }
 
-    .featured-app-content h2 {
-        font-size: 2rem;
-        margin-bottom: 16px;
+    .xp-summary::-webkit-details-marker {
+    display: none;
     }
 
-    .featured-app-content p {
-        color: rgba(255, 255, 255, 0.75);
-        font-size: 1.05rem;
-        line-height: 1.7;
-        margin-bottom: 20px;
+    .xp-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: #fff;
+    border: 3px solid var(--card-bg);
+    box-shadow: 0 0 0 2px rgba(41,151,255,0.35);
+    margin-left: -2px;
     }
 
-    .featured-app-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 24px;
-        background: var(--apple-blue);
-        color: white;
-        border-radius: 10px;
-        font-weight: 600;
-        transition: all 0.3s ease;
+    .xp-main {
+    min-width: 0;
     }
 
-    .featured-app-link:hover {
-        background: #1a7fe8;
-        transform: translateY(-2px);
+    .xp-title {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
     }
 
-    .featured-app-link::after {
-        display: none;
+    .xp-role {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.95);
     }
 
-    /* Trusted By */
-    .trusted-by {
-        width: 100%;
-        margin-top: 28px;
-        padding-top: 24px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        text-align: center;
+    .xp-at {
+    opacity: 0.6;
     }
 
-    .trusted-by-heading {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        font-size: 1rem;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.7);
-        margin-bottom: 20px;
+    .xp-org {
+    font-weight: 650;
+    color: rgba(255,255,255,0.85);
     }
 
-    .verified-icon {
-        width: 18px;
-        height: 18px;
-        color: var(--apple-blue);
+    .xp-chips {
+    margin-top: 6px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
     }
 
-    .trusted-by-clients {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 32px;
+    .xp-chip {
+    font-size: 0.78rem;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(0,0,0,0.25);
+    color: rgba(255,255,255,0.78);
     }
 
-    .trusted-by-org {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
+    .xp-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
     }
 
-    .trusted-by-logo {
-        width: 48px;
-        height: 48px;
-        object-fit: contain;
-        transition: transform 0.3s ease;
+    .xp-date {
+    color: rgba(255,255,255,0.72);
+    font-weight: 600;
+    font-size: 0.92rem;
     }
 
-    .trusted-by-logo:hover {
-        transform: translateY(-4px);
+    .xp-caret {
+    display: inline-block;
+    transform: rotate(90deg);
+    opacity: 0.65;
+    transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
-    .trusted-by-org span {
-        font-size: 0.85rem;
-        color: rgba(255, 255, 255, 0.5);
+    .xp-item[open] {
+    background: linear-gradient(135deg, rgba(41,151,255,0.10) 0%, rgba(0,0,0,0) 60%);
+    border-color: rgba(41,151,255,0.35);
     }
 
-    @media (max-width: 900px) {
-        .featured-app {
-            flex-direction: column;
-            text-align: center;
-            align-items: stretch;
-        }
+    .xp-item[open] .xp-caret {
+    transform: rotate(-90deg);
+    opacity: 1;
+    }
 
-        .featured-app-image {
-            flex: none;
-            width: 100%;
-            max-width: 420px;
-            margin: 0 auto;
-        }
+    .xp-body {
+    padding: 0 16px 14px 48px;
+    color: rgba(255,255,255,0.80);
+    }
 
-        .featured-app-content h2:after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
+    .xp-body ul {
+    margin: 10px 0 0 0;
+    padding-left: 0;
+    list-style: none;
+    }
 
+    .xp-body li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 8px;
+    }
+
+    .xp-body li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: rgba(41,151,255,0.95);
     }
 
     @media (max-width: 768px) {
-        .featured-app {
-            padding: 20px 16px;
-            gap: 20px;
-        }
+    .xp-summary {
+        grid-template-columns: 18px 1fr;
+        grid-template-rows: auto auto;
+    }
 
-        .sample-gallery-header {
-            flex-direction: column;
-            align-items: flex-start;
-        }
+    .xp-meta {
+        grid-column: 2 / 3;
+        justify-content: space-between;
+    }
 
-        .featured-app-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .xp-body {
+        padding-left: 16px;
+    }
+    }
+
+    #experience .xp-title a,
+    #experience a.xp-role,
+    #experience a.xp-org,
+    #experience a.xp-title-link {
+    color: var(--apple-blue) !important;
+    font-weight: 650;
+    }
+
+    #experience .xp-title a:hover,
+    #experience a.xp-role:hover,
+    #experience a.xp-org:hover,
+    #experience a.xp-title-link:hover {
+    color: var(--apple-blue) !important;
+    }
+
+    #experience a.xp-title-link .xp-role,
+    #experience a.xp-title-link .xp-org,
+    #experience a.xp-title-link .xp-at {
+    color: inherit !important;
+    }
+
+    #experience span.xp-org:hover {
+    color: rgba(255,255,255,0.85) !important;
     }
 
     /* Story Flow Sections */
@@ -536,51 +1043,150 @@ import Layout from '../layouts/Layout.astro';
         transform: translateY(-2px);
     }
 
-    /* Result Section */
-    .result-section {
-        text-align: center;
-        padding: 50px 20px 30px;
+    /* Featured App Section */
+    .featured-app {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 32px;
+        align-items: center;
+        padding: 32px;
+        background: var(--card-bg);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 40px;
+        transition: all 0.3s ease;
     }
 
-    .result-section .step-label {
-        display: inline-block;
-        font-size: 0.75rem;
+    .featured-app:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .featured-app-image {
+        flex: 0 0 420px;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #000;
+    }
+
+    .featured-app-image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        cursor: zoom-in;
+    }
+
+    .featured-app-content {
+        flex: 1;
+    }
+
+    .featured-app-content h2 {
+        font-size: 2rem;
+        margin-bottom: 16px;
+    }
+
+    .featured-app-content p {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
+
+    .featured-app-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        background: var(--apple-blue);
+        color: white;
+        border-radius: 10px;
         font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
+        transition: all 0.3s ease;
+    }
+
+    .featured-app-link:hover {
+        background: #1a7fe8;
+        transform: translateY(-2px);
+    }
+
+    .featured-app-link::after {
+        display: none;
+    }
+
+    /* Trusted By */
+    .trusted-by {
+        width: 100%;
+        margin-top: 4px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    .trusted-by-heading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 20px;
+    }
+
+    .verified-icon {
+        width: 18px;
+        height: 18px;
         color: var(--apple-blue);
-        margin-bottom: 12px;
-        opacity: 0.9;
     }
 
-    .result-section p {
-        font-size: 1.15rem;
-        color: rgba(255, 255, 255, 0.6);
-        max-width: 600px;
-        margin: 0 auto 30px;
-        line-height: 1.6;
+    .trusted-by-clients {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
     }
 
-    @media (max-width: 768px) {
-        .story-section h1 {
-            font-size: 2rem;
+    .trusted-by-org {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .trusted-by-logo {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    .trusted-by-logo:hover {
+        transform: translateY(-4px);
+    }
+
+    .trusted-by-org span {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    @media (max-width: 900px) {
+        .featured-app {
+            flex-direction: column;
+            text-align: center;
         }
-        .story-section p {
-            font-size: 1.1rem;
+
+        .featured-app-image {
+            flex: none;
+            width: 100%;
+            max-width: 420px;
         }
-        .tool-badges {
-            flex-wrap: wrap;
-        }
-        .tool-badge {
-            padding: 8px 14px;
-            font-size: 0.85rem;
-        }
-        .tools-section p {
-            white-space: normal;
-        }
-        .tools-section,
-        .result-section {
-            padding: 40px 20px;
+
+        .featured-app-content h2:after {
+            left: 50%;
+            transform: translateX(-50%);
         }
     }
 
@@ -647,7 +1253,9 @@ import Layout from '../layouts/Layout.astro';
     /* Industry Connections Section */
     .connections-section {
         text-align: center;
-        padding: 24px 20px 20px;
+        padding: 0 20px;
+        margin-top: -40px;
+        margin-bottom: 20px;
     }
 
     .connections-section .step-label {
@@ -665,7 +1273,7 @@ import Layout from '../layouts/Layout.astro';
         font-size: 1.15rem;
         color: rgba(255, 255, 255, 0.7);
         max-width: 700px;
-        margin: 0 auto 32px;
+        margin: 0 auto 12px;
         line-height: 1.7;
     }
 
@@ -675,7 +1283,7 @@ import Layout from '../layouts/Layout.astro';
         align-items: center;
         gap: 48px;
         flex-wrap: wrap;
-        margin-top: 24px;
+        margin-top: 12px;
     }
 
     .league-logo {
@@ -702,14 +1310,6 @@ import Layout from '../layouts/Layout.astro';
     }
 
     /* Sample Gallery Tabs */
-    .sample-gallery-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 12px;
-        gap: 8px;
-    }
-
     .gallery-tab-header {
         display: flex;
         gap: 8px;
@@ -744,10 +1344,24 @@ import Layout from '../layouts/Layout.astro';
 
     .sample-gallery-inline {
         width: 100%;
-        min-width: 0;
-        padding-bottom: 24px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        overflow: hidden;
+        overflow: visible;
+    }
+
+    .sample-gallery-inline h2::after {
+        display: none;
+    }
+
+    .matchdays-description {
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .matchdays-description p {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin-bottom: 16px;
     }
 
     .sample-scroll {
@@ -787,8 +1401,37 @@ import Layout from '../layouts/Layout.astro';
     }
 
     @media (max-width: 768px) {
-        .sample-img { height: 180px; }
+        .sample-img { height: 160px; }
+        .tool-badges {
+            flex-wrap: wrap;
+        }
+        .tool-badge {
+            padding: 8px 14px;
+            font-size: 0.85rem;
+        }
+        .tools-section p {
+            white-space: normal;
+        }
+        .story-section h1 {
+            font-size: 2rem;
+        }
+        .story-section p {
+            font-size: 1.1rem;
+        }
     }
+
+    .quick-links-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    @media (max-width: 768px) {
+        .quick-links-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
 </style>
 
 <script>
@@ -802,7 +1445,7 @@ import Layout from '../layouts/Layout.astro';
 
     document.addEventListener('DOMContentLoaded', () => {
         const sections = document.querySelectorAll('section');
-
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -810,7 +1453,7 @@ import Layout from '../layouts/Layout.astro';
                 }
             });
         }, { threshold: 0.1 });
-
+        
         sections.forEach(section => {
             observer.observe(section);
         });
@@ -823,80 +1466,113 @@ import Layout from '../layouts/Layout.astro';
         let armNavigateAt = 0;
 
         const openLightbox = (imgEl: HTMLImageElement) => {
-            if (!lightbox || !lbImg || !lbCaption) return;
+        if (!lightbox || !lbImg || !lbCaption) return;
 
-            lbImg.src = imgEl.src;
-            lbImg.alt = imgEl.alt || '';
-            lbCaption.textContent =
-                imgEl.dataset.caption ||
-                (imgEl.closest('.gallery-item')?.querySelector('.gallery-caption') as HTMLElement | null)?.textContent ||
-                '';
+        lbImg.src = imgEl.src;
+        lbImg.alt = imgEl.alt || '';
+        lbCaption.textContent =
+            imgEl.dataset.caption ||
+            (imgEl.closest('.gallery-item')?.querySelector('.gallery-caption') as HTMLElement | null)?.textContent ||
+            '';
 
-            activeHref = imgEl.dataset.link || null;
-            armNavigateAt = Date.now() + 400;
+        activeHref = imgEl.dataset.link || null;
+        armNavigateAt = Date.now() + 400;
 
-            lightbox.classList.add('open');
-            lightbox.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
         };
 
         const closeLightbox = () => {
-            if (!lightbox || !lbImg) return;
+        if (!lightbox || !lbImg) return;
 
-            lightbox.classList.remove('open');
-            lightbox.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
 
-            activeHref = null;
+        activeHref = null;
 
-            setTimeout(() => { lbImg.src = ''; }, 150);
+        setTimeout(() => { lbImg.src = ''; }, 150);
         };
 
         document
-            .querySelectorAll<HTMLImageElement>('.gallery-item img, .gallery-media img, .featured-app-image img, .sample-img')
-            .forEach((img) => img.addEventListener('click', () => openLightbox(img)));
+        .querySelectorAll<HTMLImageElement>('.gallery-item img, .gallery-media img, .featured-app-image img, .sample-img')
+        .forEach((img) => img.addEventListener('click', () => openLightbox(img)));
 
         lbImg?.addEventListener('click', (e) => {
-            if (!lightbox?.classList.contains('open')) return;
-            if (!activeHref) return;
-            if (Date.now() < armNavigateAt) return;
+        if (!lightbox?.classList.contains('open')) return;
+        if (!activeHref) return;
+        if (Date.now() < armNavigateAt) return;
 
-            e.preventDefault();
-            e.stopPropagation();
-            const w = window.open(activeHref, '_blank', 'noopener,noreferrer');
-            if (w) w.opener = null;
+        e.preventDefault();
+        e.stopPropagation();
+        const w = window.open(activeHref, '_blank', 'noopener,noreferrer');
+        if (w) w.opener = null;
         });
 
         lightbox?.addEventListener('click', (e) => {
-            const target = e.target;
-            if (!(target instanceof Element)) return;
+        const target = e.target;
+        if (!(target instanceof Element)) return;
 
-            if (target.matches('[data-lightbox-close]')) {
-                e.preventDefault();
-                e.stopPropagation();
-                closeLightbox();
-            }
+        if (target.matches('[data-lightbox-close]')) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeLightbox();
+        }
         });
 
         document.addEventListener('keydown', (e: KeyboardEvent) => {
-            if (e.key === 'Escape' && lightbox?.classList.contains('open')) closeLightbox();
+        if (e.key === 'Escape' && lightbox?.classList.contains('open')) closeLightbox();
         });
+
+
+
     });
+
+    // const heroText = document.querySelector('.hero h1');
+    // const originalText = heroText.textContent;
+    // heroText.textContent = '';
+
+    // let i = 0;
+    // const typeWriter = setInterval(() => {
+    //     if (i < originalText.length) {
+    //         heroText.textContent += originalText.charAt(i);
+    //         i++;
+    //     } else {
+    //         clearInterval(typeWriter);
+    //     }
+    // }, 80);
 </script>
 
-<Layout title="Football Analytics">
-
-    <!-- STEP 1: THE ROLE -->
-    <section class="story-section intro visible">
-        <h1>Football Analytics</h1>
-        <p>
-            I support both the coaching staff and athletic performance with data<br>at Santa Clara Broncos <a href="https://santaclarabroncos.com/sports/womens-soccer" target="_blank" rel="noopener noreferrer">Women's</a> and <a href="https://santaclarabroncos.com/sports/mens-soccer" target="_blank" rel="noopener noreferrer">Men's</a> Soccer and at the <a href="https://www.oaklandrootssc.com/" target="_blank" rel="noopener noreferrer">Oakland Roots</a>.
-        </p>
+<Layout title="Derek Chui">
+    
+    <!-- HERO -->
+    <section class="hero" style="margin-bottom: 12px;">
+        <h1>Hi, I'm Derek</h1>
+        <div class="hero-roles">
+            <span class="hero-role">Computer Science and Engineering at Santa Clara University</span>
+            <span class="hero-role" style="font-size: 1rem;">Football Data Engineering at Santa Clara University <br><a href="https://santaclarabroncos.com/sports/mens-soccer" target="_blank" rel="noopener noreferrer">Men's</a> and <a href="https://santaclarabroncos.com/sports/womens-soccer" target="_blank" rel="noopener noreferrer">Women's</a> Soccer, <a href="https://www.oaklandrootssc.com/" target="_blank" rel="noopener noreferrer">Oakland Roots</a>, and <a href="https://www.xval.app/" target="_blank" rel="noopener noreferrer">xVal</a>.</span>
+            <!-- <span class="hero-role" style="font-size: 1rem;">Collaborator at <a href="https://www.xval.app/" target="_blank" rel="noopener noreferrer">xVal</a> and <a href="https://taka.io/" target="_blank" rel="noopener noreferrer">Taka</a>.</span> -->
+        </div>
+        <div class="affiliation-logos">
+            <a href="https://santaclarabroncos.com/" target="_blank" rel="noopener noreferrer" class="affiliation-logo">
+                <img src="/santaclarabroncos.png" alt="Santa Clara Broncos" />
+            </a>
+            <a href="https://www.oaklandrootssc.com/" target="_blank" rel="noopener noreferrer" class="affiliation-logo">
+                <img src="/Oakland_Roots_SC_logo.svg" alt="Oakland Roots" />
+            </a>
+            <a href="https://www.xval.app/" target="_blank" rel="noopener noreferrer" class="affiliation-logo">
+                <img src="/xval.png" alt="xVal" />
+            </a>
+            <!-- <a href="https://taka.io/" target="_blank" rel="noopener noreferrer" class="affiliation-logo">
+                <img src="/taka.svg" alt="Taka" />
+            </a> -->
+        </div>
     </section>
 
     <!-- STEP 2: THE TOOLS -->
     <section class="tools-section visible">
-        <span class="step-label">Tools</span>
+        <span class="step-label">Most Used Tools</span>
         <div class="tool-badges">
             <span class="tool-badge">Hudl Wyscout</span>
             <span class="tool-badge">Impect</span>
@@ -913,25 +1589,28 @@ import Layout from '../layouts/Layout.astro';
     <section id="matchdays" style="--order: 0; margin-top: -30px;">
         <div class="featured-app">
             <div class="sample-gallery-inline">
-                <div class="sample-gallery-header">
-                    <h4 style="margin: 0; font-size: 1rem; font-weight: 600;">See It In Action</h4>
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+                    <h2 style="margin: 0;"><a href="https://matchdays.app/about" target="_blank" rel="noopener noreferrer" class="featured-app-title">matchdays.app</a></h2>
                     <div class="gallery-tab-header" style="margin-bottom: 0;">
                         <button class="gallery-tab-btn active" onclick="switchGallery('exports', this)">Exports</button>
                         <button class="gallery-tab-btn" onclick="switchGallery('ui', this)">UI</button>
                     </div>
                 </div>
-
                 <div id="gallery-exports" class="gallery-panel">
                     <div class="sample-scroll">
                         <img src="/samples/exports/player.png" alt="Player Report" class="sample-img" loading="lazy" data-caption="Player Dashboard Aggregated from Hudl Wyscout Match Reports" />
                         <img src="/samples/exports/team.png" alt="Team Report" class="sample-img" loading="lazy" data-caption="Progressive Actions vs Usage Reveals Player Productivity" />
                         <img src="/samples/exports/sprint.png" alt="Sprint Analysis" class="sample-img" loading="lazy" data-caption="Sprint & Acceleration Timeline via Catapult Events" />
+                        <img src="/samples/exports/threat.png" alt="Threat Graph" class="sample-img" loading="lazy" data-caption="Premier League Threat Graph (Wolves Players Highlighted)" />
                         <img src="/samples/exports/outliers.png" alt="Outliers" class="sample-img" loading="lazy" data-caption="Catapult Metric Outlier Overview (Average vs Recent Events)" />
                         <img src="/samples/exports/compare.png" alt="Compare" class="sample-img" loading="lazy" data-caption="Player Ranking Grid for Metric Comparison" />
+                        <img src="/samples/exports/doku.png" alt="Doku Dashboard" class="sample-img" loading="lazy" data-caption="Sample Dashboard of Doku Relative to the EPL" />
                         <img src="/samples/exports/shot.png" alt="Shot Analysis" class="sample-img" loading="lazy" data-caption="Shooting Funnel (Shots, Shots on Target, Goals, xG)" />
                         <img src="/samples/exports/outlier2.png" alt="Outlier Analysis" class="sample-img" loading="lazy" data-caption="Catapult Metric Outliers (Average vs Recent Events)" />
+                        <img src="/samples/exports/spotlight.png" alt="Spotlight" class="sample-img" loading="lazy" data-caption="Highlights Specific Player in Player List" />
                         <img src="/samples/exports/heatmap.png" alt="Heatmap" class="sample-img" loading="lazy" data-caption="Heatmap via Catapult Events" />
                         <img src="/samples/exports/timeline.png" alt="Timeline" class="sample-img" loading="lazy" data-caption="Aggregated Shooting Timeline Over a Season" />
+                        <img src="/samples/exports/donut.png" alt="Donut" class="sample-img" loading="lazy" data-caption="Radar Chart Alternative To Compare More Players" />
                         <img src="/samples/exports/zone.png" alt="Zone Analysis" class="sample-img" loading="lazy" data-caption="Zone Analysis (Recoveries, Losses, Locations, Passes)" />
                     </div>
                 </div>
@@ -949,49 +1628,11 @@ import Layout from '../layouts/Layout.astro';
                         <img src="/samples/ui/api.png" alt="API" class="sample-img" loading="lazy" data-caption="Configure API Keys and Credentials" />
                     </div>
                 </div>
+                <p style="margin: 20px 0 4px; font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.6;"><span class="suite-label">Coaching Suite:</span> Turns Hudl Wyscout & Impect exports into interactive dashboards, detailed analysis, and more.</p>
+                <p style="margin: 0 0 12px; font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.6;"><span class="suite-label">Performance Center:</span> Connects to Catapult, VALD, and more to automate report generation and track athlete metrics over time.</p>
+                <p style="margin: 6px 0 0; font-size: 0.78rem; color: rgba(255,255,255,0.3);">Click any image to enlarge · Scroll to see more</p>
             </div>
 
-            <div class="featured-app-image">
-                <img src="/samples/ui/home.png" loading="lazy" data-caption="Click the image for project details." data-link="https://matchdays.app/about" />
-            </div>
-            <div class="featured-app-content">
-                <h2><a href="https://matchdays.app" target="_blank" rel="noopener noreferrer" class="featured-app-title">matchdays.app</a></h2>
-                <p>
-                    This platform is two-fold:
-                </p>
-                <p>
-                    <span class="suite-label">Coaching Suite:</span> Turns Hudl Wyscout & Impect exports into interactive dashboards, detailed analysis, and more.
-                </p>
-                <p>
-                    <span class="suite-label">Performance Center:</span> Connects to Catapult, VALD, Output, 1080, and Ledsreact APIs to automate report generation and track athlete metrics over time.
-                </p>
-                <p>
-                    Currently used across <a href="https://santaclarabroncos.com/" target="_blank" rel="noopener noreferrer">Santa Clara Broncos Athletics</a> (Women's Soccer, Men's Soccer, Men's Basketball,
-                    Women's Basketball, Women's Volleyball) and at the <a href="https://www.oaklandrootssc.com/" target="_blank" rel="noopener noreferrer">Oakland Roots</a>.
-                </p>
-                <a href="https://matchdays.app/about" target="_blank" rel="noopener noreferrer" class="featured-app-link">
-                    Learn More →
-                </a>
-            </div>
-
-            <div class="trusted-by">
-                <h4 class="trusted-by-heading">
-                    <svg class="verified-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.96 8.6 1.5 6.71 4.69 3.1 5.5l.34 3.7L1 12l2.44 2.79-.34 3.7 3.61.82 1.89 3.2L12 21.04l3.4 1.46 1.89-3.2 3.61-.82-.34-3.69L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z"/>
-                    </svg>
-                    Trusted By
-                </h4>
-                <div class="trusted-by-clients">
-                    <a href="https://santaclarabroncos.com/" target="_blank" rel="noopener noreferrer" class="trusted-by-org">
-                        <img src="/santaclarabroncos.png" alt="Santa Clara Broncos" class="trusted-by-logo" />
-                        <span>Santa Clara Broncos</span>
-                    </a>
-                    <a href="https://www.oaklandrootssc.com/" target="_blank" rel="noopener noreferrer" class="trusted-by-org">
-                        <img src="/Oakland_Roots_SC_logo.svg" alt="Oakland Roots" class="trusted-by-logo" />
-                        <span>Oakland Roots</span>
-                    </a>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1007,15 +1648,13 @@ import Layout from '../layouts/Layout.astro';
             <img src="/usl.png" alt="USL" class="league-logo" />
             <img src="/efl.svg" alt="EFL" class="league-logo" />
             <img src="/ncaa.avif" alt="NCAA" class="league-logo" />
-            <a href="https://taka.io/" target="_blank" rel="noopener noreferrer"><img src="/taka.svg" alt="Taka" class="league-logo" style="height: 72px;" /></a>
-            <a href="https://www.xval.app/" target="_blank" rel="noopener noreferrer"><img src="/xval.png" alt="Xval" class="league-logo" style="height: 90px;" /></a>
         </div>
     </section>
 
-    <!-- GALLERY -->
-    <section id="gallery-fa" style="--order: 1;">
+    <!-- PREVIOUS PROJECTS GALLERY -->
+    <section id="gallery-fa" style="--order: 1; margin-top: 40px;">
     <div class="card">
-        <h2>Previous Projects</h2>
+        <h2><a href="https://github.com/derek-chui/Football-Analytics" target="_blank" rel="noopener noreferrer">Previous Projects</a></h2>
         <p>Work that eventually became the building blocks of matchdays.app:</p>
 
         <div class="gallery-wrapper">
@@ -1032,7 +1671,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
 
             <div class="gallery-item">
-            <img src="/fa11.png" loading="lazy" data-caption="Click the image for project details." data-link="https://plscout.streamlit.app/" />
+            <img src="/fa11.png" loading="lazy" data-caption="Click the image for project details." data-link="https://drive.google.com/file/d/1xs6IoX54xfnAZZ-fy95Ot02tuMm1_UqH/view?usp=sharing" />
             <div class="gallery-caption">Premier League Scouting Portal</div>
             </div>
 
@@ -1072,16 +1711,147 @@ import Layout from '../layouts/Layout.astro';
 
     <!-- WOLVES TWITTER SECTION -->
     <section id="wolves-twitter" style="--order: 2;">
-        <div class="card">
-            <h2>Twitter (X)</h2>
-            <div style="display: flex; align-items: center; gap: 24px;">
+        <a href="https://x.com/thatderekchui" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
+            <div class="card" style="display: flex; align-items: center; gap: 24px; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
                 <div style="flex: 1;">
+                    <h2>Twitter (X)</h2>
                     <h3>Football Analytics on Wolves</h3>
-                    <p>I also post data analytics about <a href="https://www.wolves.co.uk/" target="_blank" rel="noopener noreferrer">Wolverhampton Wanderers</a> on <a href="https://x.com/thatderekchui" target="_blank" rel="noopener noreferrer">Twitter (X)</a>.<br>Using a lot of my existing workflows as shown above to do so, reaching 500k+ impressions.</p>
+                    <p>I also post data analytics about Wolverhampton Wanderers on Twitter (X).<br>Using a lot of my existing workflows as shown above to do so, reaching 500k+ impressions.</p>
+                    <p style="margin: 8px 0 0 0; color: var(--apple-blue); font-size: 0.9rem;">View Twitter (X) →</p>
                 </div>
                 <div style="flex: 0 0 100px;">
                     <img src="/wolves.png" alt="Wolves Logo" style="width: 100%; opacity: 0.9;">
                 </div>
+            </div>
+        </a>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" style="--order: 4;">
+        <div class="card">
+            <h2>Education</h2>
+            <div style="display: flex; align-items: center; gap: 24px;">
+                <div style="flex: 1;">
+                    <h3>Santa Clara University</h3>
+                    <p>Bachelor of Science in Computer Science and Engineering</p>
+                    <p>Sep 2023 - June 2027</p>
+                </div>
+                <div style="flex: 0 0 100px;">
+                    <img src="/SCU.png" alt="SCU Logo" style="width: 100%; opacity: 0.8;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+<!-- <section id="technologies" style="--order: 2;">
+        <div class="card">
+            <h2>Most Used</h2>
+            <p>Languages I work with regularly:</p>
+            
+            <div class="tech-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
+                    <a href="https://github.com/derek-chui" target="_blank" style="text-decoration: none; color: inherit;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 2rem;">🟦</div>
+                            <h3 style="margin: 0;">C/C++</h3>
+                        </div>
+                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Used with most of my projects and classes</p>
+                    </a>
+                </div>
+                
+                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
+                    <a href="https://github.com/derek-chui/Network-Optimization/tree/main" target="_blank" style="text-decoration: none; color: inherit;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 2rem;">📈</div>
+                            <h3 style="margin: 0;">MATLAB</h3>
+                        </div>
+                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">For current network optimization project</p>
+                    </a>
+                </div>
+                
+                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
+                    <a href="https://x.com/thatderekchui" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 2rem;">🐍</div>
+                            <h3 style="margin: 0;">Python</h3>
+                        </div>
+                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Football (soccer) data analytics & visualization</p>
+                    </a>
+                </div>
+                
+                <div class="tech-card" style="background: linear-gradient(135deg, rgba(41, 151, 255, 0.1) 0%, rgba(0, 0, 0, 0) 100%); border-radius: 12px; padding: 20px; border: 1px solid rgba(41, 151, 255, 0.2); transition: all 0.3s ease;">
+                    <a href="https://github.com/derek-chui/Personal-Website" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 2rem;">🚀</div>
+                            <h3 style="margin: 0;">Astro</h3>
+                        </div>
+                        <p style="margin-top: 10px; color: rgba(255, 255, 255, 0.8);">Framework used to build and update this website</p>
+                    </a>
+                </div>
+            </div>
+                
+            <p style="margin-top: 16px; font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); text-align: center; line-height: 1.5;">
+                <a href="https://github.com/derek-chui?tab=repositories" target="_blank" style="color: var(--apple-blue); text-decoration: none;">
+                    View all repositories →
+                </a>
+            </p>
+
+        </div>
+    </section> -->
+
+    <!-- QUICK LINKS -->
+    <section id="win-lab" style="--order: 5;">
+        <div class="quick-links-grid">
+
+            <!-- CV -->
+            <a href="/DerekChuiCV.pdf" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+                <div class="card" style="height: 100%; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">📄</div>
+                    <h3 style="margin: 0 0 8px 0;">CV</h3>
+                    <p style="margin: 0; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Relevant work experience, projects, and professional development</p>
+                    <p style="margin: 12px 0 0 0; color: var(--apple-blue); font-size: 0.9rem;">View CV →</p>
+                </div>
+            </a>
+
+            <!-- WIN LAB -->
+            <a href="/research" style="text-decoration: none; color: inherit; display: block;">
+                <div class="card" style="height: 100%; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                    <div style="margin-bottom: 12px;">
+                        <img src="/scu_win_lab_logo.jpeg" alt="WIN Lab Logo" style="width: 72px; border-radius: 8px; opacity: 0.9;">
+                    </div>
+                    <h3 style="margin: 0 0 8px 0;">Research</h3>
+                    <p style="margin: 0; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">Wireless Intelligent Networks (WIN) Lab at Santa Clara University</p>
+                    <p style="margin: 12px 0 0 0; color: var(--apple-blue); font-size: 0.9rem;">View research →</p>
+                </div>
+            </a>
+
+            <!-- ARCHIVES -->
+            <a href="/archives" style="text-decoration: none; color: inherit; display: block;">
+                <div class="card" style="height: 100%; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                    <div style="font-size: 2rem; margin-bottom: 12px;">🗂️</div>
+                    <h3 style="margin: 0 0 8px 0;">Archives</h3>
+                    <p style="margin: 0; color: rgba(255, 255, 255, 0.8); font-size: 0.9rem;">A collection of older projects, content, and miscellaneous work</p>
+                    <p style="margin: 12px 0 0 0; color: var(--apple-blue); font-size: 0.9rem;">View archives →</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" style="--order: 6;">
+        <div class="card">
+            <h2>Get In Touch</h2>
+            <p>I'm always open to discussing new projects and opportunities!</p>
+            
+            <div style="display: flex; gap: 24px; margin-top: 32px; flex-wrap: wrap;">
+                <a href="mailto:thatderekchui@gmail.com" class="btn">
+                    ✉️ Email Me
+                </a>
+                <a href="https://www.linkedin.com/in/derek-chui/" class="btn btn-minor" target="_blank">
+                    <span style="margin-right: 8px;">🔗</span> LinkedIn
+                </a>
             </div>
         </div>
     </section>
