@@ -1432,6 +1432,46 @@ import Layout from '../layouts/Layout.astro';
         }
     }
 
+    /* USL League 2 West Analytics */
+    #usl2w .card {
+        border-left: 6px solid #e63529;
+    }
+
+    #usl2w .card:hover {
+        box-shadow: 0 12px 28px rgba(230, 53, 41, 0.2);
+        border-color: rgba(230, 53, 41, 0.4);
+    }
+
+    #usl2w h2:after {
+        background: linear-gradient(90deg, #e63529, transparent);
+    }
+
+    .usl2w-badge {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(230, 53, 41, 0.12);
+        border: 1px solid rgba(230, 53, 41, 0.35);
+        color: #e63529;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        padding: 3px 10px;
+        border-radius: 20px;
+        vertical-align: middle;
+        position: relative;
+        top: -2px;
+    }
+
+    .usl2w-tag {
+        font-size: 0.78rem;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(230, 53, 41, 0.2);
+        background: rgba(230, 53, 41, 0.07);
+        color: rgba(255, 255, 255, 0.7);
+    }
+
 </style>
 
 <script>
@@ -1639,6 +1679,40 @@ import Layout from '../layouts/Layout.astro';
         </div>
     </section>
 
+    <!-- USL LEAGUE 2 WEST ANALYTICS -->
+    <section id="usl2w" style="--order: 1;">
+        <div class="card">
+            <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 18px;">
+                <img src="/usl2.png" alt="USL League 2" style="height: 42px; width: auto;" />
+                <h2 style="margin: 0;"><a href="https://usl2w.com/about" target="_blank" rel="noopener noreferrer" class="featured-app-title">usl2w.com</a></h2>
+            </div>
+
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.65; margin-bottom: 16px; max-width: 720px;">
+                My work in the USL also allowed me to create an analytics platform for the USL League 2 Western Conference built on Spiideo match data. Currently limited to the USL while 2026 data is finalized.
+            </p>
+
+            <!-- <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
+                <span class="usl2w-tag">Python · Flask</span>
+                <span class="usl2w-tag">Pandas · NumPy · SciPy</span>
+                <span class="usl2w-tag">Plotly.js</span>
+                <span class="usl2w-tag">Railway</span>
+                <span class="usl2w-tag">Spiideo</span>
+            </div> -->
+
+            <div class="sample-scroll">
+                <img src="/usl21.png" alt="Player Cards" class="sample-img" style="height: 240px;" loading="lazy"
+                    data-caption="Player card grid" />
+                <img src="/usl22.png" alt="Player Dashboard" class="sample-img" style="height: 240px;" loading="lazy"
+                    data-caption="Individual player dashboard with percentiles, performance radar, and archetype fit" />
+                <img src="/usl23.png" alt="Usage vs Output Scatter" class="sample-img" style="height: 240px;" loading="lazy"
+                    data-caption="Customizable scatter plots" />
+                <img src="/usl24.png" alt="Team of the Season" class="sample-img" style="height: 240px;" loading="lazy"
+                    data-caption="Algorithmic Team of the Season" />
+            </div>
+            <p style="margin: 8px 0 0; font-size: 0.78rem; color: rgba(255,255,255,0.3);">Click any image to enlarge · Scroll to see more</p>
+        </div>
+    </section>
+
     <!-- INDUSTRY CONNECTIONS -->
     <section class="connections-section visible">
         <span class="step-label">Connections</span>
@@ -1658,7 +1732,7 @@ import Layout from '../layouts/Layout.astro';
     <section id="gallery-fa" style="--order: 1; margin-top: 40px;">
     <div class="card">
         <h2><a href="https://github.com/derek-chui/Football-Analytics/blob/main/README.md" target="_blank" rel="noopener noreferrer">Previous Projects</a></h2>
-        <p>Work that eventually became the building blocks of matchdays.app:</p>
+        <p>Work that eventually became the building blocks of future projects:</p>
 
         <div class="gallery-wrapper">
         <div class="gallery-scroll">
